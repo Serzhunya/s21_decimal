@@ -1,6 +1,8 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
-        "s21_decimal.h": "c"
+        "s21_decimal.h": "c",
+        "__locale": "c",
+        "functional": "c"
     }
 }
