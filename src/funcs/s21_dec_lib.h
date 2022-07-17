@@ -1,6 +1,3 @@
-#ifndef SRC_S21_DECIMAL_H_
-#define SRC_S21_DECIMAL_H_
-
 #include <assert.h>
 #include <limits.h>
 #include <math.h>
@@ -79,7 +76,7 @@ int s21_10_conv(s21_decimal value);
 void s21_rev_10_conv(s21_decimal *value, int result);
 int check_scale_less(s21_decimal num1, s21_decimal num2, int result);
 int check_scale_greater(s21_decimal num1, s21_decimal num2, int result);
-float get_random_float(float min, float max);
+// float get_random_float(float min, float max);
 int s21_zero(s21_decimal value);
 
 // Arithmetic Operators
@@ -108,5 +105,3 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 int s21_truncate(s21_decimal value, s21_decimal *result);
 int s21_floor(s21_decimal value, s21_decimal *result);
 int s21_round(s21_decimal value, s21_decimal *result);
-
-#endif  // SRC_S21_DECIMAL_H_

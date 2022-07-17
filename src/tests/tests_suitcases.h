@@ -7,8 +7,8 @@
 #define BLUE "\e[0;94m"
 
 #include <check.h>
+#include "../funcs/s21_dec_lib.h"
 
-#include "s21_decimal.h"
 
 Suite *suite_add(void);
 Suite *suite_sub(void);

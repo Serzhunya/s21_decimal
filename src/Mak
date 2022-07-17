@@ -1,0 +1,113 @@
+
+# Linking flags configuration
+LIBS 			 =	$(CHECK_LIB)
+CHECK_LIB 		 = 	$(shell pkg-config --libs --cflags check)
+
+# Names config
+GCOV_TARGET		 =	./coverage
+GCOV_INFO		 =	coverage.info
+
+# Modules - dirs with source code. Grep'ed dirs are excluded from search.
+MODULES 		 =	$(shell find . -type d | grep -v -E "docker|objs|tests|st_test")
+TEST_MODULES 	 =	$(shell find tests -type d | grep -v -E "objs")
+
+# Dirs configuration
+SRC_DIR 		 =	$(MODULES)
+TEST_SRC_DIR	 =	$(TEST_MODULES)
+OBJ_DIR 		 =	./objs
+GCOV_OBJ_DIR	 =	./tests/gcov_obj
+
+# Source code files configuration
+SRC 			 =	$(notdir $(shell find $(SRC_DIR) -maxdepth 1 -name "s21_*.c"))
+TEST_SRC 		 =  $(notdir $(shell find $(TEST_SRC_DIR) -maxdepth 1 -name "*.c"))
+INC 			 =	$(shell find $(SRC_DIR) -maxdepth 1 -name "s21_*.h")
+TEST_INC		 =	$(shell find $(TEST_SRC_DIR) -maxdepth 1 -name "*.h")
+
+# Objects configuration
+ALL_OBJS		 =	$(shell find . -name "*.o")
+OBJS 			 =	$(notdir $(SRC:.c=.o))
+TEST_OBJS 		 =	$(notdir $(TEST_SRC:.c=.o))
+
+# GCOV-specific objects configuration
+GCOV_OBJS		 =	$(addprefix $(GCOV_OBJ_DIR)/gcov_, $(notdir $(SRC:.c=.o)))
+# ":=" is used here, because (1) later obj_dir changes; (2) we need objs from ./objs
+GCOV_TEST_OBJS 	:=	$(addprefix $(OBJ_DIR)/, $(notdir $(TEST_SRC:.c=.o)))
+
+# GCOV configuration
+GCDA 			 = 	$(shell find . -name "*.gcda")
+GCNO 			 = 	$(shell find . -name "*.gcno")
+GCOV_FLAGS 		 =	-fprofile-arcs -ftest-coverage
+
+# VPath configuration. Order of args is their priority.
+vpath %.c $(MODULES) : $(TEST_MODULES)
+vpath %.o $(OBJ_DIR) : $(GCOV_OBJ_DIR)
+
+# Default system utilities
+RM 	 = 	rm -f
+MK 	 =	mkdir -p
+
+# Assignment of configured flags
+CFLAGS 			= 	-g -c -Wall -Wextra -std=c11 -pedantic -O0 $(ASAN) $(UBSAN) # -fanalyzer -Werror 
+
+all 			: 	s21_decimal.a test #gcov_report
+
+
+
+
+
+
+
+
+
+# General compilation rule
+%.o 				: %.c $(INC)
+					@$(MK) $(OBJ_DIR)
+					gcc $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
+
+# Building static library
+s21_decimal.a 		: $(OBJS) Makefile
+					ar rc s21_decimal.a $(addprefix $(OBJ_DIR)/, $(OBJS))
+					ranlib s21_decimal.a
+
+test_s21_decimal.a	: $(GCOV_OBJS) $(INC)
+					ar rc test_s21_decimal.a $(GCOV_OBJS)
+					ranlib test_s21_decimal.a
+
+test 				: s21_decimal.a $(TEST_OBJS) $(TEST_INC) Makefile
+					gcc $(addprefix $(OBJ_DIR)/, $(TEST_OBJS)) $(ASAN) $(UBSAN) $(GCOV_FLAGS) -o test $(LIBS) -L. s21_decimal.a
+					./test
+
+
+
+
+
+
+
+
+
+
+
+
+
+# GCOV stage
+gcov_report 		: $(GCOV_TARGET)
+
+# GCOV sets GCOV-specific variables & generates separate set of objects
+$(GCOV_TARGET) 		: OBJ_DIR=$(GCOV_OBJ_DIR)
+$(GCOV_TARGET) 		: CFLAGS += $(GCOV_FLAGS)
+$(GCOV_TARGET) 		: $(GCOV_INFO)
+					genhtml $(GCOV_INFO) -o $(GCOV_TARGET)
+
+# GCOV objects compilation rule
+$(GCOV_OBJ_DIR)/gcov_%.o    : %.c $(INC)
+							@$(MK) $(OBJ_DIR)
+							gcc $(CFLAGS) -o $@ -c $<
+
+# Linking of GCOV objects
+test_gcov: 			test_s21_decimal.a $(GCOV_OBJS) $(GCOV_TEST_OBJS) Makefile
+					gcc $(GCOV_OBJS) $(GCOV_TEST_OBJS) $(GCOV_FLAGS) -o test_gcov $(LIBS) -L. test_s21_decimal.a
+
+# Launching of executable & generating HTML report
+$(GCOV_INFO) 		: test_gcov
+					./test_gcov
+					geninfo $(GCOV_OBJ_DIR) -b . -o ./$(GCOV_INFO)

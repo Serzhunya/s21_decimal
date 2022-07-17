@@ -1,4 +1,4 @@
-#include "s21_decimal.h"
+#include "s21_dec_lib.h"
 
 /*
     function s21_from_float_to_decimal

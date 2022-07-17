@@ -1,4 +1,4 @@
-#include "s21_decimal.h"
+#include "s21_dec_lib.h"
 
 int s21_is_equal(s21_decimal num1, s21_decimal num2) {
   int sign_num1 = get_sign(&num1);

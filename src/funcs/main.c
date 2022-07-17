@@ -1,4 +1,4 @@
-#include "tests_suitcases.h"
+#include "../tests/tests_suitcases.h"
 
 int main(void) {
   run_tests();

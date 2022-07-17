@@ -1,4 +1,4 @@
-#include "s21_decimal.h"
+#include "s21_dec_lib.h"
 
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int erCode = 0;

@@ -1,6 +1,6 @@
+#include "s21_dec_lib.h"
 #include <stdint.h>
 
-#include "s21_decimal.h"
 
 /* Данная функция - shift наоборот, смещает мантису decimal влево */
 void s21_unshift(s21_decimal *number) {
@@ -970,12 +970,12 @@ void float2decimal_main(/*uint32_t*/ int float_bits, int exp,
   }
 }
 
-float get_random_float(float min, float max) {
-  assert(max > min);
-  float random = ((float)rand()) / (float)RAND_MAX;
-  float range = max - min;
-  return random * range + min;
-}
+// float get_random_float(float min, float max) {
+//   assert(max > min);
+//   float random = ((float)rand()) / (float)RAND_MAX;
+//   float range = max - min;
+//   return random * range + min;
+// }
 
 int s21_zero(s21_decimal value) {
   int bit = 0;

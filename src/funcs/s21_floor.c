@@ -1,6 +1,6 @@
-#include "s21_decimal.h"
+#include "s21_dec_lib.h"
 
-int s21_truncate(s21_decimal value, s21_decimal *result) {
+int s21_floor(s21_decimal value, s21_decimal *result) {
   int exp = s21_10_conv(value);
   int check = 0;
   int sign = 0;
@@ -25,7 +25,9 @@ int s21_truncate(s21_decimal value, s21_decimal *result) {
   s21_div(value, ten, &buffer);
   value = buffer;
   *result = value;
-  if (check >= 5)
+  s21_superior_10(exp, result);
+  s21_superior_10(exp, &one);
+  if (check >= 5 && sign == 1)
     s21_add(*result, one, result);
   if (sign == 1) {
     set_1_bit(&(result->bits[3]), 31);
