@@ -542,6 +542,27 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   return error;
 }
 
+int s21_from_decimal_to_float(s21_decimal src, float *dst) {
+  double result = 0;
+  int off = 0;
+  for (int i = 0; i < 96; i++)
+    if ((src.bits[i / 32] & (1 << i % 32)) != 0) result += pow(2, i);
+  if ((off = (src.bits[3] & ~0x80000000) >> 16) > 0) {
+    for (int i = off; i > 0; i--) result /= 10.0;
+  }
+  *dst = (float)result;
+  *dst *= src.bits[3] >> 31 ? -1 : 1;
+  return 0;
+}
+
+// s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result) {
+//   memset(result, 0, sizeof(*result));
+//   int exp = s21_10_conv(value_1);
+//   s21_rev_10_conv(&value_1, 0);
+//   for (int count = exp; count > 0; count--) {
+//   }
+// }
+
 s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result) {
   memset(result, 0, sizeof(*result));
   int exp = s21_10_conv(value_1);
@@ -573,7 +594,7 @@ s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result) {
 
   set_0_bit(&value_1.bits[3], 31);
   int i = 1;
-  while (s21_is_greater_or_equal(value_1, ten) == 1) {
+  while (exp--) {
     memset(result, 0, sizeof(*result));
     s21_sub(value_1, ten, result);
     value_1 = *result;
@@ -588,81 +609,16 @@ s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result) {
   return res;
 }
 
-// s21_decimal s21_truncate(s21_decimal value, s21_decimal *result) {
-//   int exp = s21_10_conv(value);
-//   int check = 0;
-//   int sign = 0;
-//   s21_decimal buffer = {0};
-//   s21_decimal ten = {0};
-//   s21_decimal one = {0};
-//   s21_decimal count;
-//   s21_decimal res;
-
-//   ten.bits[0] = 0b00000000000000000000000000001010;
-//   ten.bits[1] = 0b00000000000000000000000000000000;
-//   ten.bits[2] = 0b00000000000000000000000000000000;
-//   ten.bits[3] = 0b00000000000000000000000000000000;
-
-//   one.bits[0] = 0b00000000000000000000000000000001;
-//   one.bits[1] = 0b00000000000000000000000000000000;
-//   one.bits[2] = 0b00000000000000000000000000000000;
-//   one.bits[3] = 0b00000000000000000000000000000000;
-
-//   count.bits[0] = 0b00000000000000000000000000000000;
-//   count.bits[1] = 0b00000000000000000000000000000000;
-//   count.bits[2] = 0b00000000000000000000000000000000;
-//   count.bits[3] = 0b00000000000000000000000000000000;
-
-//   res.bits[0] = 0b00000000000000000000000000000000;
-//   res.bits[1] = 0b00000000000000000000000000000000;
-//   res.bits[2] = 0b00000000000000000000000000000000;
-//   res.bits[3] = 0b00000000000000000000000000000000;
-
-//   int i = 1;
-//   s21_rev_10_conv(&value, 0);
-
-//   if (test_bit(value.bits[3], 31)) {
-//     set_0_bit(&value.bits[3], 31);
-//     sign = 1;
-//   }
-//   for (int i = 0; i < exp - 1; i++) {
-//     s21_div(value, ten, &buffer);
-//     value = buffer;
-//     s21_from_int_to_decimal(0, &buffer);
-//   }
-
-//   // while (s21_is_greater_or_equal(value, ten) == 1) {
-//   //   memset(result, 0, sizeof(*result));
-//   //   s21_sub(value, ten, result);
-//   //   value = *result;
-//   //   s21_add(count, one, &res);
-//   //   count = res;
-//   // }
-
-//   s21_mod(value, ten, &buffer);
-//   s21_from_decimal_to_int(buffer, &check);
-//   s21_from_int_to_decimal(0, &buffer);
-//   s21_div(value, ten, &buffer);
-//   value = buffer;
-//   *result = value;
-//   // if (check >= 5) s21_add(*result, one, result);
-//   if (sign == 1) {
-//     set_1_bit(&(result->bits[3]), 31);
-//   }
-//   return res;
-// }
-
 int main(void) {
   s21_decimal dec1;
   s21_decimal result;
-  dec1.bits[0] = 0b00000000000000000000000000110010;
+  float dec_float;
+  dec1.bits[0] = 0b00000000000000000000000000110111;
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
-  dec1.bits[3] = 0b00000000000000000000000000000000;
-  printf("\nresult:\n");
-
-  s21_decimal res = s21_div_10(dec1, &result);
-  print_2(&res);
-  print_2(&result);
+  dec1.bits[3] = 0b00000000000000010000000000000000;
+  print_2(&dec1);
+  s21_from_decimal_to_float(dec1, &dec_float);
+  printf("\n%f", dec_float);
   return 0;
 }
