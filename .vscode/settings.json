@@ -3,6 +3,30 @@
     "files.associations": {
         "s21_decimal.h": "c",
         "__locale": "c",
-        "functional": "c"
+        "functional": "c",
+        "__bit_reference": "c",
+        "__functional_base": "c",
+        "__node_handle": "c",
+        "algorithm": "c",
+        "atomic": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "cstddef": "c",
+        "deque": "c",
+        "__memory": "c",
+        "iterator": "c",
+        "limits": "c",
+        "locale": "c",
+        "optional": "c",
+        "random": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "istream": "c",
+        "ostream": "c",
+        "array": "c",
+        "utility": "c"
     }
 }

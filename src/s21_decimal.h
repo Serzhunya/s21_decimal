@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define NUM_255 255
+
 typedef struct {
   int bits[4];
 } s21_decimal;
