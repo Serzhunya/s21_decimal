@@ -979,9 +979,9 @@ int division_in_10(s21_decimal value_1, s21_decimal *result) {
   int sign1 = get_sign(&value_1);
 
   set_0_bit(&value_1.bits[3], 31);
+
   int i = 1;
-  // s21_is_greater_or_equal(value_1, ten) == 0
-  while (s21_is_greater(value_1, ten)) {
+  while (s21_is_greater(value_1, ten)) {  // зациклился между 7 и 3
     *result = s21_sub_in_10(value_1, result);
     value_1 = *result;
     count++;
@@ -990,8 +990,11 @@ int division_in_10(s21_decimal value_1, s21_decimal *result) {
     printf("\n");
     // if (sign1 == 1) {
     //   set_1_bit(&result->bits[3], 31);
+    if (s21_is_less(value_1, ten)) {
+      set_0_bit(&(ten.bits[3]), 31);
+      break;
+    }
   }
-  // s21_invert_mantisa(result);
   return count;
 }
 
