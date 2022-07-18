@@ -52,8 +52,8 @@
 #UBSAN = -fsanitize=undefined
 FLAGS = -g -c -Wall -Wextra -std=c11 #-pedantic -O0 $(ASAN) $(UBSAN) -fanalyzer -Werror
 
-OBJ_DIR = ./funcs/objs
-TEST_OBJ_DIR = ./tests/objs
+OBJ_DIR = ./funcs/funcs_objs
+TEST_OBJ_DIR = ./tests/test_objs
 
 # нохождение папки src:													\
 shell 		  															\
@@ -97,13 +97,13 @@ $@ \
 $< \
 %
 %.o 				: %.c $(INC)
-					mkdir -p $(OBJ_DIR)
-					gcc $(FLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
+					@mkdir -p $(OBJ_DIR)
+					@gcc $(FLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
 # создание статической библиотеки децимал \
 ar rc \
 ranlib 
 s21_decimal.a 		: $(OBJS)
-					ar rc s21_decimal.a $(addprefix $(OBJ_DIR)/, $(OBJS))
+					@ar rc s21_decimal.a $(addprefix $(OBJ_DIR)/, $(OBJS))
 					ranlib s21_decimal.a
 
 
@@ -111,7 +111,7 @@ s21_decimal.a 		: $(OBJS)
 
 test_s21_decimal.a  : OBJ_DIR=$(TEST_OBJ_DIR)
 test_s21_decimal.a	: $(TEST_OBJS)
-					ar rc test_s21_decimal.a $(addprefix $(OBJ_DIR)/, $(TEST_OBJS))
+					@ar rc test_s21_decimal.a $(addprefix $(OBJ_DIR)/, $(TEST_OBJS))
 					ranlib test_s21_decimal.a
 
 test				:
