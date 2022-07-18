@@ -4,6 +4,7 @@ int set_1_bit(int *value, int BitNumber);
 int set_0_bit(int *value, int BitNumber);
 int test_bit(int value, int BitNumber);
 void count10_to_bin(int *count_10, int *count_10_bit);
+int s21_is_less_or_equal(s21_decimal num1, s21_decimal num2);
 s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result);
 // s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result);
 // s21_decimal s21_truncate(s21_decimal value, s21_decimal *result);
@@ -26,6 +27,7 @@ int s21_is_greater(s21_decimal num1, s21_decimal num2);
 void mult_10(s21_decimal value, s21_decimal *result);
 int s21_shift(s21_decimal *number);
 void s21_unshift(s21_decimal *number);
+int s21_is_less(s21_decimal num1, s21_decimal num2);
 int s21_10_conv(s21_decimal value);
 int s21_is_equal(s21_decimal num1, s21_decimal num2);
 int s21_from_int_to_decimal(int src, s21_decimal *dst);
@@ -48,6 +50,94 @@ static s21_decimal s21_integer_div_private(s21_decimal dividend,
 
 int s21_is_greater_or_equal(s21_decimal num1, s21_decimal num2) {
   return (s21_is_greater(num1, num2) || s21_is_equal(num1, num2));
+}
+
+int s21_is_less_num(s21_decimal num1, s21_decimal num2, int result) {
+  if (num1.bits[3] == num2.bits[3]) {
+    if (num1.bits[2] == num2.bits[2]) {
+      if (num1.bits[1] == num2.bits[1]) {
+        if (num1.bits[0] == num2.bits[0]) {
+          result = 0;
+        } else if (num1.bits[0] < num2.bits[0]) {
+          result = 1;
+        } else {
+          result = 0;
+        }
+      } else if (num1.bits[1] < num2.bits[1]) {
+        result = 1;
+      } else {
+        result = 0;
+      }
+    } else if (num1.bits[2] < num2.bits[2]) {
+      result = 1;
+    } else {
+      result = 0;
+    }
+  } else {
+    int exp1;
+    int exp2;
+    exp1 = s21_10_conv(num1);
+    exp2 = s21_10_conv(num2);
+    if (exp1 > exp2) {
+      num2 = s21_superior_10(exp1, &num2);
+    } else if (exp2 > exp1) {
+      num1 = s21_superior_10(exp2, &num1);
+    }
+    if (num1.bits[3] == num2.bits[3]) {
+      if (num1.bits[2] == num2.bits[2]) {
+        if (num1.bits[1] == num2.bits[1]) {
+          if (num1.bits[0] == num2.bits[0]) {
+            result = 0;
+          } else if (num1.bits[0] < num2.bits[0]) {
+            result = 1;
+          } else {
+            result = 0;
+          }
+        } else if (num1.bits[1] < num2.bits[1]) {
+          result = 1;
+        } else {
+          result = 0;
+        }
+      } else if (num1.bits[2] < num2.bits[2]) {
+        result = 1;
+      } else {
+        result = 0;
+      }
+    }
+  }
+  return result;
+}
+
+int s21_is_less(s21_decimal num1, s21_decimal num2) {
+  int result = -1;
+  int sign_num1 = get_sign(&num1);
+  int sign_num2 = get_sign(&num2);
+  if (sign_num1 == sign_num2 && sign_num1 == 0) {
+    result = s21_is_less_num(num1, num2, result);
+  } else if (sign_num1 == 1 && sign_num2 == 0) {
+    result = 1;
+  } else if (sign_num1 == 0 && sign_num2 == 1) {
+    result = 0;
+  } else if (sign_num1 == sign_num2 && sign_num1 == 1) {
+    if (num1.bits[3] == num2.bits[3]) {
+      if (num1.bits[2] == num2.bits[2]) {
+        if (num1.bits[1] == num2.bits[1]) {
+          if (num1.bits[0] == num2.bits[0]) {
+            result = 0;
+          } else {
+            result = !s21_is_less_num(num1, num2, result);
+          }
+        } else {
+          result = !s21_is_less_num(num1, num2, result);
+        }
+      } else {
+        result = !s21_is_less_num(num1, num2, result);
+      }
+    } else {
+      result = !s21_is_less_num(num1, num2, result);
+    }
+  }
+  return result;
 }
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
@@ -440,6 +530,10 @@ void s21_unshift(s21_decimal *number) {
   }
 }
 
+int s21_is_less_or_equal(s21_decimal num1, s21_decimal num2) {
+  return (s21_is_less(num1, num2) || s21_is_equal(num1, num2));
+}
+
 /* Данная функция делает смещение числа типа decimal
 вперёд на один символ. Нужна при выполнении операции умножения */
 int s21_shift(s21_decimal *number) {
@@ -596,57 +690,57 @@ int s21_zero(s21_decimal value) {
   return error;
 }
 
-// int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
-//   // int exp1;
-//   // int exp2;
-//   // exp1 = s21_10_conv(value_1);
-//   // exp2 = s21_10_conv(value_2);
-//   // if (exp1 > exp2) {
-//   //   value_2 = s21_superior_10(exp1, &value_2);
-//   //   s21_rev_10_conv(result, exp1);
-//   // } else if (exp2 > exp1) {
-//   //   value_1 = s21_superior_10(exp2, &value_1);
-//   //   s21_rev_10_conv(result, exp2);
-//   // }
+int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+  // int exp1;
+  // int exp2;
+  // exp1 = s21_10_conv(value_1);
+  // exp2 = s21_10_conv(value_2);
+  // if (exp1 > exp2) {
+  //   value_2 = s21_superior_10(exp1, &value_2);
+  //   s21_rev_10_conv(result, exp1);
+  // } else if (exp2 > exp1) {
+  //   value_1 = s21_superior_10(exp2, &value_1);
+  //   s21_rev_10_conv(result, exp2);
+  // }
 
-//   int erCode = 0;  // код ошибки
-//                    /*  0 - OK
-//                        1 - число слишком велико или равно положительной
-//                        бесконечности 2 - число слишком мало или равно
-//                        отрицательной бесконечности 3 - деление на ноль  */
-//   /* 1) узнаем 31 бит bits[3] обоих чисел и запоминаем */
-//   int sign_op_1 = 0;
-//   int sign_op_2 = 0;
-//   sign_op_1 = test_bit(value_1.bits[3], 31);
-//   sign_op_2 = test_bit(value_2.bits[3], 31);
+  int erCode = 0;  // код ошибки
+                   /*  0 - OK
+                       1 - число слишком велико или равно положительной
+                       бесконечности 2 - число слишком мало или равно
+                       отрицательной бесконечности 3 - деление на ноль  */
+  /* 1) узнаем 31 бит bits[3] обоих чисел и запоминаем */
+  int sign_op_1 = 0;
+  int sign_op_2 = 0;
+  sign_op_1 = test_bit(value_1.bits[3], 31);
+  sign_op_2 = test_bit(value_2.bits[3], 31);
 
-//   if (sign_op_1 == sign_op_2) {  // если знаки равны
-//     erCode = s21_addiction_logic(value_1, value_2, result);
-//     if (sign_op_1) {  // если отрицательный знак
-//       set_1_bit(&result->bits[3], 31);
-//     }
-//   } else {
-//     set_0_bit(&value_1.bits[3], 31);
-//     set_0_bit(&value_2.bits[3], 31);
-//     if (s21_is_greater(value_1, value_2) == 1) {
-//       // то инвертируем value_1 и складываем с value_2
-//       s21_invert_mantisa(&value_1);
-//       s21_addiction_logic(value_1, value_2, result);
-//       if (sign_op_1) {
-//         set_1_bit(&result->bits[3], 31);
-//       }
-//     } else {
-//       // то инвертируем value_2 и складываем с value_1
-//       s21_invert_mantisa(&value_2);
-//       s21_addiction_logic(value_1, value_2, result);
-//       if (sign_op_2) {
-//         set_1_bit(&result->bits[3], 31);
-//       }
-//     }
-//     s21_invert_mantisa(result);
-//   }
-//   return (erCode);
-// }
+  if (sign_op_1 == sign_op_2) {  // если знаки равны
+    erCode = s21_addiction_logic(value_1, value_2, result);
+    if (sign_op_1) {  // если отрицательный знак
+      set_1_bit(&result->bits[3], 31);
+    }
+  } else {
+    set_0_bit(&value_1.bits[3], 31);
+    set_0_bit(&value_2.bits[3], 31);
+    if (s21_is_greater(value_1, value_2) == 1) {
+      // то инвертируем value_1 и складываем с value_2
+      s21_invert_mantisa(&value_1);
+      s21_addiction_logic(value_1, value_2, result);
+      if (sign_op_1) {
+        set_1_bit(&result->bits[3], 31);
+      }
+    } else {
+      // то инвертируем value_2 и складываем с value_1
+      s21_invert_mantisa(&value_2);
+      s21_addiction_logic(value_1, value_2, result);
+      if (sign_op_2) {
+        set_1_bit(&result->bits[3], 31);
+      }
+    }
+    s21_invert_mantisa(result);
+  }
+  return (erCode);
+}
 
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int erCode = 0;
@@ -862,11 +956,8 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst) {
 int division_in_10(s21_decimal value_1, s21_decimal *result) {
   memset(result, 0, sizeof(*result));
   s21_decimal ten;
+  s21_decimal one;
   s21_decimal res;
-  // int exp = s21_10_conv(value_1);  // получаем степень
-  // s21_rev_10_conv(&value_1, 0);    // зануляем степень
-  // s21_decimal count;
-  // s21_decimal one;
 
   int count = 0;
 
@@ -875,46 +966,30 @@ int division_in_10(s21_decimal value_1, s21_decimal *result) {
   ten.bits[2] = 0b00000000000000000000000000000000;
   ten.bits[3] = 0b10000000000000000000000000000000;
 
-  // count.bits[0] = 0b00000000000000000000000000000000;  // 0
-  // count.bits[1] = 0b00000000000000000000000000000000;
-  // count.bits[2] = 0b00000000000000000000000000000000;
-  // count.bits[3] = 0b00000000000000000000000000000000;
-
   res.bits[0] = 0b00000000000000000000000000000000;  // 0
   res.bits[1] = 0b00000000000000000000000000000000;
   res.bits[2] = 0b00000000000000000000000000000000;
   res.bits[3] = 0b00000000000000000000000000000000;
 
-  // one.bits[0] = 0b00000000000000000000000000000001;  // 1
-  // one.bits[1] = 0b00000000000000000000000000000000;
-  // one.bits[2] = 0b00000000000000000000000000000000;
-  // one.bits[3] = 0b00000000000000000000000000000000;
+  one.bits[0] = 0b00000000000000000000000000000000;  // 1
+  one.bits[1] = 0b00000000000000000000000000000000;
+  one.bits[2] = 0b00000000000000000000000000000000;
+  one.bits[3] = 0b00000000000000000000000000000000;
 
   int sign1 = get_sign(&value_1);
 
   set_0_bit(&value_1.bits[3], 31);
   int i = 1;
-
-  int a = 5;
-  while (a) {
-    // memset(&res, 0, sizeof(res));
-    // memset(&res, 0, sizeof(res));
-    res = s21_sub_in_10(value_1, result);  // уходит в беск цикл
-    value_1 = res;
-    // print_2(&value_1);
-    // printf("\n%d\n", i++);
-    // s21_add(count, one, &res);
-    // count = res;
-    // count++;
+  // s21_is_greater_or_equal(value_1, ten) == 0
+  while (s21_is_equal(value_1, one) == 0 ||
+         s21_is_greater_or_equal(value_1, ten) == 1) {
+    *result = s21_sub_in_10(value_1, result);
+    value_1 = *result;
+    memset(result, 0, sizeof(*result));
+    count++;
+    // if (sign1 == 1) {
+    //   set_1_bit(&result->bits[3], 31);
   }
-  // *result = res;
-  // s21_add(value_1, ten, result);  // уходит в беск цикл
-  // value_1 = *result;
-  // s21_add(value_1, ten, result);
-
-  // if (sign1 == 1) {
-  //   set_1_bit(&result->bits[3], 31);
-  // }
   return count;
 }
 
@@ -1002,24 +1077,14 @@ int truncate(s21_decimal value, s21_decimal *result) {
 int main(void) {
   s21_decimal dec1;
   s21_decimal result;
-  s21_decimal res;
-  dec1.bits[0] = 0b00000000000000000000000001100100;  // 100
+  s21_decimal ten;
+  dec1.bits[0] = 0b00000000000000000000000000011110;  // 23
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
   dec1.bits[3] = 0b00000000000000000000000000000000;
-  memset(&result, 0, sizeof(result));
   // s21_sub_in_10(dec1, &result);
   // print_2(&result);
-  s21_sub_in_10(dec1, &result);
-  dec1 = result;
-  memset(&result, 0, sizeof(result));
-  s21_sub_in_10(dec1, &result);
-  dec1 = result;
-  memset(&result, 0, sizeof(result));
-  s21_sub_in_10(dec1, &result);
-  // printf("%d", count);
-  print_2(&result);
-  print_2(&dec1);
-  // print_2(&res);
+  int count = division_in_10(dec1, &result);
+  printf("%d", count);
   return 0;
 }
