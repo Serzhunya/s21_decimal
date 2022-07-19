@@ -39,6 +39,7 @@ int exp_decimal_bin2dec(s21_decimal dst);
 int s21_zero(s21_decimal value);
 void write_float_decimal_exp_more(int *result, s21_decimal *dst, int index,
                                   int bit);
+s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result);
 
 // для див
 static s21_decimal s21_integer_div_private(s21_decimal dividend,
@@ -272,11 +273,11 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
     //возвращаю index значение 95 тк после цикла он равен 96
     index--;
   }
-  printf("result_arr:\n");
-  for (int i = 95; i >= 0; i--) {
-    printf("%d", result_arr[i]);
-  }
-  printf("\n");
+  // printf("result_arr:\n");
+  // for (int i = 95; i >= 0; i--) {
+  //   printf("%d", result_arr[i]);
+  // }
+  // printf("\n");
   write_float_decimal_exp_more(result_arr, result, index, 2);
   //создаем массив в котором будет двоичная запись count_10
   int count_10_bit[8] = {0};
@@ -953,51 +954,6 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst) {
   return 0;
 }
 
-int division_in_10(s21_decimal value_1, s21_decimal *result) {
-  memset(result, 0, sizeof(*result));
-  s21_decimal ten;
-  s21_decimal one;
-  s21_decimal res;
-
-  int count = -1;
-
-  ten.bits[0] = 0b00000000000000000000000000001010;  // 10
-  ten.bits[1] = 0b00000000000000000000000000000000;
-  ten.bits[2] = 0b00000000000000000000000000000000;
-  ten.bits[3] = 0b10000000000000000000000000000000;
-
-  res.bits[0] = 0b00000000000000000000000000000000;  // 0
-  res.bits[1] = 0b00000000000000000000000000000000;
-  res.bits[2] = 0b00000000000000000000000000000000;
-  res.bits[3] = 0b00000000000000000000000000000000;
-
-  one.bits[0] = 0b00000000000000000000000000000000;  // 1
-  one.bits[1] = 0b00000000000000000000000000000000;
-  one.bits[2] = 0b00000000000000000000000000000000;
-  one.bits[3] = 0b00000000000000000000000000000000;
-
-  int sign1 = get_sign(&value_1);
-
-  set_0_bit(&value_1.bits[3], 31);
-
-  int i = 1;
-  while (s21_is_greater(value_1, ten)) {  // зациклился между 7 и 3
-    *result = s21_sub_in_10(value_1, result);
-    value_1 = *result;
-    count++;
-    print_2(&value_1);
-    memset(result, 0, sizeof(*result));
-    printf("\n");
-    // if (sign1 == 1) {
-    //   set_1_bit(&result->bits[3], 31);
-    if (s21_is_less(value_1, ten)) {
-      set_0_bit(&(ten.bits[3]), 31);
-      break;
-    }
-  }
-  return count;
-}
-
 s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
   int a = 0;     // бит первого числа
   int b = 0;     // бит второго числа
@@ -1071,44 +1027,100 @@ s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
   return *result;
 }
 
-int truncate(s21_decimal value, s21_decimal *result) {
-  memset(result, 0, sizeof(*result));  // зануляем result
-  int exp = s21_10_conv(value);        // получаем степень
-  s21_rev_10_conv(&value, 0);          // зануляем степень
-  int sign = get_sign(&value);         // получаем знак
-  set_0_bit(&value.bits[3], 31);       // обнуляем знак
-
+s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result) {
+  memset(result, 0, sizeof(*result));
   s21_decimal ten;
-  // s21_decimal one;
+  s21_decimal one;
+  s21_decimal res;
+  s21_decimal count;
 
-  ten.bits[0] = 0b00000000000000000000000000011110;  // 10
+  ten.bits[0] = 0b00000000000000000000000000001010;  // 10
   ten.bits[1] = 0b00000000000000000000000000000000;
   ten.bits[2] = 0b00000000000000000000000000000000;
-  ten.bits[3] = 0b00000000000000000000000000000000;
+  ten.bits[3] = 0b10000000000000000000000000000000;
 
-  // one.bits[0] = 0b00000000000000000000000000000001;  // 1
-  // one.bits[1] = 0b00000000000000000000000000000000;
-  // one.bits[2] = 0b00000000000000000000000000000000;
-  // one.bits[3] = 0b00000000000000000000000000000000;
+  res.bits[0] = 0b00000000000000000000000000000000;  // 0
+  res.bits[1] = 0b00000000000000000000000000000000;
+  res.bits[2] = 0b00000000000000000000000000000000;
+  res.bits[3] = 0b00000000000000000000000000000000;
 
-  for (; exp > 0; exp--) {
-    division_in_10(value, result);
-    value = *result;
+  one.bits[0] = 0b00000000000000000000000000000001;  // 1
+  one.bits[1] = 0b00000000000000000000000000000000;
+  one.bits[2] = 0b00000000000000000000000000000000;
+  one.bits[3] = 0b00000000000000000000000000000000;
+
+  count.bits[0] = 0b00000000000000000000000000000000;  // 0
+  count.bits[1] = 0b00000000000000000000000000000000;
+  count.bits[2] = 0b00000000000000000000000000000000;
+  count.bits[3] = 0b00000000000000000000000000000000;
+
+  // printf("Value");
+  // for (int i = 0; i < 31; i++) {
+  //   set_0_bit(&value_1.bits[3], i);
+  // }
+  print_2(&value_1);
+  // int sign1 = get_sign(&value_1);
+
+  // set_0_bit(&value_1.bits[3], 31);
+
+  // s21_is_greater(value_1, ten)
+  while (!test_bit(value_1.bits[3], 31)) {
+    *result = s21_sub_in_10(value_1, result);
+    value_1 = *result;
+    // if (sign1 == 1) {
+    //   set_1_bit(&result->bits[3], 31);
+    if (test_bit(value_1.bits[3], 31)) {
+      break;
+    }
+    memset(result, 0, sizeof(*result));
+    s21_add(count, one, &res);
+    count = res;
+    // printf("\n");
+    // print_2(&count);
   }
+  return res;
+}
+
+int truncate(s21_decimal value, s21_decimal *result) {
+  s21_decimal res_value;
+  memset(result, 0, sizeof(*result));  // зануляем result
+  int exp = s21_10_conv(value);        // получаем степень
+  for (int i = 0; i < 31; i++) {
+    set_0_bit(&value.bits[3], i);
+  }
+  // s21_rev_10_conv(&value, 0);          // зануляем степень
+  int sign = get_sign(&value);    // получаем знак
+  set_0_bit(&value.bits[3], 31);  // обнуляем знак
+  while (exp--) {
+    memset(result, 0, sizeof(*result));
+    res_value = division_in_10(value, result);
+    value = res_value;
+    // print_2(&value);
+    // printf("\n");
+  }
+  *result = res_value;
   return 0;
 }
 
 int main(void) {
   s21_decimal dec1;
   s21_decimal result;
-  s21_decimal ten;
-  dec1.bits[0] = 0b00000000000000000000000001000011;  // 23
+  s21_decimal res;
+  float a = 0.0;
+  dec1.bits[0] = 0b00000000000000001101001011101010;  // 53994
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
-  dec1.bits[3] = 0b00000000000000000000000000000000;
+  dec1.bits[3] = 0b00000000000001000000000000000000;
   // s21_sub_in_10(dec1, &result);
+  // res = division_in_10(dec1, &result);
+  // division_in_10(dec1, &result);
+  s21_from_decimal_to_float(dec1, &a);
+  printf("%f", a);
+  // int exp = s21_10_conv(dec1);
+  // printf("\n%d", exp);
+  truncate(dec1, &result);
+  // print_2(&res);
   // print_2(&result);
-  int count = division_in_10(dec1, &result);
-  printf("%d", count);
+  // printf("%d", count);
   return 0;
 }
