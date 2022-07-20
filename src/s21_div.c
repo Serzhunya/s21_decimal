@@ -537,6 +537,7 @@ int s21_is_less_or_equal(s21_decimal num1, s21_decimal num2) {
 
 /* Данная функция делает смещение числа типа decimal
 вперёд на один символ. Нужна при выполнении операции умножения */
+
 int s21_shift(s21_decimal *number) {
   int vault_1 = 0;  // Хранит значение предыдущего бита
   int vault_2 = 0;  // Сохраняет нынешний бит
@@ -1054,16 +1055,6 @@ s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result) {
   count.bits[2] = 0b00000000000000000000000000000000;
   count.bits[3] = 0b00000000000000000000000000000000;
 
-  // printf("Value");
-  // for (int i = 0; i < 31; i++) {
-  //   set_0_bit(&value_1.bits[3], i);
-  // }
-  print_2(&value_1);
-  // int sign1 = get_sign(&value_1);
-
-  // set_0_bit(&value_1.bits[3], 31);
-
-  // s21_is_greater(value_1, ten)
   while (!test_bit(value_1.bits[3], 31)) {
     *result = s21_sub_in_10(value_1, result);
     value_1 = *result;
@@ -1085,18 +1076,28 @@ int truncate(s21_decimal value, s21_decimal *result) {
   s21_decimal res_value;
   memset(result, 0, sizeof(*result));  // зануляем result
   int exp = s21_10_conv(value);        // получаем степень
-  for (int i = 0; i < 31; i++) {
-    set_0_bit(&value.bits[3], i);
+  s21_decimal copy;
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 32; j++) {
+      if (test_bit((value.bits[i]), j)) {
+        set_1_bit(&copy.bits[i], j);
+      } else {
+        set_0_bit(&copy.bits[i], j);
+      }
+    }
   }
-  // s21_rev_10_conv(&value, 0);          // зануляем степень
+  // print_2(&copy);
+  for (int i = 0; i < 32; i++) {
+    set_0_bit(&copy.bits[3], i);
+  }
+
   int sign = get_sign(&value);    // получаем знак
   set_0_bit(&value.bits[3], 31);  // обнуляем знак
   while (exp--) {
     memset(result, 0, sizeof(*result));
-    res_value = division_in_10(value, result);
-    value = res_value;
-    // print_2(&value);
-    // printf("\n");
+    res_value = division_in_10(copy, result);
+    copy = res_value;
+    // print_2(&copy);
   }
   *result = res_value;
   return 0;
@@ -1106,21 +1107,18 @@ int main(void) {
   s21_decimal dec1;
   s21_decimal result;
   s21_decimal res;
-  float a = 0.0;
-  dec1.bits[0] = 0b00000000000000001101001011101010;  // 53994
+  long double a = 0.0;
+  dec1.bits[0] = 0b01000000000000000000001000000000;  // 107374233.6
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
-  dec1.bits[3] = 0b00000000000001000000000000000000;
+  dec1.bits[3] = 0b00000000000000010000000000000000;  // 4
+  print_2(&dec1);
   // s21_sub_in_10(dec1, &result);
   // res = division_in_10(dec1, &result);
   // division_in_10(dec1, &result);
-  s21_from_decimal_to_float(dec1, &a);
-  printf("%f", a);
-  // int exp = s21_10_conv(dec1);
-  // printf("\n%d", exp);
+  // s21_from_decimal_to_float(dec1, &a);
+  // printf("%.5lf", a);
   truncate(dec1, &result);
-  // print_2(&res);
-  // print_2(&result);
-  // printf("%d", count);
+  print_2(&result);
   return 0;
 }
