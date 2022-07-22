@@ -1076,20 +1076,26 @@ int truncate(s21_decimal value, s21_decimal *result) {
   s21_decimal res_value;
   memset(result, 0, sizeof(*result));  // зануляем result
   int exp = s21_10_conv(value);        // получаем степень
-  s21_decimal copy;
-  for (int i = 0; i < 2; i++) {
+
+  s21_decimal copy = {0};
+
+  for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 32; j++) {
-      if (test_bit((value.bits[i]), j)) {
+      int z = test_bit((value.bits[i]), j);
+      if (z) {
         set_1_bit(&copy.bits[i], j);
       } else {
         set_0_bit(&copy.bits[i], j);
       }
     }
   }
-  // print_2(&copy);
+
   for (int i = 0; i < 32; i++) {
     set_0_bit(&copy.bits[3], i);
   }
+
+  printf("\n copy: \n");
+  print_2(&copy);
 
   int sign = get_sign(&value);    // получаем знак
   set_0_bit(&value.bits[3], 31);  // обнуляем знак
@@ -1108,10 +1114,11 @@ int main(void) {
   s21_decimal result;
   s21_decimal res;
   long double a = 0.0;
-  dec1.bits[0] = 0b01000000000000000000001000000000;  // 107374233.6
+  dec1.bits[0] = 0b00000000000001001111001010001001;  // 32423.3 -> 32426
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
-  dec1.bits[3] = 0b00000000000000010000000000000000;  // 4
+  dec1.bits[3] = 0b00000000000000010000000000000000;
+  printf("\n dec1: \n");
   print_2(&dec1);
   // s21_sub_in_10(dec1, &result);
   // res = division_in_10(dec1, &result);
