@@ -5,9 +5,8 @@ int set_0_bit(int *value, int BitNumber);
 int test_bit(int value, int BitNumber);
 void count10_to_bin(int *count_10, int *count_10_bit);
 int s21_is_less_or_equal(s21_decimal num1, s21_decimal num2);
-s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result);
-// s21_decimal s21_div_10(s21_decimal value_1, s21_decimal *result);
-// s21_decimal s21_truncate(s21_decimal value, s21_decimal *result);
+s21_decimal s21_sub_in_x(s21_decimal value_1, s21_decimal *result,
+                         s21_decimal exp_result_dec);
 int truncate(s21_decimal value, s21_decimal *result);
 int s21_sub(s21_decimal dec1, s21_decimal dec2, s21_decimal *result);
 int s21_add(s21_decimal dec1, s21_decimal dec2, s21_decimal *result);
@@ -39,7 +38,8 @@ int exp_decimal_bin2dec(s21_decimal dst);
 int s21_zero(s21_decimal value);
 void write_float_decimal_exp_more(int *result, s21_decimal *dst, int index,
                                   int bit);
-s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result);
+s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result,
+                           s21_decimal exp_result_dec);
 
 // для див
 static s21_decimal s21_integer_div_private(s21_decimal dividend,
@@ -955,22 +955,23 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst) {
   return 0;
 }
 
-s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
+s21_decimal s21_sub_in_x(s21_decimal value_1, s21_decimal *result,
+                         s21_decimal exp_result_dec) {
   int a = 0;     // бит первого числа
   int b = 0;     // бит второго числа
   int prev = 0;  // была ли единица в уме
   int next = 0;  // будем ли мы передавать единицу в след разряд
   int res;  // бит который мы запишем в результат
-  s21_decimal ten;
+  // s21_decimal ten;
 
-  ten.bits[0] = 0b00000000000000000000000000001010;  // 10
-  ten.bits[1] = 0b00000000000000000000000000000000;
-  ten.bits[2] = 0b00000000000000000000000000000000;
-  ten.bits[3] = 0b00000000000000000000000000000000;
+  // ten.bits[0] = 0b00000000000000000000000000001010;  // 10
+  // ten.bits[1] = 0b00000000000000000000000000000000;
+  // ten.bits[2] = 0b00000000000000000000000000000000;
+  // ten.bits[3] = 0b00000000000000000000000000000000;
 
   int error = 0;
 
-  if (s21_is_greater_or_equal(value_1, ten) == 1) {
+  if (s21_is_greater_or_equal(value_1, exp_result_dec) == 1) {
     // то инвертируем value_1 и складываем с value_2
     s21_invert_mantisa(&value_1);
     // s21_addiction_logic(value_1, ten, result);
@@ -979,7 +980,7 @@ s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
     // }
   } else {
     // то инвертируем value_2 и складываем с value_1
-    s21_invert_mantisa(&ten);
+    // s21_invert_mantisa(&exp_result_dec);
     set_1_bit(&(result->bits[3]), 31);
     // set_0_bit(&ten.bits[3], 31);
     // s21_addiction_logic(value_1, ten, result);
@@ -992,7 +993,7 @@ s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
   for (int j = 0; j < 3; j++) {
     for (int i = 0; i < 32; i++) {
       a = test_bit(value_1.bits[j], i);
-      b = test_bit(ten.bits[j], i);
+      b = test_bit(exp_result_dec.bits[j], i);
       if (a == 0) {
         if (b == 0 && prev == 0) {
           res = 0;
@@ -1028,17 +1029,18 @@ s21_decimal s21_sub_in_10(s21_decimal value_1, s21_decimal *result) {
   return *result;
 }
 
-s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result) {
+s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result,
+                           s21_decimal exp_result_dec) {
   memset(result, 0, sizeof(*result));
-  s21_decimal ten;
+  // s21_decimal ten;
   s21_decimal one;
   s21_decimal res;
   s21_decimal count;
 
-  ten.bits[0] = 0b00000000000000000000000000001010;  // 10
-  ten.bits[1] = 0b00000000000000000000000000000000;
-  ten.bits[2] = 0b00000000000000000000000000000000;
-  ten.bits[3] = 0b10000000000000000000000000000000;
+  // ten.bits[0] = 0b00000000000000000000000000001010;  // 10
+  // ten.bits[1] = 0b00000000000000000000000000000000;
+  // ten.bits[2] = 0b00000000000000000000000000000000;
+  // ten.bits[3] = 0b10000000000000000000000000000000;
 
   res.bits[0] = 0b00000000000000000000000000000000;  // 0
   res.bits[1] = 0b00000000000000000000000000000000;
@@ -1056,7 +1058,7 @@ s21_decimal division_in_10(s21_decimal value_1, s21_decimal *result) {
   count.bits[3] = 0b00000000000000000000000000000000;
 
   while (!test_bit(value_1.bits[3], 31)) {
-    *result = s21_sub_in_10(value_1, result);
+    *result = s21_sub_in_x(value_1, result, exp_result_dec);
     value_1 = *result;
     // if (sign1 == 1) {
     //   set_1_bit(&result->bits[3], 31);
@@ -1086,18 +1088,23 @@ int truncate(s21_decimal value, s21_decimal *result) {
       }
     }
   }
-  // print_2(&copy);
   for (int i = 0; i < 32; i++) {
     set_0_bit(&copy.bits[3], i);
   }
-
   int sign = get_sign(&value);    // получаем знак
   set_0_bit(&value.bits[3], 31);  // обнуляем знак
+  int exp_result = pow(10, exp);
+  s21_decimal exp_result_dec;
+  exp_result_dec.bits[0] = 0b00000000000000000000000000000000;  // 0
+  exp_result_dec.bits[1] = 0b00000000000000000000000000000000;
+  exp_result_dec.bits[2] = 0b00000000000000000000000000000000;
+  exp_result_dec.bits[3] = 0b00000000000000000000000000000000;
+  s21_from_int_to_decimal(exp_result, &exp_result_dec);
+  print_2(&exp_result_dec);
   while (exp--) {
     memset(result, 0, sizeof(*result));
-    res_value = division_in_10(copy, result);
+    res_value = division_in_10(copy, result, exp_result_dec);
     copy = res_value;
-    // print_2(&copy);
   }
   *result = res_value;
   return 0;
@@ -1106,19 +1113,19 @@ int truncate(s21_decimal value, s21_decimal *result) {
 int main(void) {
   s21_decimal dec1;
   s21_decimal result;
-  s21_decimal res;
-  long double a = 0.0;
-  dec1.bits[0] = 0b01000000000000000000001000000000;  // 107374233.6
+  dec1.bits[0] = 0b00000000000001001111001010001001;  // 32423.3 -> 32426
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
-  dec1.bits[3] = 0b00000000000000010000000000000000;  // 4
+  dec1.bits[3] = 0b00000000000000010000000000000000;  // 1
   print_2(&dec1);
+  truncate(dec1, &result);
+  print_2(&result);
   // s21_sub_in_10(dec1, &result);
   // res = division_in_10(dec1, &result);
   // division_in_10(dec1, &result);
-  // s21_from_decimal_to_float(dec1, &a);
-  // printf("%.5lf", a);
-  truncate(dec1, &result);
-  print_2(&result);
+  // truncate(dec1, &result);
   return 0;
 }
+
+// 10000 10011100010000
+// 99999 11000011010011111
