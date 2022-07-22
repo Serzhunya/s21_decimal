@@ -1,9 +1,31 @@
+# Compiler config
+# CC 				 =	gcc
+
+# Compilation flags configuration
+# ALL_TARGETS 	 = $(TARGET) $(TEST_EXE) #gcov_report
+ASAN 			 = 	#-fsanitize=address
+UBSAN			 =	#-fsanitize=undefined
+STDFLAGS 		 =	-g -c -Wall -Wextra -std=c11 -pedantic $(C_OPTIMIZATION) # -fanalyzer -Werror 
+
+# Optimizaiton (https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html):
+C_OPTIMIZATION	 = -O0
 
 # Linking flags configuration
 LIBS 			 =	$(CHECK_LIB)
 CHECK_LIB 		 = 	$(shell pkg-config --libs --cflags check)
 
+# DevTools config
+VG 				 = valgrind $(VG_FLAGS)
+VG_FLAGS 		 = --leak-check=full --show-leak-kinds=all \
+				   --track-origins=yes --verbose --log-file=$(VG_LOG)
+LEAKS 			 = leaks -atExit --
+VG_LOG 			 = valgrind-report.txt
+
 # Names config
+# TARGET 			 =	s21_decimal.a
+# TEST_TARGET		 =	test_s21_decimal.a
+# TEST_EXE 		 =	test
+TEST_GCOV_EXE	 =	test_gcov
 GCOV_TARGET		 =	./coverage
 GCOV_INFO		 =	coverage.info
 
@@ -14,18 +36,18 @@ TEST_MODULES 	 =	$(shell find tests -type d | grep -v -E "objs")
 # Dirs configuration
 SRC_DIR 		 =	$(MODULES)
 TEST_SRC_DIR	 =	$(TEST_MODULES)
-OBJ_DIR 		 =	./objs
+# OBJ_DIR 		 =	./objs
 GCOV_OBJ_DIR	 =	./tests/gcov_obj
 
 # Source code files configuration
 SRC 			 =	$(notdir $(shell find $(SRC_DIR) -maxdepth 1 -name "s21_*.c"))
 TEST_SRC 		 =  $(notdir $(shell find $(TEST_SRC_DIR) -maxdepth 1 -name "*.c"))
-INC 			 =	$(shell find $(SRC_DIR) -maxdepth 1 -name "s21_*.h")
+# INC 			 =	$(shell find $(SRC_DIR) -maxdepth 1 -name "s21_*.h")
 TEST_INC		 =	$(shell find $(TEST_SRC_DIR) -maxdepth 1 -name "*.h")
 
 # Objects configuration
 ALL_OBJS		 =	$(shell find . -name "*.o")
-OBJS 			 =	$(notdir $(SRC:.c=.o))
+# OBJS 			 =	$(notdir $(SRC:.c=.o))
 TEST_OBJS 		 =	$(notdir $(TEST_SRC:.c=.o))
 
 # GCOV-specific objects configuration
@@ -43,71 +65,92 @@ vpath %.c $(MODULES) : $(TEST_MODULES)
 vpath %.o $(OBJ_DIR) : $(GCOV_OBJ_DIR)
 
 # Default system utilities
+AR 	 =	ar rc
+RAN  =	ranlib
 RM 	 = 	rm -f
 MK 	 =	mkdir -p
 
 # Assignment of configured flags
-CFLAGS 			= 	-g -c -Wall -Wextra -std=c11 -pedantic -O0 $(ASAN) $(UBSAN) # -fanalyzer -Werror 
+CFLAGS 			= 	$(STDFLAGS) $(ASAN) $(UBSAN)
 
-all 			: 	s21_decimal.a test #gcov_report
-
-
-
-
-
-
-
-
+# all 			: 	$(ALL_TARGETS)
 
 # General compilation rule
-%.o 				: %.c $(INC)
-					@$(MK) $(OBJ_DIR)
-					gcc $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
+# %.o 			: %.c $(INC)
+# 				@$(MK) $(OBJ_DIR)
+#				$(CC) $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
 
 # Building static library
-s21_decimal.a 		: $(OBJS) Makefile
-					ar rc s21_decimal.a $(addprefix $(OBJ_DIR)/, $(OBJS))
-					ranlib s21_decimal.a
+$(TARGET) 		: $(OBJS) Makefile
+				$(AR) $(TARGET) $(addprefix $(OBJ_DIR)/, $(OBJS))
+				$(RAN) $(TARGET)
 
-test_s21_decimal.a	: $(GCOV_OBJS) $(INC)
-					ar rc test_s21_decimal.a $(GCOV_OBJS)
-					ranlib test_s21_decimal.a
+$(TEST_TARGET)	: $(GCOV_OBJS) $(INC)
+				$(AR) $(TEST_TARGET) $(GCOV_OBJS)
+				$(RAN) $(TEST_TARGET)
 
-test 				: s21_decimal.a $(TEST_OBJS) $(TEST_INC) Makefile
-					gcc $(addprefix $(OBJ_DIR)/, $(TEST_OBJS)) $(ASAN) $(UBSAN) $(GCOV_FLAGS) -o test $(LIBS) -L. s21_decimal.a
-					./test
-
-
-
-
-
-
-
-
-
-
-
-
-
+$(TEST_EXE) 	: $(TARGET) $(TEST_OBJS) $(TEST_INC) Makefile
+				$(CC) $(addprefix $(OBJ_DIR)/, $(TEST_OBJS)) $(ASAN) $(UBSAN) $(GCOV_FLAGS) -o $(TEST_EXE) $(LIBS) -L. $(TARGET)
+				./test
 # GCOV stage
-gcov_report 		: $(GCOV_TARGET)
+gcov_report 	: $(GCOV_TARGET)
 
 # GCOV sets GCOV-specific variables & generates separate set of objects
-$(GCOV_TARGET) 		: OBJ_DIR=$(GCOV_OBJ_DIR)
-$(GCOV_TARGET) 		: CFLAGS += $(GCOV_FLAGS)
-$(GCOV_TARGET) 		: $(GCOV_INFO)
-					genhtml $(GCOV_INFO) -o $(GCOV_TARGET)
+$(GCOV_TARGET) 	: OBJ_DIR=$(GCOV_OBJ_DIR)
+$(GCOV_TARGET) 	: CFLAGS += $(GCOV_FLAGS)
+$(GCOV_TARGET) 	: $(GCOV_INFO)
+				genhtml $(GCOV_INFO) -o $(GCOV_TARGET)
 
 # GCOV objects compilation rule
-$(GCOV_OBJ_DIR)/gcov_%.o    : %.c $(INC)
-							@$(MK) $(OBJ_DIR)
-							gcc $(CFLAGS) -o $@ -c $<
+$(GCOV_OBJ_DIR)/gcov_%.o : %.c $(INC)
+				@$(MK) $(OBJ_DIR)
+				$(CC) $(CFLAGS) -o $@ -c $<
 
 # Linking of GCOV objects
-test_gcov: 			test_s21_decimal.a $(GCOV_OBJS) $(GCOV_TEST_OBJS) Makefile
-					gcc $(GCOV_OBJS) $(GCOV_TEST_OBJS) $(GCOV_FLAGS) -o test_gcov $(LIBS) -L. test_s21_decimal.a
+$(TEST_GCOV_EXE): $(TEST_TARGET) $(GCOV_OBJS) $(GCOV_TEST_OBJS) Makefile
+				$(CC) $(GCOV_OBJS) $(GCOV_TEST_OBJS) $(GCOV_FLAGS) -o $(TEST_GCOV_EXE) $(LIBS) -L. $(TEST_TARGET)
 
 # Launching of executable & generating HTML report
-$(GCOV_INFO) 		: test_gcov
-					./test_gcov
-					geninfo $(GCOV_OBJ_DIR) -b . -o ./$(GCOV_INFO)
+$(GCOV_INFO) 	: $(TEST_GCOV_EXE)
+				./$(TEST_GCOV_EXE)
+				geninfo $(GCOV_OBJ_DIR) -b . -o ./$(GCOV_INFO)
+
+# DevTools
+# vg				: $(TEST_EXE)
+# 				$(VG) ./$(TEST_EXE)
+
+# leaks			: $(TEST_EXE)
+# 				$(LEAKS) ./$(TEST_EXE)
+
+# Configures clangd language server for VSCode, provides jump tp implementation feature
+# clangd			: fclean
+# 				bear -- make
+
+# Utility targets
+open 			:
+				open coverage/index.html
+
+clean 			:
+				$(RM) $(ALL_OBJS)
+				$(RM) $(GCDA)
+				$(RM) $(GCNO)
+
+fclean 			: clean
+				$(RM) $(TARGET)
+				$(RM) $(TEST_TARGET)
+				$(RM) $(TEST_EXE)
+				$(RM) $(TEST_GCOV_EXE)
+				$(RM) $(GCOV_INFO)
+				$(RM) $(VG_LOG)
+				$(RM) -r $(GCOV_TARGET)
+
+# lint 			: Makefile
+# 				-cp ../materials/linters/CPPLINT.cfg .
+# 				-find . -type f -name "*.c" | xargs python3 ../materials/linters/cpplint.py --extensions=c
+# 				-find . -type f -name "*.h" | xargs python3 ../materials/linters/cpplint.py --extensions=c
+# 				-find . -type f -name "*.c" | xargs cppcheck --enable=all --suppress=missingIncludeSystem
+# 				rm -f CPPLINT.cfg
+
+# re 				: fclean all
+
+# .PHONY 			: all clean fclean re open lint vg leaks clangd
