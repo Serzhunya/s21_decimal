@@ -48,10 +48,10 @@ CC 				 =	gcc
 ALL_TARGETS 	 = $(TARGET) $(TEST_EXE) gcov_report
 ASAN 			 = 	#-fsanitize=address
 UBSAN			 =	#-fsanitize=undefined
-STDFLAGS 		 =	-g -c -Wall -Wextra -std=c11 -pedantic $(C_OPTIMIZATION) # -fanalyzer -Werror 
+STDFLAGS 		 =	-g -c -Wall -Wextra #-std=c11 -pedantic $(C_OPTIMIZATION) #-fanalyzer #-Werror 
 
 # Optimizaiton (https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html):
-C_OPTIMIZATION	 = -O0
+# C_OPTIMIZATION	 = -O0
 
 # Linking flags configuration
 LIBS 			 =	$(CHECK_LIB)
@@ -116,7 +116,7 @@ MK 	 =	mkdir -p
 # Assignment of configured flags
 CFLAGS 			= 	$(STDFLAGS) $(ASAN) $(UBSAN)
 
-all 			: 	s21_decimal.a test gcov_report
+all 			: 	s21_decimal.a test #gcov_report
 
 # General compilation rule
 %.o 			: %.c $(INC)
@@ -156,7 +156,7 @@ $(TEST_GCOV_EXE): $(TEST_TARGET) $(GCOV_OBJS) $(GCOV_TEST_OBJS) Makefile
 # Launching of executable & generating HTML report
 $(GCOV_INFO) 	: $(TEST_GCOV_EXE)
 				./$(TEST_GCOV_EXE)
-				geninfo $(GCOV_OBJ_DIR) -b . -o ./$(GCOV_INFO)
+#				geninfo $(GCOV_OBJ_DIR) -b . -o ./$(GCOV_INFO)
 
 # Utility targets
 open 			:
@@ -196,6 +196,6 @@ fclean 			: clean
 # 				-find . -type f -name "*.c" | xargs cppcheck --enable=all --suppress=missingIncludeSystem
 # 				rm -f CPPLINT.cfg
 
-# re 				: fclean all
+re 				: fclean all
 
-# .PHONY 			: all clean fclean re open lint vg leaks clangd
+.PHONY 			: all clean fclean re open lint vg leaks clangd

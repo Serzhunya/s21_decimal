@@ -1,34 +1,60 @@
 #include "s21_dec_lib.h"
 
 int s21_truncate(s21_decimal value, s21_decimal *result) {
-  int exp = s21_10_conv(value);
-  int check = 0;
-  int sign = 0;
-  s21_decimal buffer = {0};
-  s21_decimal ten = {0};
-  s21_decimal one = {0};
-  s21_from_int_to_decimal(10, &ten);
-  s21_from_int_to_decimal(1, &one);
-  s21_rev_10_conv(&value, 0);
-  if (test_bit(value.bits[3], 31)) {
-    set_0_bit(&value.bits[3], 31);
-    sign = 1;
+  // s21_decimal res_value;
+  // s21_decimal result;
+  memset(result, 0, sizeof(*result));  // зануляем result
+  int exp = s21_10_conv(value);        // получаем степень
+  s21_decimal copy = value;            // делаем копию
+  s21_decimal ten;
+
+  ten.bits[0] = 0b00000000000000000000000000001010;  // 10
+  ten.bits[1] = 0b00000000000000000000000000000000;
+  ten.bits[2] = 0b00000000000000000000000000000000;
+  ten.bits[3] = 0b10000000000000000000000000000000;
+
+  // printf("\n value: \n");
+  // print_2(&value);
+
+  // printf("\n copy1: \n");
+  // print_2(&copy);
+
+  for (int i = 0; i < 32; i++) {      // убираем в ней степень
+    set_0_bit(&copy.bits[3], i);
   }
-  for (int i = 0; i < exp - 1; i++) {
-    s21_div(value, ten, &buffer);
-    value = buffer;
-    s21_from_int_to_decimal(0, &buffer);
+
+  // printf("\n copy2: \n");
+  // print_2(&copy);
+
+  // int sign = get_sign(&value);        // получаем знак
+
+  set_0_bit(&value.bits[3], 31);      // обнуляем знак
+
+  while (exp--) {
+    memset(result, 0, sizeof(*result));
+    
+    
+    // тут надо реализовать деление на двоичную десятку
+    // res_value - decimal
+    // надо в него записать результат деления на десять
+
+
+    // value - это то что надо поделить
+
+    // ten - это двоичная десятка 
+
+    // 
+
+    s21_div(value, ten, &result);
+
+    // print_2(&result);
+
+    // res_value = division_in_10(copy, result);    // записываем в результат на каждой итерации
+
+    // copy = res_value;                            // присваиваем копии результат
+    // print_2(&copy);
   }
-  s21_mod(value, ten, &buffer);
-  s21_from_decimal_to_int(buffer, &check);
-  s21_from_int_to_decimal(0, &buffer);
-  s21_div(value, ten, &buffer);
-  value = buffer;
-  *result = value;
-  if (check >= 5)
-    s21_add(*result, one, result);
-  if (sign == 1) {
-    set_1_bit(&(result->bits[3]), 31);
-  }
+
+  //*result = res_value;                           // кладем в резал
   return 0;
 }

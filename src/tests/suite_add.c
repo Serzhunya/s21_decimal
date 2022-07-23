@@ -150,155 +150,155 @@ START_TEST(add_test_10) {
 }
 END_TEST
 
-START_TEST(add_test_11) {
-  s21_decimal src1, src2;
-  float num1 = 7.25;
-  float num2 = 9.5;
-  float res_origin = 16.75;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_11) {
+//   s21_decimal src1, src2;
+//   float num1 = 7.25;
+//   float num2 = 9.5;
+//   float res_origin = 16.75;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_12) {
-  s21_decimal src1, src2;
-  int num1 = -1234;
-  float num2 = 1.234;
-  float res_origin = -1232.766;
-  s21_from_int_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_12) {
+//   s21_decimal src1, src2;
+//   int num1 = -1234;
+//   float num2 = 1.234;
+//   float res_origin = -1232.766;
+//   s21_from_int_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_13) {
-  s21_decimal src1, src2;
-  int num1 = -1234;
-  float num2 = -1.234;
-  float res_origin = -1235.234;
-  s21_from_int_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_13) {
+//   s21_decimal src1, src2;
+//   int num1 = -1234;
+//   float num2 = -1.234;
+//   float res_origin = -1235.234;
+//   s21_from_int_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_14) {
-  s21_decimal src1, src2;
-  float num1 = -94;
-  float num2 = 0.00234;
-  float res_origin = num1 + num2;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_14) {
+//   s21_decimal src1, src2;
+//   float num1 = -94;
+//   float num2 = 0.00234;
+//   float res_origin = num1 + num2;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_15) {
-  s21_decimal src1, src2;
-  float num1 = -940.3;
-  float num2 = 0.000234;
-  float res_origin = -940.299766;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_15) {
+//   s21_decimal src1, src2;
+//   float num1 = -940.3;
+//   float num2 = 0.000234;
+//   float res_origin = -940.299766;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_16) {
-  s21_decimal src1, src2;
-  float num1 = -0.9403;
-  float num2 = 0.000234;
-  float res_origin = -0.940066;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_16) {
+//   s21_decimal src1, src2;
+//   float num1 = -0.9403;
+//   float num2 = 0.000234;
+//   float res_origin = -0.940066;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_17) {
-  s21_decimal src1, src2;
-  float num1 = -0.9403;
-  float num2 = 2.0234;
-  float res_origin = num1 + num2;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_17) {
+//   s21_decimal src1, src2;
+//   float num1 = -0.9403;
+//   float num2 = 2.0234;
+//   float res_origin = num1 + num2;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_18) {
-  s21_decimal src1, src2;
-  float num1 = -0.9403;
-  float num2 = -112.0234;
-  float res_origin = -112.9637;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_18) {
+//   s21_decimal src1, src2;
+//   float num1 = -0.9403;
+//   float num2 = -112.0234;
+//   float res_origin = -112.9637;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_19) {
-  s21_decimal src1, src2;
-  float num1 = -0.94e03;
-  float num2 = -112.0234;
-  float res_origin = -1052.0234;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_19) {
+//   s21_decimal src1, src2;
+//   float num1 = -0.94e03;
+//   float num2 = -112.0234;
+//   float res_origin = -1052.0234;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
-START_TEST(add_test_20) {
-  s21_decimal src1, src2;
-  float num1 = -0.94e03;
-  float num2 = -112.0e2;
-  float res_origin = -12140;
-  s21_from_float_to_decimal(num1, &src1);
-  s21_from_float_to_decimal(num2, &src2);
-  s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_add(src1, src2, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, res_origin);
-}
-END_TEST
+// START_TEST(add_test_20) {
+//   s21_decimal src1, src2;
+//   float num1 = -0.94e03;
+//   float num2 = -112.0e2;
+//   float res_origin = -12140;
+//   s21_from_float_to_decimal(num1, &src1);
+//   s21_from_float_to_decimal(num2, &src2);
+//   s21_decimal res_dec = {0};
+//   float res_float = 0.0;
+//   s21_add(src1, src2, &res_dec);
+//   s21_from_decimal_to_float(res_dec, &res_float);
+//   ck_assert_float_eq(res_float, res_origin);
+// }
+// END_TEST
 
 // START_TEST(s21_add_int_21) {
 //   s21_decimal dec1, dec2;
@@ -503,29 +503,29 @@ END_TEST
 //   ck_assert_float_eq_tol(got_float, float_res, 1e-6);
 // }
 
-START_TEST(target_float) {
-  float float_a = -10758.218750;
-  float float_b = 6268.843750;
+// START_TEST(target_float) {
+//   float float_a = -10758.218750;
+//   float float_b = 6268.843750;
 
-  float float_res = float_a + float_b;
+//   float float_res = float_a + float_b;
 
-  s21_decimal expected = {0};
-  s21_from_float_to_decimal(float_res, &expected);
+//   s21_decimal expected = {0};
+//   s21_from_float_to_decimal(float_res, &expected);
 
-  s21_decimal dec_a = {0};
-  s21_from_float_to_decimal(float_a, &dec_a);
-  s21_decimal dec_b = {0};
-  s21_from_float_to_decimal(float_b, &dec_b);
+//   s21_decimal dec_a = {0};
+//   s21_from_float_to_decimal(float_a, &dec_a);
+//   s21_decimal dec_b = {0};
+//   s21_from_float_to_decimal(float_b, &dec_b);
 
-  s21_decimal result = {0};
-  int code = s21_add(dec_a, dec_b, &result);
+//   s21_decimal result = {0};
+//   int code = s21_add(dec_a, dec_b, &result);
 
-  float got_float = 0;
-  s21_from_decimal_to_float(result, &got_float);
+//   float got_float = 0;
+//   s21_from_decimal_to_float(result, &got_float);
 
-  ck_assert_int_eq(code, 0);
-  ck_assert_float_eq_tol(got_float, float_res, 1e-06);
-}
+//   ck_assert_int_eq(code, 0);
+//   ck_assert_float_eq_tol(got_float, float_res, 1e-06);
+// }
 
 Suite *suite_add(void) {
   Suite *s;
@@ -544,16 +544,16 @@ Suite *suite_add(void) {
   tcase_add_test(tc, add_test_9);
   tcase_add_test(tc, add_test_10);
   // начинаются тесты с плавающей точкой
-  tcase_add_test(tc, add_test_11);
-  tcase_add_test(tc, add_test_12);
-  tcase_add_test(tc, add_test_13);
-  tcase_add_test(tc, add_test_14);
-  tcase_add_test(tc, add_test_15);
-  tcase_add_test(tc, add_test_16);
-  tcase_add_test(tc, add_test_17);
-  tcase_add_test(tc, add_test_18);
-  tcase_add_test(tc, add_test_19);
-  tcase_add_test(tc, add_test_20);
+  // tcase_add_test(tc, add_test_11);
+  // tcase_add_test(tc, add_test_12);
+  // tcase_add_test(tc, add_test_13);
+  // tcase_add_test(tc, add_test_14);
+  // tcase_add_test(tc, add_test_15);
+  // tcase_add_test(tc, add_test_16);
+  // tcase_add_test(tc, add_test_17);
+  // tcase_add_test(tc, add_test_18);
+  // tcase_add_test(tc, add_test_19);
+  // tcase_add_test(tc, add_test_20);
   // tcase_add_test(tc, s21_add_int_21);
   // tcase_add_test(tc, s21_add_int_22);
   // tcase_add_test(tc, s21_add_int_23);
@@ -564,7 +564,7 @@ Suite *suite_add(void) {
   // tcase_add_test(tc, random_negative_float);
   // tcase_add_test(tc, random_positive_float);
   // tcase_add_test(tc, random_signed_floats);
-  tcase_add_test(tc, target_float);
+  // tcase_add_test(tc, target_float);
 
   suite_add_tcase(s, tc);
   return s;
