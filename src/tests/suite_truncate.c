@@ -6,10 +6,6 @@ START_TEST(s21_trun_1) {
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
   dec1.bits[3] = 0b00000000000000010000000000000000;
-  float num = 0.0;
-  s21_from_decimal_to_float(dec1, &num);
-  printf("\n");
-  printf("%f\n", num);
   s21_decimal result;
   result.bits[0] = 0b00000000000000000000000000010101;
   result.bits[1] = 0b00000000000000000000000000000000;
@@ -24,16 +20,12 @@ START_TEST(s21_trun_1) {
 }
 END_TEST
 
-START_TEST(s21_trun_3) {
+START_TEST(s21_trun_2) {
   s21_decimal dec1;
   dec1.bits[0] = 0b00000000000000000000000010100101;
   dec1.bits[1] = 0b00000000000000000000000000000000;
   dec1.bits[2] = 0b00000000000000000000000000000000;
   dec1.bits[3] = 0b00000000000000010000000000000000;
-  float num = 0.0;
-  s21_from_decimal_to_float(dec1, &num);
-  printf("\n");
-  printf("%f", num);
   s21_decimal result;
   result.bits[0] = 0b00000000000000000000000000010000;
   result.bits[1] = 0b00000000000000000000000000000000;
@@ -48,17 +40,13 @@ START_TEST(s21_trun_3) {
 }
 END_TEST
 
-START_TEST(s21_trun_2) {
+START_TEST(s21_trun_3) {
   s21_decimal dec1;
   dec1.bits[0] =
       0b11111111111111111111111111111111;  // 7922816251426433759354395033.5
   dec1.bits[1] = 0b11111111111111111111111111111111;
   dec1.bits[2] = 0b11111111111111111111111111111111;
   dec1.bits[3] = 0b00000000000000010000000000000000;
-  float num = 0.0;
-  s21_from_decimal_to_float(dec1, &num);
-  printf("\n");
-  printf("%f", num);
   s21_decimal result;
   result.bits[0] = 0b10011001100110011001100110011001;
   result.bits[1] = 0b10011001100110011001100110011001;
@@ -66,10 +54,10 @@ START_TEST(s21_trun_2) {
   result.bits[3] = 0b00000000000000000000000000000000;
   s21_decimal res1;
   s21_truncate(dec1, &res1);
-  ck_assert_float_eq(res1.bits[0], result.bits[0]);
-  ck_assert_float_eq(res1.bits[1], result.bits[1]);
-  ck_assert_float_eq(res1.bits[2], result.bits[2]);
-  ck_assert_float_eq(res1.bits[3], result.bits[3]);
+  ck_assert_int_eq(res1.bits[0], result.bits[0]);
+  ck_assert_int_eq(res1.bits[1], result.bits[1]);
+  ck_assert_int_eq(res1.bits[2], result.bits[2]);
+  ck_assert_int_eq(res1.bits[3], result.bits[3]);
 }
 END_TEST
 
@@ -81,8 +69,6 @@ START_TEST(s21_trun_4) {
   dec1.bits[3] = 0b00000000000001110000000000000000;
   float num = 0.0;
   s21_from_decimal_to_float(dec1, &num);
-  printf("\n");
-  printf("%f", num);
   s21_decimal result;
   result.bits[0] = 0b00000000000000000000000011010110;
   result.bits[1] = 0b00000000000000000000000000000000;
@@ -90,10 +76,10 @@ START_TEST(s21_trun_4) {
   result.bits[3] = 0b00000000000000000000000000000000;
   s21_decimal res1;
   s21_truncate(dec1, &res1);
-  ck_assert_float_eq(res1.bits[0], result.bits[0]);
-  ck_assert_float_eq(res1.bits[1], result.bits[1]);
-  ck_assert_float_eq(res1.bits[2], result.bits[2]);
-  ck_assert_float_eq(res1.bits[3], result.bits[3]);
+  ck_assert_int_eq(res1.bits[0], result.bits[0]);
+  ck_assert_int_eq(res1.bits[1], result.bits[1]);
+  ck_assert_int_eq(res1.bits[2], result.bits[2]);
+  ck_assert_int_eq(res1.bits[3], result.bits[3]);
 }
 END_TEST
 

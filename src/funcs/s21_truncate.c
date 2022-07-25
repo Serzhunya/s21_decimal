@@ -9,10 +9,8 @@ int s21_truncate(s21_decimal value, s21_decimal *result) {
     buf = value;
     s21_truncate_buf(&buf, exp);
     *result = buf;
-    print_2(result);
   } else {
     *result = value;
-    print_2(result);
   }
   return error;
 }

@@ -40,9 +40,9 @@ void print_2(s21_decimal *dst);
 void print_2_32(/*uint32_t*/ int *bit);
 
 // Вспомогательные функции по работе с битами
-int test_bit(int value, int BitNumber);
+int test_bit(unsigned int value, int BitNumber);
 int test_32_bit(/*uint32_t*/ int value, int BitNumber);
-void set_1_bit(int *value, int BitNumber);
+void set_1_bit(unsigned int *value, int BitNumber);
 void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber);
 void set_0_bit(int *value, int BitNumber);
 void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber);
