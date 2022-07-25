@@ -17,9 +17,9 @@
 #define is_nan(x) __builtin_isnan(x)
 #define is_inf(x) __builtin_isinf(x)
 
-typedef struct {        // bits[0] младшие 32 бита
-  int bits[SIZE_BITS];  // bits[1] средние 32 бита
-} s21_decimal;          // bits[2] старшие 32 бита
+typedef struct {                 // bits[0] младшие 32 бита
+  unsigned int bits[SIZE_BITS];  // bits[1] средние 32 бита
+} s21_decimal;                   // bits[2] старшие 32 бита
 // bits[3] содержит коэффициент масштабирования и знак
 /*
                         about bits[3]
