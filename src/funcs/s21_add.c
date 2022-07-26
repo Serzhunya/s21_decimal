@@ -1,7 +1,6 @@
 #include "s21_dec_lib.h"
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
-
   int erCode = 0;  // код ошибки
                    /*  0 - OK
                        1 - число слишком велико или равно положительной бесконечности
@@ -21,7 +20,6 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     }
 
   } else {
-
     set_0_bit(&value_1.bits[3], 31);
     set_0_bit(&value_2.bits[3], 31);
 

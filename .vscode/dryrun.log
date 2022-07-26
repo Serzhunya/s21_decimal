@@ -1,7 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/sandslas/Documents/s21_decimal'
+make: Leaving directory `/Users/sandslas/Documents/s21_decimal'
  
 make: *** No targets specified and no makefile found.  Stop.
 
-make: Leaving directory `/Users/sandslas/Documents/s21_decimal'
- 
