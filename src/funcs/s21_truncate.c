@@ -2,11 +2,10 @@
 
 #define S21_MAX_UINT 4294967295
 
-
 int s21_truncate(s21_decimal value, s21_decimal *result) {
   int error = 0;
   int exp = s21_10_conv(value);
-
+  int sign_op = test_bit(value.bits[3], 31);
   if (exp != 0) {
     s21_decimal buf = {0};
     buf = value;
@@ -14,6 +13,9 @@ int s21_truncate(s21_decimal value, s21_decimal *result) {
     *result = buf;
   } else {
     *result = value;
+  }
+  if (sign_op) {
+    set_1_bit(&result->bits[3], 31);
   }
   return error;
 }
@@ -28,18 +30,20 @@ void s21_truncate_buf(s21_decimal *buf, int exp) {
       if (j == 0) {
         buf->bits[j] = u_num / 10;
       } else {
-        tmp_int = u_num % 10; // запомнили первый разряд который мы отнимаем
-        buf->bits[j] = u_num / 10; // получили в последнем инте валуе получили последний инт резалта
+        tmp_int = u_num % 10;  // запомнили первый разряд который мы отнимаем
+        buf->bits[j] = u_num / 10;  // получили в последнем инте валуе получили
+                                    // последний инт резалта
         u_num = tmp_int * (4294967296) + buf->bits[j - 1];
 
-        /* 
+        /*
   1) iteration j = 2
   tmp_int = 4294967295 % 10 = 5
-  buf->bits[j] = 4294967295 / 10 = 429496729  
+  buf->bits[j] = 4294967295 / 10 = 429496729
   u_num = 5 * (MAX_UINT + 1) + bits[j - 1]
-  u_num = 5 * (4294967295 + 1) + 4294967295 = 25769803775 
-  u_num = 
-        1. 5 * 4294967296 = 21474836480 - это минимальный минт по модулю + десятичный разряд 
+  u_num = 5 * (4294967295 + 1) + 4294967295 = 25769803775
+  u_num =
+        1. 5 * 4294967296 = 21474836480 - это минимальный минт по модулю +
+  десятичный разряд
         2. 21474836480 + 4294967295 = 25769803775 (u_num)
 
   как выглядит буф после первой итерации
@@ -51,9 +55,8 @@ void s21_truncate_buf(s21_decimal *buf, int exp) {
   2) iteration j = 1
   tmp_int = 25769803775 % 10 = 5
   buf->bits[j] = 25769803775 / 10 = 2576980377
-  u_num = 5 * (MAX_UINT + 1) + bits[j - 1] ---??????????? спросить у Вани или Саши
-  u_num = 5 * (4294967295 + 1) + bits[0] = 
-  u_num = 
+  u_num = 5 * (MAX_UINT + 1) + bits[j - 1] ---??????????? спросить у Вани или
+  Саши u_num = 5 * (4294967295 + 1) + bits[0] = u_num =
         1. 5 * 4294967296 = 21474836480
         2. 21474836480 + 4294967295 = 25769803775 (u_num)
   как выглядит буф после буф итерации
