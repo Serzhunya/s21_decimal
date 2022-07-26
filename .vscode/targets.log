@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Wed Jul 13 12:35:35 2022
+# Make data base, printed on Tue Jul 26 12:49:35 2022
 
 # Variables
 
@@ -18,6 +18,7 @@ make: *** No rule to make target `all'.  Stop.
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+ 
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -25,7 +26,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/sandslas/Documents/C5_s21_decimal-3
+CURDIR := /Users/sandslas/Documents/s21_decimal
 # makefile
 SHELL = /bin/sh
 # environment
@@ -45,13 +46,13 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 LIBRARY_PATH = /usr/local/Cellar/check/0.15.2/lib:/usr/local/lib
 # environment
-LaunchInstanceID = 6F525F7B-04FD-4BF3-B730-4C31A14CF413
+LaunchInstanceID = E9ADC590-A00F-4E3A-A7E2-C46D3A7B60A5
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.lVsQb0SCYM/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.qf4BF1wxvJ/Listeners
 # environment
 CPLUS_INCLUDE_PATH = /usr/local/include/
 # automatic
@@ -59,7 +60,7 @@ CPLUS_INCLUDE_PATH = /usr/local/include/
 # environment
 HOMEBREW_TEMP = /tmp/sandslas/Homebrew/Temp
 # environment
-PWD = /Users/sandslas/Documents/C5_s21_decimal-3
+PWD = /Users/sandslas/Documents/s21_decimal
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -69,7 +70,7 @@ HOME = /Users/sandslas
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/sandslas/Library/Application Support/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /Users/sandslas/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 LOGNAME = sandslas
 # environment
@@ -109,7 +110,7 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n00027fm000jvn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/sandslas/Library/Application Support/Code/1.69.0-main.sock
+VSCODE_IPC_HOOK = /Users/sandslas/Library/Application Support/Code/1.69.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -119,7 +120,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.1330375.1330381
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.1506248.1506254
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -137,7 +138,7 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 18a6c
+SECURITYSESSIONID = 18c3f
 # automatic
 ^F = $(notdir $^)
 # default
@@ -151,7 +152,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 88145
+VSCODE_PID = 80140
 # variable set hash-table stats:
 # Load=69/1024=7%, Rehash=0, Collisions=2/90=2%
 
@@ -161,9 +162,9 @@ VSCODE_PID = 88145
 
 # Directories
 
-# . (device 16777230, inode 1412352): 16 files, no impossibilities.
+# . (device 16777230, inode 1481919): 15 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -181,6 +182,7 @@ all:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 .SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -235,6 +237,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Jul 13 12:35:35 2022
+# Finished Make data base on Tue Jul 26 12:49:35 2022
 
  
