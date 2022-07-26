@@ -16,17 +16,13 @@ int s21_round(s21_decimal value, s21_decimal *result) {
       last_digit = return_last_digit_and_truncate_buf_by_it(&buf);
       *res = buf;
       if (last_digit >= 5) {
-        s21_decimal one = {1, 0, 0, 0};
+        s21_decimal one = {{1, 0, 0, 0}};
         s21_add(*res, one, res);
       }   
-      printf("res = \n");
-      print_2(res);
       *result = *res;
       if (sign_op) {
         set_1_bit(&result->bits[3], 31);
       }
-      printf("\nresult = \n");
-      print_2(result);
   } else {
     *result = value;
   }

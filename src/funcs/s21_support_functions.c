@@ -273,7 +273,7 @@ void s21_rev_10_conv(s21_decimal *value, int result) {
     }
 }
 
-int test_bit(int value, int BitNumber) {
+int test_bit(unsigned int value, int BitNumber) {
   return value & (1 << BitNumber);
 }
 int test_32_bit(/*uint32_t*/ int value, int BitNumber) {
@@ -284,7 +284,7 @@ int test_32_bit(/*uint32_t*/ int value, int BitNumber) {
     function set_1_bit
     Установить бит под номером BitNumber в значение 1 в переменной value
 */
-void set_1_bit(int *value, int BitNumber) {
+void set_1_bit(unsigned int *value, int BitNumber) {
   *value |= (1 << BitNumber);
 }
 void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
@@ -295,7 +295,7 @@ void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
     function set_0_bit
     Установить бит под номером BitNumber в значение 0 в переменной value
 */
-void set_0_bit(int *value, int BitNumber) { *value &= ~(1 << BitNumber); }
+void set_0_bit(unsigned int *value, int BitNumber) { *value &= ~(1 << BitNumber); }
 void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
   *value &= ~(1 << BitNumber);
 }
@@ -304,7 +304,7 @@ void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
     function invert_bit
     Инвертировать бит под номером BitNumber (0 в 1, 1 в 0) в переменной value
 */
-void invert_bit(int *value, int BitNumber) { *value ^= (1 << BitNumber); }
+void invert_bit(unsigned int *value, int BitNumber) { *value ^= (1 << BitNumber); }
 
 /*
     function is_int_negative

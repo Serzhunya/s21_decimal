@@ -121,7 +121,7 @@ all 			: 	s21_decimal.a test #gcov_report
 # General compilation rule
 %.o 			: %.c $(INC)
 				@$(MK) $(OBJ_DIR)
-				$(CC) $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
+				@$(CC) $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) -c $<
 
 # Building static library
 $(TARGET) 		: $(OBJS) Makefile
@@ -147,7 +147,7 @@ $(GCOV_TARGET) 	: $(GCOV_INFO)
 # GCOV objects compilation rule
 $(GCOV_OBJ_DIR)/gcov_%.o : %.c $(INC)
 				@$(MK) $(OBJ_DIR)
-				$(CC) $(CFLAGS) -o $@ -c $<
+				@$(CC) $(CFLAGS) -o $@ -c $<
 
 # Linking of GCOV objects
 $(TEST_GCOV_EXE): $(TEST_TARGET) $(GCOV_OBJS) $(GCOV_TEST_OBJS) Makefile
