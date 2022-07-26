@@ -11,17 +11,19 @@ int s21_floor(s21_decimal value, s21_decimal *result) {
   if (sign_op) {
     s21_truncate(value, res);
 
+    s21_decimal *copy = res;
+
+    set_0_bit(&copy->bits[3], 31);
     s21_decimal one;
     one.bits[0] = 0b00000000000000000000000000000001;
     one.bits[1] = 0b00000000000000000000000000000000;
     one.bits[2] = 0b00000000000000000000000000000000;
     one.bits[3] = 0b00000000000000000000000000000000;
 
-    s21_add(*res, one, res);
+    s21_add(*copy, one, copy);
+    set_1_bit(&copy->bits[3], 31);
 
-    set_1_bit(&res->bits[3], 31);
-
-    *res = *result;
+    copy = result;
 
   } else {
     s21_truncate(value, res);
