@@ -277,8 +277,6 @@ Suite *suite_round(void) {
   tcase_add_test(tc, s21_round_1);
   tcase_add_test(tc, s21_round_2);
   tcase_add_test(tc, s21_round_3);
-<<<<<<< HEAD
-=======
   tcase_add_test(tc, s21_round_4);
   tcase_add_test(tc, s21_round_5);
   tcase_add_test(tc, s21_round_6);
@@ -289,7 +287,6 @@ Suite *suite_round(void) {
   tcase_add_test(tc, s21_round_11);
   tcase_add_test(tc, s21_round_12);
   tcase_add_test(tc, s21_round_13);
->>>>>>> 6ce18e6cfdb8318e109b4f8ce36351a8fe85ca3d
   suite_add_tcase(s, tc);
   return s;
 }
