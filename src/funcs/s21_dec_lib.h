@@ -13,13 +13,15 @@
 #define TRUE 1
 #define FALSE 0
 
+#define S21_MAX_UINT 4294967295
+
 #define is_fin(x) __builtin_isfinite(x)
 #define is_nan(x) __builtin_isnan(x)
 #define is_inf(x) __builtin_isinf(x)
 
-typedef struct {        // bits[0] младшие 32 бита
-  int bits[SIZE_BITS];  // bits[1] средние 32 бита
-} s21_decimal;          // bits[2] старшие 32 бита
+typedef struct {                 // bits[0] младшие 32 бита
+  unsigned int bits[SIZE_BITS];  // bits[1] средние 32 бита
+} s21_decimal;                   // bits[2] старшие 32 бита
 // bits[3] содержит коэффициент масштабирования и знак
 /*
                         about bits[3]
@@ -78,6 +80,7 @@ int check_scale_less(s21_decimal num1, s21_decimal num2, int result);
 int check_scale_greater(s21_decimal num1, s21_decimal num2, int result);
 // float get_random_float(float min, float max);
 int s21_zero(s21_decimal value);
+void s21_truncate_buf(s21_decimal *buf, int exp);
 
 // Arithmetic Operators
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);

@@ -1,36 +1,31 @@
 #include "s21_dec_lib.h"
 
 int s21_floor(s21_decimal value, s21_decimal *result) {
-  int exp = s21_10_conv(value);
-  int check = 0;
-  int sign = 0;
-  s21_decimal buffer = {0};
-  s21_decimal ten = {0};
-  s21_decimal one = {0};
-  s21_from_int_to_decimal(10, &ten);
-  s21_from_int_to_decimal(1, &one);
-  s21_rev_10_conv(&value, 0);
-  if (test_bit(value.bits[3], 31)) {
-    set_0_bit(&value.bits[3], 31);
-    sign = 1;
+  int error = 0;
+  int sign_op = 0;
+
+  s21_decimal *res = result;
+
+  sign_op = test_bit(value.bits[3], 31);
+
+  if (sign_op) {
+    s21_truncate(value, res);
+
+    s21_decimal one;
+    one.bits[0] = 0b00000000000000000000000000000001;
+    one.bits[1] = 0b00000000000000000000000000000000;
+    one.bits[2] = 0b00000000000000000000000000000000;
+    one.bits[3] = 0b00000000000000000000000000000000;
+
+    s21_add(*res, one, res);
+
+    set_1_bit(&res->bits[3], 31);
+
+    *res = *result;
+
+  } else {
+    s21_truncate(value, res);
+    *res = *result;
   }
-  for (int i = 0; i < exp - 1; i++) {
-    s21_div(value, ten, &buffer);
-    value = buffer;
-    s21_from_int_to_decimal(0, &buffer);
-  }
-  s21_mod(value, ten, &buffer);
-  s21_from_decimal_to_int(buffer, &check);
-  s21_from_int_to_decimal(0, &buffer);
-  s21_div(value, ten, &buffer);
-  value = buffer;
-  *result = value;
-  s21_superior_10(exp, result);
-  s21_superior_10(exp, &one);
-  if (check >= 5 && sign == 1)
-    s21_add(*result, one, result);
-  if (sign == 1) {
-    set_1_bit(&(result->bits[3]), 31);
-  }
-  return 0;
+  return error;
 }

@@ -1,36 +1,54 @@
 #include "s21_dec_lib.h"
 
 int s21_round(s21_decimal value, s21_decimal *result) {
+  int error = 0;
+  int sign_op = 0;
   int exp = s21_10_conv(value);
-  int check = 0;
-  int sign = 0;
-  s21_decimal buffer = {0};
-  s21_decimal ten = {0};
-  s21_decimal one = {0};
-  s21_from_int_to_decimal(10, &ten);
-  s21_from_int_to_decimal(1, &one);
-  s21_rev_10_conv(&value, 0);
-  if (test_bit(value.bits[3], 31)) {
-    set_0_bit(&value.bits[3], 31);
-    sign = 1;
+  int last_digit = 0;
+  s21_decimal *res = result;
+
+  sign_op = test_bit(value.bits[3], 31);
+
+  if (exp != 0) {
+      s21_decimal buf = {0};
+      buf = value;
+      s21_truncate_buf(&buf, exp - 1);
+      last_digit = return_last_digit_and_truncate_buf_by_it(&buf);
+      *res = buf;
+      if (last_digit >= 5) {
+        s21_decimal one = {1, 0, 0, 0};
+        s21_add(*res, one, res);
+      }   
+      printf("res = \n");
+      print_2(res);
+      *result = *res;
+      if (sign_op) {
+        set_1_bit(&result->bits[3], 31);
+      }
+      printf("\nresult = \n");
+      print_2(result);
+  } else {
+    *result = value;
   }
-  for (int i = 0; i < exp - 1; i++) {
-    s21_div(value, ten, &buffer);
-    value = buffer;
-    s21_from_int_to_decimal(0, &buffer);
-  }
-  s21_mod(value, ten, &buffer);
-  s21_from_decimal_to_int(buffer, &check);
-  s21_from_int_to_decimal(0, &buffer);
-  s21_div(value, ten, &buffer);
-  value = buffer;
-  *result = value;
-  s21_superior_10(exp, result);
-  s21_superior_10(exp, &one);
-  if (check >= 5)
-    s21_add(*result, one, result);
-  if (sign == 1) {
-    set_1_bit(&(result->bits[3]), 31);
-  }
-  return 0;
+
+  return error;
+}
+
+
+int return_last_digit_and_truncate_buf_by_it(s21_decimal *buf) {
+  unsigned long long u_num;
+  int tmp_int = 0;
+  u_num = buf->bits[2];
+  int j = 2;
+    for (; j >= 0; j--) {
+      if (j == 0) {
+        tmp_int = u_num % 10; 
+        buf->bits[j] = u_num / 10;
+      } else {
+        tmp_int = u_num % 10; 
+        buf->bits[j] = u_num / 10; 
+        u_num = tmp_int * (S21_MAX_UINT + 1) + buf->bits[j - 1];
+      }
+    }
+    return tmp_int;
 }
