@@ -185,11 +185,6 @@ int s21_is_greater_num(s21_decimal num1, s21_decimal num2, int result) {
       result = 0;
     }
   } else {
-    // if (num1.bits[3] < num2.bits[3]) {
-    //   result = 1;
-    // } else {
-    //   result = 0;
-    // }
     int exp1;
     int exp2;
     exp1 = s21_10_conv(num1);
@@ -199,7 +194,7 @@ int s21_is_greater_num(s21_decimal num1, s21_decimal num2, int result) {
     } else if (exp2 > exp1) {
       num1 = s21_superior_10(exp2, &num1);
     }
-    if (num1.bits[3] == num2.bits[3]) {
+    // if (num1.bits[3] == num2.bits[3]) {
       if (num1.bits[2] == num2.bits[2]) {
         if (num1.bits[1] == num2.bits[1]) {
           if (num1.bits[0] == num2.bits[0]) {
@@ -219,7 +214,7 @@ int s21_is_greater_num(s21_decimal num1, s21_decimal num2, int result) {
       } else {
         result = 0;
       }
-    }
+    // }
   }
   return result;
 }
