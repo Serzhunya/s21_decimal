@@ -83,11 +83,11 @@ START_TEST(s21_from_decimal_to_float_6) {
   dec.bits[1] = 0;
   dec.bits[2] = 0;
   dec.bits[3] = 0;
-  // делаем правильную степень десятки
-  //  в нашем случае 10^3 значит пишем 3 двоично, то есть 11
+  // делаем правильную степень десятки
+  // в нашем случае 10^3 значит пишем 3 двоично, то есть 11
   set_1_bit(&(dec.bits[3]), 16);
   set_1_bit(&(dec.bits[3]), 17);
-  // // ставим знак
+  // ставим знак
   set_1_bit(&(dec.bits[3]), 31);
   result = s21_from_decimal_to_float(dec, &number);
   ck_assert_float_eq(number, -18.122);
@@ -156,153 +156,151 @@ START_TEST(s21_from_decimal_to_float_10) {
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest1) {
-    // 6997
-    s21_decimal src1;
+  // 6997
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = 2546.5;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = 2546.5;
 
-    src1.bits[0] = 0b00000000000000000110001101111001;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b00000000000000010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", 2546.5);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000000000110001101111001;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b00000000000000010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", 2546.5);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest2) {
-    // 7016
-    s21_decimal src1;
+  // 7016
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = -0.46453;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = -0.46453;
 
-    src1.bits[0] = 0b00000000000000001011010101110101;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b10000000000001010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", -0.46453);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000000001011010101110101;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b10000000000001010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", -0.46453);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest3) {
-    // 7035
-    s21_decimal src1;
+  // 7035
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = 3.5;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = 3.5;
 
-    src1.bits[0] = 0b00000000000000000000000000100011;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b00000000000000010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", 3.5);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000000000000000000100011;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b00000000000000010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", 3.5);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest4) {
-    // 7054
-    s21_decimal src1;
+  // 7054
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = 4.5;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = 4.5;
 
-    src1.bits[0] = 0b00000000000000000000000000101101;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b00000000000000010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", 4.5);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000000000000000000101101;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b00000000000000010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", 4.5);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest5) {
-    // 7073
-    s21_decimal src1;
+  // 7073
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = -4.5;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = -4.5;
 
-    src1.bits[0] = 0b00000000000000000000000000101101;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b10000000000000010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", -4.5);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000000000000000000101101;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b10000000000000010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", -4.5);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest6) {
-    // 7092
-    s21_decimal src1;
+  // 7092
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = -5.49265;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = -5.49265;
 
-    src1.bits[0] = 0b00000000000010000110000110010001;
-    src1.bits[1] = 0b00000000000000000000000000000000;
-    src1.bits[2] = 0b00000000000000000000000000000000;
-    src1.bits[3] = 0b10000000000001010000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", -5.49265);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b00000000000010000110000110010001;
+  src1.bits[1] = 0b00000000000000000000000000000000;
+  src1.bits[2] = 0b00000000000000000000000000000000;
+  src1.bits[3] = 0b10000000000001010000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", -5.49265);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
 
 START_TEST(s21_from_decimal_to_floatTest7) {
-    // 7111
-    s21_decimal src1;
+  // 7111
+  s21_decimal src1;
 
-    float src2;
-    float *srcp = &src2;
-    // s21_decimal src1 = 2.5086531268974139743;
+  float src2;
+  float *srcp = &src2;
+  // s21_decimal src1 = 2.5086531268974139743;
 
-    src1.bits[0] = 0b01100101111011101101100101011111;
-    src1.bits[1] = 0b01011100001001010100001101000110;
-    src1.bits[2] = 0b00000000000000000000000000000001;
-    src1.bits[3] = 0b00000000000100110000000000000000;
-    s21_from_decimal_to_float(src1, srcp);
-    char var3str[1000];
-    char result[1000];
-    snprintf(var3str, sizeof(var3str), "%.6f", 2.50865312689741);
-    snprintf(result, sizeof(result), "%f", src2);
-    ck_assert_str_eq(result, var3str);
+  src1.bits[0] = 0b01100101111011101101100101011111;
+  src1.bits[1] = 0b01011100001001010100001101000110;
+  src1.bits[2] = 0b00000000000000000000000000000001;
+  src1.bits[3] = 0b00000000000100110000000000000000;
+  s21_from_decimal_to_float(src1, srcp);
+  char var3str[1000];
+  char result[1000];
+  snprintf(var3str, sizeof(var3str), "%.6f", 2.50865312689741);
+  snprintf(result, sizeof(result), "%f", src2);
+  ck_assert_str_eq(result, var3str);
 }
 END_TEST
-
-
 
 Suite *suite_from_decimal_to_float(void) {
   Suite *s;

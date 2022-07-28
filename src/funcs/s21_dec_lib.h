@@ -1,3 +1,6 @@
+#ifndef SRC_FUNCS_S21_DEC_LIB_H_
+#define SRC_FUNCS_S21_DEC_LIB_H_
+
 #include <assert.h>
 #include <limits.h>
 #include <math.h>
@@ -14,7 +17,6 @@
 #define FALSE 0
 
 #define S21_MAX_UINT 4294967295
-
 #define is_fin(x) __builtin_isfinite(x)
 #define is_nan(x) __builtin_isnan(x)
 #define is_inf(x) __builtin_isinf(x)
@@ -111,3 +113,5 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 int s21_truncate(s21_decimal value, s21_decimal *result);
 int s21_floor(s21_decimal value, s21_decimal *result);
 int s21_round(s21_decimal value, s21_decimal *result);
+
+#endif  // SRC_FUNCS_S21_DEC_LIB_H_
