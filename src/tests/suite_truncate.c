@@ -261,7 +261,7 @@ START_TEST(s21_truncateTest1) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000010;
@@ -284,7 +284,7 @@ START_TEST(s21_truncateTest2) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000011;
@@ -307,7 +307,7 @@ START_TEST(s21_truncateTest3) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -330,7 +330,7 @@ START_TEST(s21_truncateTest4) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -353,7 +353,7 @@ START_TEST(s21_truncateTest5) {
   src1.bits[1] = 0b00000000000000000000000000000010;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b10000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b01001100110100101000000111000101;
@@ -376,7 +376,7 @@ START_TEST(s21_truncateTest6) {
   src1.bits[1] = 0b11111001111010000010010110101101;
   src1.bits[2] = 0b10110000001111101111000010010100;
   src1.bits[3] = 0b10000000000011100000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b10000110011101001011101110010001;
@@ -399,7 +399,7 @@ START_TEST(s21_truncateTest7) {
   src1.bits[1] = 0b01100110010010001001000110100011;
   src1.bits[2] = 0b00000000000001001000101100011101;
   src1.bits[3] = 0b10000000000110000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000101;
@@ -422,7 +422,7 @@ START_TEST(s21_truncateTest8) {
   src1.bits[1] = 0b01001011001101011010000111011001;
   src1.bits[2] = 0b00011001101110010111010010111111;
   src1.bits[3] = 0b00000000000011110000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b10100100000111100100000000101101;
@@ -445,7 +445,7 @@ START_TEST(s21_truncateTest9) {
   src1.bits[1] = 0b01100010000010101110010010000111;
   src1.bits[2] = 0b00100111111001000001101011010101;
   src1.bits[3] = 0b10000000000101010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000101111000110000101001101;
@@ -468,7 +468,7 @@ START_TEST(s21_truncateTest10) {
   src1.bits[1] = 0b01011100001001010100001101000110;
   src1.bits[2] = 0b00000000000000000000000000000001;
   src1.bits[3] = 0b00000000000100110000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000010;
@@ -491,7 +491,7 @@ START_TEST(s21_truncateTest11) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_truncate(src1, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000001;

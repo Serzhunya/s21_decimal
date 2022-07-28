@@ -593,7 +593,7 @@ START_TEST(s21_subTest1) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000001;
@@ -622,7 +622,7 @@ START_TEST(s21_subTest2) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000001;
@@ -651,7 +651,7 @@ START_TEST(s21_subTest3) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000011;
@@ -680,7 +680,7 @@ START_TEST(s21_subTest4) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000010;
@@ -709,7 +709,7 @@ START_TEST(s21_subTest5) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000011;
@@ -738,7 +738,7 @@ START_TEST(s21_subTest6) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000010;
@@ -767,7 +767,7 @@ START_TEST(s21_subTest7) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000010000100000010000;
@@ -796,7 +796,7 @@ START_TEST(s21_subTest8) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000101110100011001110100010111;
@@ -825,7 +825,7 @@ START_TEST(s21_subTest9) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 5;
@@ -854,7 +854,7 @@ START_TEST(s21_subTest10) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000001011001000011001101;
@@ -883,7 +883,7 @@ START_TEST(s21_subTest11) {
   src2.bits[1] = 0b00000000000000000000000000010110;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11111101101100110001110000110000;
@@ -912,7 +912,7 @@ START_TEST(s21_subTest12) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b01001100110100101000000111000010;
@@ -941,7 +941,7 @@ START_TEST(s21_subTest13) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10001001111001111111111111111110;
@@ -970,7 +970,7 @@ START_TEST(s21_subTest14) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11111111111111111111111111111110;
@@ -999,7 +999,7 @@ START_TEST(s21_subTest15) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11000000100010111000101000100010;
@@ -1028,7 +1028,7 @@ START_TEST(s21_subTest16) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10010100100110011101101011101101;
@@ -1057,7 +1057,7 @@ START_TEST(s21_subTest17) {
   src2.bits[1] = 0b11111011111111011000100101101101;
   src2.bits[2] = 0b00000000000001000110110101110111;
   src2.bits[3] = 0b10000000000110000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b01001111100110110000000000000000;
@@ -1086,7 +1086,7 @@ START_TEST(s21_subTest18) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b01001110111001000011100101110110;
@@ -1115,7 +1115,7 @@ START_TEST(s21_subTest19) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b00000000000100000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10010010000001100111100010100101;
@@ -1144,7 +1144,7 @@ START_TEST(s21_subTest20) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b00000000000100000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11010010000011011110010110111111;
@@ -1173,7 +1173,7 @@ START_TEST(s21_subTest21) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b10000000000100000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11010010000011011110010110111111;
@@ -1202,7 +1202,7 @@ START_TEST(s21_subTest22) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b10000000000100000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10010010000001100111100010100101;
@@ -1231,7 +1231,7 @@ START_TEST(s21_subTest23) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -1260,7 +1260,7 @@ START_TEST(s21_subTest24) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -1289,7 +1289,7 @@ START_TEST(s21_subTest25) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -1318,7 +1318,7 @@ START_TEST(s21_subTest26) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00101000111101011100001010010000;
@@ -1347,7 +1347,7 @@ START_TEST(s21_subTest27) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b01011011000111100101100000001101;
@@ -1376,7 +1376,7 @@ START_TEST(s21_subTest28) {
   src2.bits[1] = 0b00000000000111110100000111110010;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11101000101010001011011101111000;
@@ -1405,7 +1405,7 @@ START_TEST(s21_subTest29) {
   src2.bits[1] = 0b01110100000101000010011110100011;
   src2.bits[2] = 0b00000000000010000100000101000100;
   src2.bits[3] = 0b00000000000110000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b00001110111111111010100000101010;
@@ -1434,7 +1434,7 @@ START_TEST(s21_subTest30) {
   src2.bits[1] = 0b00000000000001111010100110101011;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000001100000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b11010010100100100111101010001100;
@@ -1463,7 +1463,7 @@ START_TEST(s21_subTest31) {
   src2.bits[1] = 0b00000000111101010001010110011011;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000100010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b01011010101111100101111101110011;
@@ -1492,7 +1492,7 @@ START_TEST(s21_subTest32) {
   src2.bits[1] = 0b11000011110010000000101111011001;
   src2.bits[2] = 0b00000000000000000000000000000100;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10111000010101011100100001001001;
@@ -1521,7 +1521,7 @@ START_TEST(s21_subTest33) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
 
   origin.bits[0] = 0b10011001100110011001100110011010;
@@ -1536,11 +1536,11 @@ START_TEST(s21_subTest33) {
 END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_0) {  // 10 -5 =5
-  s21_decimal c = {10, 0, 0, 0};
-  s21_decimal d = {5, 0, 0, 0};
-  s21_decimal etalon = {5, 0, 0, 0};
+  s21_decimal c = {{10, 0, 0, 0}};
+  s21_decimal d = {{5, 0, 0, 0}};
+  s21_decimal etalon = {{5, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1554,11 +1554,11 @@ START_TEST(s21_test_decimal_sub_simple_0) {  // 10 -5 =5
 END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_1) {  // 100 -5 !=5
-  s21_decimal c = {100, 0, 0, 0};
-  s21_decimal d = {5, 0, 0, 0};
-  s21_decimal etalon = {5, 0, 0, 0};
+  s21_decimal c = {{100, 0, 0, 0}};
+  s21_decimal d = {{5, 0, 0, 0}};
+  s21_decimal etalon = {{5, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1572,10 +1572,10 @@ START_TEST(s21_test_decimal_sub_simple_1) {  // 100 -5 !=5
 END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_2) {  // INT_MAX -5 = 2147483642
-  s21_decimal c = {INT_MAX, 0, 0, 0};
-  s21_decimal d = {5, 0, 0, 0};
-  s21_decimal etalon = {2147483642, 0, 0, 0};
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal c = {{INT_MAX, 0, 0, 0}};
+  s21_decimal d = {{5, 0, 0, 0}};
+  s21_decimal etalon = {{2147483642, 0, 0, 0}};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1590,11 +1590,11 @@ END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_3) {  // роботает только с ппервым
                                              // массивом - ложный результат
-  s21_decimal c = {INT_MAX, INT_MAX, 0, 0};
-  s21_decimal d = {5, 0, 0, 0};
-  s21_decimal etalon = {INT_MAX - 5, INT_MAX, 0, 0};
+  s21_decimal c = {{INT_MAX, INT_MAX, 0, 0}};
+  s21_decimal d = {{5, 0, 0, 0}};
+  s21_decimal etalon = {{INT_MAX - 5, INT_MAX, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1607,11 +1607,11 @@ START_TEST(s21_test_decimal_sub_simple_3) {  // роботает только с
 }
 
 START_TEST(s21_test_decimal_sub_simple_7) {  // 1-(-1)=2
-  s21_decimal c = {1, 0, 0, 0};
-  s21_decimal d = {1, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {2, 0, 0, 0};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{2, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1625,11 +1625,11 @@ START_TEST(s21_test_decimal_sub_simple_7) {  // 1-(-1)=2
 END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_8) {  // -1-(-1)=0
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)};
-  s21_decimal d = {1, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {0, 0, 0, 0};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{0, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1642,30 +1642,30 @@ START_TEST(s21_test_decimal_sub_simple_8) {  // -1-(-1)=0
 }
 END_TEST
 
-START_TEST(s21_test_decimal_sub_simple_9) {  // 1-1=0
-  s21_decimal c = {100, 0, 0, 0};
-  s21_decimal d = {100, 0, 0, 0};
-  s21_decimal etalon = {200, 0, 0, 0};
+// START_TEST(s21_test_decimal_sub_simple_9) {  // 1-1=0
+//   s21_decimal c = {{100, 0, 0, 0}};
+//   s21_decimal d = {{100, 0, 0, 0}};
+//   s21_decimal etalon = {{200, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
-  s21_decimal* p_res = &res;
+//   s21_decimal res = {{0, 0, 0, 0}};
+//   s21_decimal* p_res = &res;
 
-    // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_sub(c, d, p_res);
-    ck_assert_int_eq(add, 0);
+//     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
+//     int add = s21_sub(c, d, p_res);
+//     ck_assert_int_eq(add, 0);
 
-  int equal =
-      s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
-  ck_assert_int_eq(equal, S21_TRUE);
-}
-END_TEST
+//   int equal =
+//       s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
+//   ck_assert_int_eq(equal, S21_TRUE);
+// }
+// END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_10) {  // 1-(-1)=2
-  s21_decimal c = {100, 0, 0, 0};
-  s21_decimal d = {100, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {200, 0, 0, 0};
+  s21_decimal c = {{100, 0, 0, 0}};
+  s21_decimal d = {{100, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{200, 0, 0, 0}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
@@ -1679,19 +1679,16 @@ START_TEST(s21_test_decimal_sub_simple_10) {  // 1-(-1)=2
 END_TEST
 
 START_TEST(s21_test_decimal_sub_simple_11) {  // -1-(-1)=0
-  s21_decimal c = {100, 0, 0, ~(INT_MAX)};
-  s21_decimal d = {100, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {0, 0, 0, 0};
+  s21_decimal c = {{100, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{100, 0, 0, ~(INT_MAX)}};
 
-  s21_decimal res = {0, 0, 0, 0};
+  s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
     int add = s21_sub(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
-  int equal =
-      s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
 }
 END_TEST
 
