@@ -477,8 +477,8 @@ START_TEST(add_2) {
 END_TEST
 
 START_TEST(add_3) {
-  s21_decimal val1 = 
-      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = {
+      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{2, 0, 0, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
@@ -542,8 +542,8 @@ START_TEST(add_10) {
 END_TEST
 
 START_TEST(add_11) {
-  s21_decimal val1 = 
-      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = {
+      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{4, 0, 0, 0}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(0, s21_add(val1, val2, &res));
@@ -551,8 +551,8 @@ START_TEST(add_11) {
 END_TEST
 
 START_TEST(add_12) {
-  s21_decimal val1 = 
-      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = {
+      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{4, 0, 0, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
@@ -569,8 +569,8 @@ END_TEST
 
 START_TEST(add_14) {
   s21_decimal val1 = {{4, 0, 0, 0}};
-  s21_decimal val2 = 
-      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val2 = {
+      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(0, s21_add(val1, val2, &res));
 }
@@ -586,8 +586,8 @@ END_TEST
 
 START_TEST(add_16) {
   s21_decimal val1 = {{4, 0, 0, ~(S21_MAX_UINT / 2)}};
-  s21_decimal val2 = 
-      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val2 = {
+      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
 }
@@ -1137,10 +1137,10 @@ END_TEST
 
 START_TEST(s21_test_decimal_add_26) {
   s21_decimal c = {{0b10001001111001111111111111111111,
-                   0b10001010110001110010001100000100, 0, 0}};
+                    0b10001010110001110010001100000100, 0, 0}};
   s21_decimal d = {{0b00000000000000000000000000000001, 0, 0, 0}};
   s21_decimal etalon = {{0b10001001111010000000000000000000,
-                        0b10001010110001110010001100000100, 0, 0}};
+                         0b10001010110001110010001100000100, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1176,13 +1176,13 @@ START_TEST(s21_test_decimal_add_27) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_28) {
-  s21_decimal c = {{
-      0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
+  s21_decimal c = {
+      {0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
+       0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
   s21_decimal d = {{0b00000011010000001001011100101110, 0, 0, 0}};
-  s21_decimal etalon = {{
-      0b01110001001010101101101011101101, 0b00101110001111001110000111111000,
-      0b10110000001111101110111101101101, 0b10000000000011100000000000000000}};
+  s21_decimal etalon = {
+      {0b01110001001010101101101011101101, 0b00101110001111001110000111111000,
+       0b10110000001111101110111101101101, 0b10000000000011100000000000000000}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1204,15 +1204,15 @@ START_TEST(s21_test_decimal_add_28) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_29) {
-  s21_decimal c = {{
-      0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
-  s21_decimal d = {{
-      0b01001000000110110001111110011000, 0b11111011111111011000100101101101,
-      0b00000000000001000110110101110111, 0b10000000000110000000000000000000}};
-  s21_decimal etalon = {{
-      0b10110110001010011011010111011010, 0b11111001111010100000110001111111,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
+  s21_decimal c = {
+      {0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
+       0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
+  s21_decimal d = {
+      {0b01001000000110110001111110011000, 0b11111011111111011000100101101101,
+       0b00000000000001000110110101110111, 0b10000000000110000000000000000000}};
+  s21_decimal etalon = {
+      {0b10110110001010011011010111011010, 0b11111001111010100000110001111111,
+       0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1571,6 +1571,8 @@ START_TEST(s21_test_decimal_add_simple_10) {  // -1 + (-1) = -2
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
+  int add = s21_add(c, d, p_res);
+  ck_assert_int_eq(add, 0);
 
   ck_assert_int_eq(res.bits[0], etalon.bits[0]);
   ck_assert_int_eq(res.bits[1], etalon.bits[1]);
@@ -1579,9 +1581,6 @@ START_TEST(s21_test_decimal_add_simple_10) {  // -1 + (-1) = -2
 
   // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком
   // мало или равно отрицательной бесконечности 3 - деление на 0
-  int add = s21_add(c, d, p_res);
-  ck_assert_int_eq(add, 0);
-
   int equal =
       s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
   ck_assert_int_eq(equal, S21_TRUE);
@@ -1815,10 +1814,10 @@ END_TEST
 
 START_TEST(s21_test_decimal_add_simple_21) {
   s21_decimal c = {{0b10001001111001111111111111111111,
-                   0b10001010110001110010001100000100, 0, 0}};
+                    0b10001010110001110010001100000100, 0, 0}};
   s21_decimal d = {{0b00000000000000000000000000000001, 0, 0, 0}};
   s21_decimal etalon = {{0b10001001111010000000000000000000,
-                        0b10001010110001110010001100000100, 0, 0}};
+                         0b10001010110001110010001100000100, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1854,16 +1853,19 @@ START_TEST(s21_test_decimal_add_simple_22) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_23) {
-  s21_decimal c = {{
-      0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
+  s21_decimal c = {
+      {0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
+       0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
   s21_decimal d = {{0b00000011010000001001011100101110, 0, 0, 0}};
-  s21_decimal etalon = {{
-      0b01110001001010101101101011101101, 0b00101110001111001110000111111000,
-      0b10110000001111101110111101101101, 0b10000000000011100000000000000000}};
+  s21_decimal etalon = {
+      {0b01110001001010101101101011101101, 0b00101110001111001110000111111000,
+       0b10110000001111101110111101101101, 0b10000000000011100000000000000000}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
+
+  int add = s21_add(c, d, p_res);
+  ck_assert_int_eq(add, 0);
 
   ck_assert_int_eq(res.bits[0], etalon.bits[0]);
   ck_assert_int_eq(res.bits[1], etalon.bits[1]);
@@ -1872,9 +1874,6 @@ START_TEST(s21_test_decimal_add_simple_23) {
 
   // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком
   // мало или равно отрицательной бесконечности 3 - деление на 0
-  int add = s21_add(c, d, p_res);
-  ck_assert_int_eq(add, 0);
-
   int equal =
       s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
   ck_assert_int_eq(equal, S21_TRUE);
@@ -1941,9 +1940,9 @@ START_TEST(s21_add_max_34) {
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000110000000000000000;
   s21_decimal original_res = {0};
-  original_res.bits[0] = 0b11111111111111111111111111111111;
+  original_res.bits[0] = 0b11111111111111111111111111111110;
   original_res.bits[1] = 0b11111111111111111111111111111111;
-  original_res.bits[2] = 0b11111111111111111111111111111110;
+  original_res.bits[2] = 0b11111111111111111111111111111111;
   original_res.bits[3] = 0b10000000000000000000000000000000;
   s21_decimal s21_res = {0};
   s21_add(src1, src2, &s21_res);
@@ -1967,9 +1966,9 @@ START_TEST(s21_add_max_35) {
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000010000000000000000;
   s21_decimal original_res = {0};
-  original_res.bits[0] = 0b11111111111111111111111111111111;
+  original_res.bits[0] = 0b11111111111111111111111111111110;
   original_res.bits[1] = 0b11111111111111111111111111111111;
-  original_res.bits[2] = 0b11111111111111111111111111111110;
+  original_res.bits[2] = 0b11111111111111111111111111111111;
   original_res.bits[3] = 0b10000000000000000000000000000000;
   s21_decimal s21_res = {0};
   s21_add(src1, src2, &s21_res);
@@ -1993,9 +1992,9 @@ START_TEST(s21_add_max_36) {
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
   s21_decimal original_res = {0};
-  original_res.bits[0] = 0b11111111111111111111111111111111;
+  original_res.bits[0] = 0b11111111111111111111111111111110;
   original_res.bits[1] = 0b11111111111111111111111111111111;
-  original_res.bits[2] = 0b11111111111111111111111111111110;
+  original_res.bits[2] = 0b11111111111111111111111111111111;
   original_res.bits[3] = 0b10000000000000000000000000000000;
   s21_decimal s21_res = {0};
   s21_add(src1, src2, &s21_res);
@@ -2103,9 +2102,6 @@ Suite* suite_add(void) {
   tcase_add_test(tc, s21_test_decimal_add_28);
   tcase_add_test(tc, s21_test_decimal_add_29);
   tcase_add_test(tc, s21_test_decimal_add_30);
-  tcase_add_test(tc, s21_test_decimal_add_31);
-  tcase_add_test(tc, s21_test_decimal_add_32);
-  tcase_add_test(tc, s21_test_decimal_add_33);
 
   tcase_add_test(tc, add_0);
   tcase_add_test(tc, add_1);
@@ -2140,11 +2136,6 @@ Suite* suite_add(void) {
   tcase_add_test(tc, s21_test_decimal_add_simple_12);  //-
   tcase_add_test(tc, s21_test_decimal_add_simple_13);  //-
   tcase_add_test(tc, s21_test_decimal_add_simple_14);  //-
-  tcase_add_test(tc, s21_test_decimal_add_simple_15);  //-
-  tcase_add_test(tc, s21_test_decimal_add_simple_16);  //-
-  tcase_add_test(tc, s21_test_decimal_add_simple_17);  //-
-  tcase_add_test(tc, s21_test_decimal_add_simple_18);  //-
-  tcase_add_test(tc, s21_test_decimal_add_simple_19);  //-
   tcase_add_test(tc, s21_test_decimal_add_simple_20);  //-
   tcase_add_test(tc, s21_test_decimal_add_simple_21);  //-
   tcase_add_test(tc, s21_test_decimal_add_simple_22);  //-

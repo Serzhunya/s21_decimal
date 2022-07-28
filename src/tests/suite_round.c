@@ -271,7 +271,7 @@ END_TEST
 
 // START_TEST(s21_test_round_0) {  //???
 
-//     s21_decimal a = {{0, 0, 0, 0}}; 
+//     s21_decimal a = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_a = &a;
 //     set_scale(ptr_a, 0);  // ставим степень
 
@@ -281,12 +281,13 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     int add = s21_round(a, ptr_b);    // a записываем в b по указателю ptr_b
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
 //     ck_assert_int_eq(equal, 1);
-    
+
 // }
 // END_TEST
 
@@ -300,8 +301,9 @@ END_TEST
 //     s21_decimal b = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_b = &b;
 
-//     int add = s21_round(a, ptr_b);       // a записываем в b по указателю ptr_b
-//     ck_assert_int_eq(add, CONVERTERS_S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     int add = s21_round(a, ptr_b);       // a записываем в b по указателю
+//     ptr_b ck_assert_int_eq(add, CONVERTERS_S21_TRUE);  // выходное значение
+//     s21_round - 0 TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -323,8 +325,9 @@ END_TEST
 //     s21_decimal b = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_b = &b;
 
-//     int add = s21_round(a, ptr_b);               // a записываем в b по указателю ptr_b
-//     ck_assert_int_eq(add, CONVERTERS_S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     int add = s21_round(a, ptr_b);               // a записываем в b по
+//     указателю ptr_b ck_assert_int_eq(add, CONVERTERS_S21_TRUE);  // выходное
+//     значение s21_round - 0 TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -349,7 +352,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -374,7 +378,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -399,7 +404,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//         // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//         // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round -
+//         0 TRUE и 1 FALSE
 
 //         // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //         int equal = s21_is_equal(b, etalon);
@@ -417,15 +423,16 @@ END_TEST
 //     s21_decimal* ptr_a = &a;
 //     set_scale(ptr_a, 1);  // ставим степень
 
-//     s21_decimal etalon = {S21_MAX_UINT, 858993459, 0, 0};  // ожидаемое значение
-//     s21_decimal* ptr_etalon = &etalon;
-//     set_scale(ptr_etalon, 0);  // ставим степень
+//     s21_decimal etalon = {S21_MAX_UINT, 858993459, 0, 0};  // ожидаемое
+//     значение s21_decimal* ptr_etalon = &etalon; set_scale(ptr_etalon, 0);  //
+//     ставим степень
 
 //     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -451,7 +458,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -476,7 +484,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -501,7 +510,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -526,7 +536,8 @@ END_TEST
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
-//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0 TRUE и 1 FALSE
+//     // ck_assert_int_eq(add, S21_TRUE);  // выходное значение s21_round - 0
+//     TRUE и 1 FALSE
 
 //     // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
 //     int equal = s21_is_equal(b, etalon);
@@ -965,28 +976,28 @@ Suite* suite_round(void) {
   tcase_add_test(tc, s21_round_12);
   tcase_add_test(tc, s21_round_13);
 
-//   tcase_add_test(tc, s21_test_round_0);
-//   tcase_add_test(tc, s21_test_round_1);
-//   tcase_add_test(tc, s21_test_round_2);
-//   tcase_add_test(tc, s21_test_round_3);
-//   tcase_add_test(tc, s21_test_round_4);
-//   tcase_add_test(tc, s21_test_round_5);  //-
-//   tcase_add_test(tc, s21_test_round_6);  //-
-//   tcase_add_test(tc, s21_test_round_7);
-//   tcase_add_test(tc, s21_test_round_8);
-//   tcase_add_test(tc, s21_test_round_9);
-//   tcase_add_test(tc, s21_test_round_10);
-//   tcase_add_test(tc, s21_test_round_10);
-//   tcase_add_test(tc, round_0);
-//   tcase_add_test(tc, round_1);
-//   tcase_add_test(tc, round_2);
-//   tcase_add_test(tc, round_3);
-//   tcase_add_test(tc, round_4);
-//   tcase_add_test(tc, round_5);
-//   tcase_add_test(tc, round_6);
-//   tcase_add_test(tc, round_7);
-//   tcase_add_test(tc, round_8);
-//   tcase_add_test(tc, round_9);
+  //   tcase_add_test(tc, s21_test_round_0);
+  //   tcase_add_test(tc, s21_test_round_1);
+  //   tcase_add_test(tc, s21_test_round_2);
+  //   tcase_add_test(tc, s21_test_round_3);
+  //   tcase_add_test(tc, s21_test_round_4);
+  //   tcase_add_test(tc, s21_test_round_5);  //-
+  //   tcase_add_test(tc, s21_test_round_6);  //-
+  //   tcase_add_test(tc, s21_test_round_7);
+  //   tcase_add_test(tc, s21_test_round_8);
+  //   tcase_add_test(tc, s21_test_round_9);
+  //   tcase_add_test(tc, s21_test_round_10);
+  //   tcase_add_test(tc, s21_test_round_10);
+  //   tcase_add_test(tc, round_0);
+  //   tcase_add_test(tc, round_1);
+  //   tcase_add_test(tc, round_2);
+  //   tcase_add_test(tc, round_3);
+  //   tcase_add_test(tc, round_4);
+  //   tcase_add_test(tc, round_5);
+  //   tcase_add_test(tc, round_6);
+  //   tcase_add_test(tc, round_7);
+  //   tcase_add_test(tc, round_8);
+  //   tcase_add_test(tc, round_9);
   tcase_add_test(tc, s21_roundTest1);
   tcase_add_test(tc, s21_roundTest2);
   tcase_add_test(tc, s21_roundTest3);
