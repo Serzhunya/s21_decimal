@@ -39,11 +39,11 @@ int a, add, equal;
 
 START_TEST(s21_test_from_int_to_decimal_0) {
   a = 100;
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {100, 0, 0, 0};
+  s21_decimal etalon = {{100, 0, 0, 0}};
   ck_assert_int_eq(add, CONVERTERS_S21_TRUE);
   // выходное значение s21_from_int_to_decimal - 0 TRUE и 1 FALSE
   // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -54,11 +54,11 @@ END_TEST
 
 START_TEST(s21_test_from_int_to_decimal_1) {
   a = 100;
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {1000, 0, 0, 0};
+  s21_decimal etalon = {{1000, 0, 0, 0}};
   ck_assert_int_eq(add, CONVERTERS_S21_TRUE);
   // выходное значение s21_from_int_to_decimal -
   // 0 TRUE и 1 FALSE
@@ -70,11 +70,11 @@ END_TEST
 
 START_TEST(s21_test_from_int_to_decimal_2) {
   a = INT_MAX;
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {INT_MAX, 0, 0, 0};
+  s21_decimal etalon = {{INT_MAX, 0, 0, 0}};
   ck_assert_int_eq(
       add, CONVERTERS_S21_TRUE);  // выходное значение s21_from_int_to_decimal -
                                   // 0 TRUE и 1 FALSE
@@ -86,11 +86,11 @@ END_TEST
 
 START_TEST(s21_test_from_int_to_decimal_3) {
   a = -INT_MAX;
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {INT_MAX, 0, 0, 0};
+  s21_decimal etalon = {{INT_MAX, 0, 0, 0}};
   ck_assert_int_eq(
       add, CONVERTERS_S21_TRUE);  // выходное значение s21_from_int_to_decimal -
                                   // 0 TRUE и 1 FALSE
@@ -102,11 +102,11 @@ END_TEST
 
 START_TEST(s21_test_from_int_to_decimal_4) {
   a = -INT_MAX;
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {INT_MAX, 0, 0, ~(INT_MAX)};
+  s21_decimal etalon = {{INT_MAX, 0, 0, ~(INT_MAX)}};
   ck_assert_int_eq(
       add, CONVERTERS_S21_TRUE);  // выходное значение s21_from_int_to_decimal -
                                   // 0 TRUE и 1 FALSE
@@ -118,11 +118,11 @@ END_TEST
 
 START_TEST(s21_test_from_int_to_decimal_5) {
   a = 0;  // ERROR of NAN
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal *ptr_b = &b;
 
   add = s21_from_int_to_decimal(a, ptr_b);  // a записываем в b
-  s21_decimal etalon = {INT_MAX, 0, 0, ~(INT_MAX)};
+  s21_decimal etalon = {{INT_MAX, 0, 0, ~(INT_MAX)}};
   ck_assert_int_eq(
       add, CONVERTERS_S21_TRUE);  // выходное значение s21_from_int_to_decimal -
                                   // 0 TRUE и 1 FALSE

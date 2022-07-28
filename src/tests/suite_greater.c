@@ -140,92 +140,92 @@ START_TEST(s21_greater_11) {
 END_TEST
 
 START_TEST(s21_test_is_greater_1) {
-    s21_decimal a = {2, 0, 0, 0};
-    s21_decimal b = {1, 0, 0, 0};
+    s21_decimal a = {{2, 0, 0, 0}};
+    s21_decimal b = {{1, 0, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);  // Возвращаемое значение : 0 - FALSE   1 - TRUE
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_2) {
-    s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
-    s21_decimal b = {0, 0, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
+    s21_decimal b = {{0, 0, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_2i) {
-    s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
-    s21_decimal b = {S21_MAX_UINT-1, 0, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT-1, 0, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_3) {
-    s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
-    s21_decimal b = {S21_MAX_UINT, 0, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT, 0, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_FALSE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_4) {
-    s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
-    s21_decimal b = {S21_MAX_UINT, 1, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT, 1, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_FALSE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_41) {
-    s21_decimal a = {S21_MAX_UINT, 1, 0, 0};
-    s21_decimal b = {S21_MAX_UINT, 0, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 1, 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT, 0, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_5) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT , 0, 0};
-    s21_decimal b = {S21_MAX_UINT, S21_MAX_UINT- 1, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT , 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT, S21_MAX_UINT- 1, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_51) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, 0, 0};
-    s21_decimal b = {S21_MAX_UINT, S21_MAX_UINT, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
+    s21_decimal b = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_FALSE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_6) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
-    s21_decimal b = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT-1, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
+    s21_decimal b = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT-1, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_7) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT - 1, 0};
-    s21_decimal b = {S21_MAX_UINT, S21_MAX_UINT, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT - 1, 0}};
+    s21_decimal b = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_8) {
-    s21_decimal a = {0, S21_MAX_UINT, S21_MAX_UINT, 0};
-    s21_decimal b = {0, S21_MAX_UINT, S21_MAX_UINT-1, 0};
+    s21_decimal a = {{0, S21_MAX_UINT, S21_MAX_UINT, 0}};
+    s21_decimal b = {{0, S21_MAX_UINT, S21_MAX_UINT-1, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_9) {
-    s21_decimal a = {0, 0, S21_MAX_UINT, 0};
-    s21_decimal b = {0, 0, S21_MAX_UINT-1, 0};
+    s21_decimal a = {{0, 0, S21_MAX_UINT, 0}};
+    s21_decimal b = {{0, 0, S21_MAX_UINT-1, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_TRUE);
 }
 END_TEST
 
 START_TEST(s21_test_is_greater_10) {
-    s21_decimal a = {0, 0, 0, 0};
-    s21_decimal b = {0, 0, S21_MAX_UINT, 0};
+    s21_decimal a = {{0, 0, 0, 0}};
+    s21_decimal b = {{0, 0, S21_MAX_UINT, 0}};
     ck_assert_int_eq(s21_is_greater(a, b), S21_FALSE);
 }
 END_TEST
