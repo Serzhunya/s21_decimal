@@ -511,6 +511,7 @@ Suite *suite_from_decimal_to_int(void) {
   tcase_add_test(tc, s21_test_from_decimal_to_int_6);
   tcase_add_test(tc, s21_test_from_decimal_to_int_7);
   tcase_add_test(tc, s21_test_from_decimal_to_int_8);
+  tcase_add_test(tc, s21_test_from_decimal_to_int_9);
   tcase_add_test(tc, s21_test_from_decimal_to_int_10);
   tcase_add_test(tc, s21_test_from_decimal_to_int_11);
   tcase_add_test(tc, s21_test_from_decimal_to_int_12);

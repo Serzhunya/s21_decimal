@@ -982,6 +982,7 @@ Suite *suite_is_greater(void) {
   tcase_add_test(tc, s21_is_greaterTest10);
   tcase_add_test(tc, s21_is_greaterTest11);
   tcase_add_test(tc, s21_is_greaterTest12);
+  tcase_add_test(tc, s21_is_greaterTest13);
   tcase_add_test(tc, s21_is_greaterTest14);
   tcase_add_test(tc, s21_is_greaterTest15);
   tcase_add_test(tc, s21_is_greaterTest16);
@@ -1004,6 +1005,23 @@ Suite *suite_is_greater(void) {
   tcase_add_test(tc, s21_is_greaterTest33);
   tcase_add_test(tc, s21_is_greaterTest34);
   tcase_add_test(tc, s21_is_greaterTest35);
+  tcase_add_test(tc, s21_is_greaterTest36);
+
+  tcase_add_test(tc, s21_test_is_greater_1);
+  tcase_add_test(tc, s21_test_is_greater_2);
+  tcase_add_test(tc, s21_test_is_greater_3);
+  tcase_add_test(tc, s21_test_is_greater_4);
+  tcase_add_test(tc, s21_test_is_greater_5);
+  tcase_add_test(tc, s21_test_is_greater_6);
+  tcase_add_test(tc, s21_test_is_greater_7);
+  tcase_add_test(tc, s21_test_is_greater_8);
+  tcase_add_test(tc, s21_test_is_greater_9);
+  tcase_add_test(tc, s21_test_is_greater_10);
+  tcase_add_test(tc, s21_test_is_greater_51);
+  tcase_add_test(tc, s21_test_is_greater_41);
+  tcase_add_test(tc, s21_test_is_greater_2i);
+
+
 
   suite_add_tcase(s, tc);
   return s;

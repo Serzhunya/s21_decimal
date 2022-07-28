@@ -477,8 +477,8 @@ START_TEST(add_2) {
 END_TEST
 
 START_TEST(add_3) {
-  s21_decimal val1 = {
-      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = 
+      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{2, 0, 0, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
@@ -542,8 +542,8 @@ START_TEST(add_10) {
 END_TEST
 
 START_TEST(add_11) {
-  s21_decimal val1 = {
-      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = 
+      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{4, 0, 0, 0}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(0, s21_add(val1, val2, &res));
@@ -551,8 +551,8 @@ START_TEST(add_11) {
 END_TEST
 
 START_TEST(add_12) {
-  s21_decimal val1 = {
-      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val1 = 
+      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal val2 = {{4, 0, 0, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
@@ -569,8 +569,8 @@ END_TEST
 
 START_TEST(add_14) {
   s21_decimal val1 = {{4, 0, 0, 0}};
-  s21_decimal val2 = {
-      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val2 = 
+      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(0, s21_add(val1, val2, &res));
 }
@@ -586,17 +586,17 @@ END_TEST
 
 START_TEST(add_16) {
   s21_decimal val1 = {{4, 0, 0, ~(S21_MAX_UINT / 2)}};
-  s21_decimal val2 = {
-      {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
+  s21_decimal val2 = 
+      {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
   s21_decimal res = {{0}};
   ck_assert_int_eq(2, s21_add(val1, val2, &res));
 }
 END_TEST
 
 START_TEST(s21_test_decimal_add_0) {
-  s21_decimal c = {5, 0, 0, 0}};
-  s21_decimal d = {5, 0, 0, 0}};
-  s21_decimal etalon = {10, 0, 0, 0}};
+  s21_decimal c = {{5, 0, 0, 0}};
+  s21_decimal d = {{5, 0, 0, 0}};
+  s21_decimal etalon = {{10, 0, 0, 0}};
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
   // 0 - OK 1 - число слишком велико или равно бесконечности
@@ -611,9 +611,9 @@ START_TEST(s21_test_decimal_add_0) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_1) {
-  s21_decimal c = {100, 0, 0, 0}};
-  s21_decimal d = {100, 0, 0, 0}};
-  s21_decimal etalon = {100, 0, 0, 0}};
+  s21_decimal c = {{100, 0, 0, 0}};
+  s21_decimal d = {{100, 0, 0, 0}};
+  s21_decimal etalon = {{100, 0, 0, 0}};
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
   // 0 - OK 1 - число слишком велико или равно бесконечности
@@ -628,9 +628,9 @@ START_TEST(s21_test_decimal_add_1) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_2) {
-  s21_decimal c = {2147483647, 0, 0, 0}};
-  s21_decimal d = {2147483647, 0, 0, 0}};
-  s21_decimal etalon = {4294967294, 0, 0, 0}};
+  s21_decimal c = {{2147483647, 0, 0, 0}};
+  s21_decimal d = {{2147483647, 0, 0, 0}};
+  s21_decimal etalon = {{4294967294, 0, 0, 0}};
   s21_decimal result = {{0, 0, 0, 0}};
   s21_decimal* p_result = &result;
   // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком
@@ -644,9 +644,9 @@ START_TEST(s21_test_decimal_add_2) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_3) {
-  s21_decimal c = {1000, 0, 0, 0}};
-  s21_decimal d = {1000, 0, 0, 0}};
-  s21_decimal etalon = {2000, 0, 0, 0}};
+  s21_decimal c = {{1000, 0, 0, 0}};
+  s21_decimal d = {{1000, 0, 0, 0}};
+  s21_decimal etalon = {{2000, 0, 0, 0}};
   s21_decimal result = {{0, 0, 0, 0}};
   s21_decimal* p_result = &result;
   // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком
@@ -660,8 +660,8 @@ START_TEST(s21_test_decimal_add_3) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_4) {
-  s21_decimal c = {1000, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1000, 0, 0, 0}};
+  s21_decimal c = {{1000, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1000, 0, 0, 0}};
   s21_decimal etalon = {{0, 0, 0, 0}};
   s21_decimal result = {{0, 0, 0, 0}};
   s21_decimal* p_result = &result;
@@ -676,9 +676,9 @@ START_TEST(s21_test_decimal_add_4) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_5) {
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal etalon = {2, 0, 0, ~(INT_MAX)}};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{2, 0, 0, ~(INT_MAX)}};
   s21_decimal result = {{0, 0, 0, 0}};
   s21_decimal* p_result = &result;
   // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком
@@ -711,9 +711,9 @@ START_TEST(s21_test_decimal_add_6) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_7) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {2, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{2, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -730,9 +730,9 @@ START_TEST(s21_test_decimal_add_7) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_8) {
-  s21_decimal c = {1000, 0, 0, 0}};
-  s21_decimal d = {1000, 0, 0, 0}};
-  s21_decimal etalon = {2000, 0, 0, 0}};
+  s21_decimal c = {{1000, 0, 0, 0}};
+  s21_decimal d = {{1000, 0, 0, 0}};
+  s21_decimal etalon = {{2000, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -749,9 +749,9 @@ START_TEST(s21_test_decimal_add_8) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_8_1) {
-  s21_decimal c = {INT_MAX, 0, 0, 0}};
-  s21_decimal d = {INT_MAX, 0, 0, 0}};
-  s21_decimal etalon = {4294967294, 0, 0, 0}};
+  s21_decimal c = {{INT_MAX, 0, 0, 0}};
+  s21_decimal d = {{INT_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{4294967294, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -768,9 +768,9 @@ START_TEST(s21_test_decimal_add_8_1) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_9) {
-  s21_decimal c = {INT_MAX, 0, 0, 0}};
-  s21_decimal d = {INT_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX - 1, 0, 0, 0}};
+  s21_decimal c = {{INT_MAX, 0, 0, 0}};
+  s21_decimal d = {{INT_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX - 1, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -787,8 +787,8 @@ START_TEST(s21_test_decimal_add_9) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_10) {
-  s21_decimal c = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
+  s21_decimal c = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
   s21_decimal etalon = {{0, 1, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -868,8 +868,8 @@ START_TEST(s21_test_decimal_add_13) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_14) {
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, 0}};
   s21_decimal etalon = {{0, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -887,9 +887,9 @@ START_TEST(s21_test_decimal_add_14) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_15) {  // -1 + (-1) = -2
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal etalon = {2, 0, 0, ~(INT_MAX)}};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{2, 0, 0, ~(INT_MAX)}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -911,9 +911,9 @@ START_TEST(s21_test_decimal_add_15) {  // -1 + (-1) = -2
 END_TEST
 
 START_TEST(s21_test_decimal_add_16) {
-  s21_decimal c = {11, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{11, 0, 0, EXPONENT_PLUS_1}};
   s21_decimal d = {{0, 0, 0, 0}};
-  s21_decimal etalon = {11, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal etalon = {{11, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -930,9 +930,9 @@ START_TEST(s21_test_decimal_add_16) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_17) {
-  s21_decimal c = {11, 0, 0, EXPONENT_PLUS_1};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {21, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{11, 0, 0, EXPONENT_PLUS_1}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{21, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -954,9 +954,9 @@ START_TEST(s21_test_decimal_add_17) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_18) {
-  s21_decimal c = {111, 0, 0, EXPONENT_PLUS_1};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {211, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{111, 0, 0, EXPONENT_PLUS_1}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{211, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -978,9 +978,9 @@ START_TEST(s21_test_decimal_add_18) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_19) {
-  s21_decimal c = {111, 0, 0, EXPONENT_PLUS_2};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {121, 0, 0, EXPONENT_PLUS_2};
+  s21_decimal c = {{111, 0, 0, EXPONENT_PLUS_2}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{121, 0, 0, EXPONENT_PLUS_2}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1002,9 +1002,9 @@ START_TEST(s21_test_decimal_add_19) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_20) {
-  s21_decimal c = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, 1, 0, 0}};
+  s21_decimal c = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, 1, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1026,9 +1026,9 @@ START_TEST(s21_test_decimal_add_20) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_21) {
-  s21_decimal c = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, 1, 0}};
+  s21_decimal c = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1050,9 +1050,9 @@ START_TEST(s21_test_decimal_add_21) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_22) {
-  s21_decimal c = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal d = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0}};
+  s21_decimal c = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, UINT32_MAX, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1074,9 +1074,9 @@ START_TEST(s21_test_decimal_add_22) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_23) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX + 1, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX + 1, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1098,9 +1098,9 @@ START_TEST(s21_test_decimal_add_23) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_24) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, 1, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1117,9 +1117,9 @@ START_TEST(s21_test_decimal_add_24) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_25) {
-  s21_decimal c = {0b00000000000000000001100101111001, 0, 0, 0}};
-  s21_decimal d = {0b00000000000000010010000110001001, 0, 0, 0}};
-  s21_decimal etalon = {0b00000000000000010011101100000010, 0, 0, 0}};
+  s21_decimal c = {{0b00000000000000000001100101111001, 0, 0, 0}};
+  s21_decimal d = {{0b00000000000000010010000110001001, 0, 0, 0}};
+  s21_decimal etalon = {{0b00000000000000010011101100000010, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1138,8 +1138,8 @@ END_TEST
 START_TEST(s21_test_decimal_add_26) {
   s21_decimal c = {{0b10001001111001111111111111111111,
                    0b10001010110001110010001100000100, 0, 0}};
-  s21_decimal d = {0b00000000000000000000000000000001, 0, 0, 0}};
-  s21_decimal etalon = {0b10001001111010000000000000000000,
+  s21_decimal d = {{0b00000000000000000000000000000001, 0, 0, 0}};
+  s21_decimal etalon = {{0b10001001111010000000000000000000,
                         0b10001010110001110010001100000100, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -1157,8 +1157,8 @@ START_TEST(s21_test_decimal_add_26) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_27) {
-  s21_decimal c = {S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
-  s21_decimal d = {0b00000000000000000000000000000001, 0, 0, 0}};
+  s21_decimal c = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
+  s21_decimal d = {{0b00000000000000000000000000000001, 0, 0, 0}};
   s21_decimal etalon = {{0, 0, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -1176,13 +1176,13 @@ START_TEST(s21_test_decimal_add_27) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_28) {
-  s21_decimal c = {
+  s21_decimal c = {{
       0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000};
+      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
   s21_decimal d = {{0b00000011010000001001011100101110, 0, 0, 0}};
-  s21_decimal etalon = {
+  s21_decimal etalon = {{
       0b01110001001010101101101011101101, 0b00101110001111001110000111111000,
-      0b10110000001111101110111101101101, 0b10000000000011100000000000000000};
+      0b10110000001111101110111101101101, 0b10000000000011100000000000000000}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1204,15 +1204,15 @@ START_TEST(s21_test_decimal_add_28) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_29) {
-  s21_decimal c = {
+  s21_decimal c = {{
       0b10000010111000100101101011101101, 0b11111001111010000010010110101101,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000};
-  s21_decimal d = {
+      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
+  s21_decimal d = {{
       0b01001000000110110001111110011000, 0b11111011111111011000100101101101,
-      0b00000000000001000110110101110111, 0b10000000000110000000000000000000};
-  s21_decimal etalon = {
+      0b00000000000001000110110101110111, 0b10000000000110000000000000000000}};
+  s21_decimal etalon = {{
       0b10110110001010011011010111011010, 0b11111001111010100000110001111111,
-      0b10110000001111101111000010010100, 0b10000000000011100000000000000000};
+      0b10110000001111101111000010010100, 0b10000000000011100000000000000000}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1384,9 +1384,9 @@ START_TEST(s21_test_decimal_add_simple_0) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_1) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {2, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{2, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1403,9 +1403,9 @@ START_TEST(s21_test_decimal_add_simple_1) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_2) {
-  s21_decimal c = {1000, 0, 0, 0}};
-  s21_decimal d = {1000, 0, 0, 0}};
-  s21_decimal etalon = {2000, 0, 0, 0}};
+  s21_decimal c = {{1000, 0, 0, 0}};
+  s21_decimal d = {{1000, 0, 0, 0}};
+  s21_decimal etalon = {{2000, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1422,9 +1422,9 @@ START_TEST(s21_test_decimal_add_simple_2) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_3) {
-  s21_decimal c = {INT_MAX, 0, 0, 0}};
-  s21_decimal d = {INT_MAX, 0, 0, 0}};
-  s21_decimal etalon = {4294967294, 0, 0, 0}};
+  s21_decimal c = {{INT_MAX, 0, 0, 0}};
+  s21_decimal d = {{INT_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{4294967294, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1441,9 +1441,9 @@ START_TEST(s21_test_decimal_add_simple_3) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_4) {
-  s21_decimal c = {INT_MAX, 0, 0, 0}};
-  s21_decimal d = {INT_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX - 1, 0, 0, 0}};
+  s21_decimal c = {{INT_MAX, 0, 0, 0}};
+  s21_decimal d = {{INT_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX - 1, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1460,8 +1460,8 @@ START_TEST(s21_test_decimal_add_simple_4) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_5) {
-  s21_decimal c = {S21_MAX_UINT, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
+  s21_decimal c = {{S21_MAX_UINT, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
   s21_decimal etalon = {{0, 1, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -1541,8 +1541,8 @@ START_TEST(s21_test_decimal_add_simple_8) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_9) {
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, 0}};
   s21_decimal etalon = {{0, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -1565,9 +1565,9 @@ START_TEST(s21_test_decimal_add_simple_9) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_10) {  // -1 + (-1) = -2
-  s21_decimal c = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal d = {1, 0, 0, ~(INT_MAX)}};
-  s21_decimal etalon = {2, 0, 0, ~(INT_MAX)}};
+  s21_decimal c = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal d = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{2, 0, 0, ~(INT_MAX)}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1589,9 +1589,9 @@ START_TEST(s21_test_decimal_add_simple_10) {  // -1 + (-1) = -2
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_11) {
-  s21_decimal c = {11, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{11, 0, 0, EXPONENT_PLUS_1}};
   s21_decimal d = {{0, 0, 0, 0}};
-  s21_decimal etalon = {11, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal etalon = {{11, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1608,9 +1608,9 @@ START_TEST(s21_test_decimal_add_simple_11) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_12) {
-  s21_decimal c = {11, 0, 0, EXPONENT_PLUS_1};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {21, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{11, 0, 0, EXPONENT_PLUS_1}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{21, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1627,9 +1627,9 @@ START_TEST(s21_test_decimal_add_simple_12) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_13) {
-  s21_decimal c = {111, 0, 0, EXPONENT_PLUS_1};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {211, 0, 0, EXPONENT_PLUS_1};
+  s21_decimal c = {{111, 0, 0, EXPONENT_PLUS_1}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{211, 0, 0, EXPONENT_PLUS_1}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1651,9 +1651,9 @@ START_TEST(s21_test_decimal_add_simple_13) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_14) {
-  s21_decimal c = {111, 0, 0, EXPONENT_PLUS_2};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {121, 0, 0, EXPONENT_PLUS_2};
+  s21_decimal c = {{111, 0, 0, EXPONENT_PLUS_2}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{121, 0, 0, EXPONENT_PLUS_2}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1675,9 +1675,9 @@ START_TEST(s21_test_decimal_add_simple_14) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_15) {
-  s21_decimal c = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, 1, 0, 0}};
+  s21_decimal c = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, 1, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1699,9 +1699,9 @@ START_TEST(s21_test_decimal_add_simple_15) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_16) {
-  s21_decimal c = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal d = {1, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, 1, 0}};
+  s21_decimal c = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal d = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1723,9 +1723,9 @@ START_TEST(s21_test_decimal_add_simple_16) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_17) {
-  s21_decimal c = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal d = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0}};
+  s21_decimal c = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, UINT32_MAX, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1747,9 +1747,9 @@ START_TEST(s21_test_decimal_add_simple_17) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_18) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {UINT32_MAX, 0, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX + 1, 0, 0, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, 0, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX + 1, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1771,9 +1771,9 @@ START_TEST(s21_test_decimal_add_simple_18) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_19) {
-  s21_decimal c = {1, 0, 0, 0}};
-  s21_decimal d = {UINT32_MAX, UINT32_MAX, 0, 0}};
-  s21_decimal etalon = {UINT32_MAX, UINT32_MAX, 1, 0}};
+  s21_decimal c = {{1, 0, 0, 0}};
+  s21_decimal d = {{UINT32_MAX, UINT32_MAX, 0, 0}};
+  s21_decimal etalon = {{UINT32_MAX, UINT32_MAX, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1795,9 +1795,9 @@ START_TEST(s21_test_decimal_add_simple_19) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_20) {
-  s21_decimal c = {0b00000000000000000001100101111001, 0, 0, 0}};
-  s21_decimal d = {0b00000000000000010010000110001001, 0, 0, 0}};
-  s21_decimal etalon = {0b00000000000000010011101100000010, 0, 0, 0}};
+  s21_decimal c = {{0b00000000000000000001100101111001, 0, 0, 0}};
+  s21_decimal d = {{0b00000000000000010010000110001001, 0, 0, 0}};
+  s21_decimal etalon = {{0b00000000000000010011101100000010, 0, 0, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
   s21_decimal* p_res = &res;
@@ -1835,8 +1835,8 @@ START_TEST(s21_test_decimal_add_simple_21) {
 END_TEST
 
 START_TEST(s21_test_decimal_add_simple_22) {
-  s21_decimal c = {S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
-  s21_decimal d = {0b00000000000000000000000000000001, 0, 0, 0}};
+  s21_decimal c = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
+  s21_decimal d = {{0b00000000000000000000000000000001, 0, 0, 0}};
   s21_decimal etalon = {{0, 0, 1, 0}};
 
   s21_decimal res = {{0, 0, 0, 0}};
@@ -2096,6 +2096,7 @@ Suite* suite_add(void) {
   tcase_add_test(tc, s21_test_decimal_add_21);
   tcase_add_test(tc, s21_test_decimal_add_22);
   tcase_add_test(tc, s21_test_decimal_add_23);
+  tcase_add_test(tc, s21_test_decimal_add_24);
   tcase_add_test(tc, s21_test_decimal_add_25);
   tcase_add_test(tc, s21_test_decimal_add_26);
   tcase_add_test(tc, s21_test_decimal_add_27);
