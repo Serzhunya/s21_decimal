@@ -125,10 +125,6 @@ int s21_is_less_num(s21_decimal num1, s21_decimal num2, int result) {
       result = 0;
     }
   } else {
-    // if (num1.bits[3] > num2.bits[3]) {
-    //   result = 1;
-    // } else {
-    //   result = 0;
     int exp1;
     int exp2;
     exp1 = s21_10_conv(num1);
@@ -138,26 +134,24 @@ int s21_is_less_num(s21_decimal num1, s21_decimal num2, int result) {
     } else if (exp2 > exp1) {
       num1 = s21_superior_10(exp2, &num1);
     }
-    if (num1.bits[3] == num2.bits[3]) {
-      if (num1.bits[2] == num2.bits[2]) {
-        if (num1.bits[1] == num2.bits[1]) {
-          if (num1.bits[0] == num2.bits[0]) {
-            result = 0;
-          } else if (num1.bits[0] < num2.bits[0]) {
-            result = 1;
-          } else {
-            result = 0;
-          }
-        } else if (num1.bits[1] < num2.bits[1]) {
+    if (num1.bits[2] == num2.bits[2]) {
+      if (num1.bits[1] == num2.bits[1]) {
+        if (num1.bits[0] == num2.bits[0]) {
+          result = 0;
+        } else if (num1.bits[0] < num2.bits[0]) {
           result = 1;
         } else {
           result = 0;
         }
-      } else if (num1.bits[2] < num2.bits[2]) {
+      } else if (num1.bits[1] < num2.bits[1]) {
         result = 1;
       } else {
         result = 0;
       }
+    } else if (num1.bits[2] < num2.bits[2]) {
+      result = 1;
+    } else {
+      result = 0;
     }
   }
   return result;
@@ -194,27 +188,25 @@ int s21_is_greater_num(s21_decimal num1, s21_decimal num2, int result) {
     } else if (exp2 > exp1) {
       num1 = s21_superior_10(exp2, &num1);
     }
-    // if (num1.bits[3] == num2.bits[3]) {
-      if (num1.bits[2] == num2.bits[2]) {
-        if (num1.bits[1] == num2.bits[1]) {
-          if (num1.bits[0] == num2.bits[0]) {
-            result = 0;
-          } else if (num1.bits[0] > num2.bits[0]) {
-            result = 1;
-          } else {
-            result = 0;
-          }
-        } else if (num1.bits[1] > num2.bits[1]) {
+    if (num1.bits[2] == num2.bits[2]) {
+      if (num1.bits[1] == num2.bits[1]) {
+        if (num1.bits[0] == num2.bits[0]) {
+          result = 0;
+        } else if (num1.bits[0] > num2.bits[0]) {
           result = 1;
         } else {
           result = 0;
         }
-      } else if (num1.bits[2] > num2.bits[2]) {
+      } else if (num1.bits[1] > num2.bits[1]) {
         result = 1;
       } else {
         result = 0;
       }
-    // }
+    } else if (num1.bits[2] > num2.bits[2]) {
+      result = 1;
+    } else {
+      result = 0;
+    }
   }
   return result;
 }
@@ -290,7 +282,9 @@ void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
     function set_0_bit
     Установить бит под номером BitNumber в значение 0 в переменной value
 */
-void set_0_bit(unsigned int *value, int BitNumber) { *value &= ~(1 << BitNumber); }
+void set_0_bit(unsigned int *value, int BitNumber) {
+  *value &= ~(1 << BitNumber);
+}
 void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
   *value &= ~(1 << BitNumber);
 }
@@ -299,7 +293,9 @@ void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
     function invert_bit
     Инвертировать бит под номером BitNumber (0 в 1, 1 в 0) в переменной value
 */
-void invert_bit(unsigned int *value, int BitNumber) { *value ^= (1 << BitNumber); }
+void invert_bit(unsigned int *value, int BitNumber) {
+  *value ^= (1 << BitNumber);
+}
 
 /*
     function is_int_negative
