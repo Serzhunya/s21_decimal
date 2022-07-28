@@ -271,13 +271,13 @@ END_TEST
 
 // START_TEST(s21_test_round_0) {  //???
 
-//     s21_decimal a = {0, 0, 0, 0}; 
+//     s21_decimal a = {{0, 0, 0, 0}}; 
 //     s21_decimal* ptr_a = &a;
 //     set_scale(ptr_a, 0);  // ставим степень
 
-//     s21_decimal etalon = {0, 0, 0, 0};
+//     s21_decimal etalon = {{0, 0, 0, 0}};
 
-//     s21_decimal b = {0, 0, 0, 0};
+//     s21_decimal b = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_b = &b;
 
 //     int add = s21_round(a, ptr_b);    // a записываем в b по указателю ptr_b
@@ -297,7 +297,7 @@ END_TEST
 
 //     s21_decimal etalon = {1, 0, 0, 0};
 
-//     s21_decimal b = {0, 0, 0, 0};
+//     s21_decimal b = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_b = &b;
 
 //     int add = s21_round(a, ptr_b);       // a записываем в b по указателю ptr_b
@@ -320,7 +320,7 @@ END_TEST
 
 //     s21_decimal etalon = {2, 0, 0, 0};
 
-//     s21_decimal b = {0, 0, 0, 0};
+//     s21_decimal b = {{0, 0, 0, 0}};
 //     s21_decimal* ptr_b = &b;
 
 //     int add = s21_round(a, ptr_b);               // a записываем в b по указателю ptr_b
@@ -345,7 +345,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -370,7 +370,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -395,7 +395,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -421,7 +421,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -447,7 +447,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -472,7 +472,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -497,7 +497,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -522,7 +522,7 @@ END_TEST
 //     s21_decimal* ptr_etalon = &etalon;
 //     set_scale(ptr_etalon, 0);  // ставим степень
 
-//     s21_decimal b = {0, 0, 0, 0};  // записываем сюда результат
+//     s21_decimal b = {{0, 0, 0, 0}};  // записываем сюда результат
 //     s21_decimal* ptr_b = &b;
 
 //     s21_round(a, ptr_b);
@@ -625,7 +625,7 @@ START_TEST(s21_roundTest1) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 2;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -647,7 +647,7 @@ START_TEST(s21_roundTest2) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000100;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -669,7 +669,7 @@ START_TEST(s21_roundTest3) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b10000000000000010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000100;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -691,7 +691,7 @@ START_TEST(s21_roundTest4) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -713,7 +713,7 @@ START_TEST(s21_roundTest5) {
   src1.bits[1] = 0b00000000000000000000000000000010;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b10000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b01001100110100101000000111000101;
   origin.bits[1] = 0b00000000000000000000000000000010;
@@ -735,7 +735,7 @@ START_TEST(s21_roundTest6) {
   src1.bits[1] = 0b11110100111110000101111011101001;
   src1.bits[2] = 0b00000000000000000000000000000010;
   src1.bits[3] = 0b10000000000001010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b10000110011101001011101110010001;
   origin.bits[1] = 0b00000000000000011111000000010110;
@@ -757,7 +757,7 @@ START_TEST(s21_roundTest7) {
   src1.bits[1] = 0b01100110010010001001000110100011;
   src1.bits[2] = 0b00000000000001001000101100011101;
   src1.bits[3] = 0b10000000000110000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000101;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -779,7 +779,7 @@ START_TEST(s21_roundTest8) {
   src1.bits[1] = 0b01001011001101011010000111011001;
   src1.bits[2] = 0b00011001101110010111010010111111;
   src1.bits[3] = 0b00000000000011110000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b10100100000111100100000000101110;
   origin.bits[1] = 0b00000000000000000000011100111101;
@@ -801,7 +801,7 @@ START_TEST(s21_roundTest9) {
   src1.bits[1] = 0b01100010000010101110010010000111;
   src1.bits[2] = 0b00100111111001000001101011010101;
   src1.bits[3] = 0b10000000000101010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000101111000110000101001101;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -823,7 +823,7 @@ START_TEST(s21_roundTest10) {
   src1.bits[1] = 0b01101000101000101011010010000001;
   src1.bits[2] = 0b00000000000000000000000000000001;
   src1.bits[3] = 0b00000000000100110000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000011;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -845,7 +845,7 @@ START_TEST(s21_roundTest11) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000000000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -867,7 +867,7 @@ START_TEST(s21_roundTest12) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -889,7 +889,7 @@ START_TEST(s21_roundTest13) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b10000000000000010000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -911,7 +911,7 @@ START_TEST(s21_roundTest14) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b00000000000000100000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000011001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -933,7 +933,7 @@ START_TEST(s21_roundTest15) {
   src1.bits[1] = 0b00000000000000000000000000000000;
   src1.bits[2] = 0b00000000000000000000000000000000;
   src1.bits[3] = 0b10000000000000110000000000000000;
-  s21_decimal result = {0, 0, 0, 0};
+  s21_decimal result = {{0, 0, 0, 0}};
   s21_round(src1, &result);
   origin.bits[0] = 0b00000000000000000000000000000010;
   origin.bits[1] = 0b00000000000000000000000000000000;

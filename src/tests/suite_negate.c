@@ -61,10 +61,10 @@ START_TEST(s21_negate_5) {
 END_TEST
 
 START_TEST(s21_test_negate_0) {  // 0 * -1 = 0
-  s21_decimal a = {0, 0, 0, 0};
-  s21_decimal etalon = {0, 0, 0, 0};
+  s21_decimal a = {{0, 0, 0, 0}};
+  s21_decimal etalon = {{0, 0, 0, 0}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -78,9 +78,9 @@ START_TEST(s21_test_negate_0) {  // 0 * -1 = 0
 END_TEST
 
 START_TEST(s21_test_negate_1) {  // 1 * -1 = -1
-  s21_decimal a = {1, 0, 0, 0};
-  s21_decimal etalon = {1, 0, 0, ~(INT_MAX)};
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal a = {{1, 0, 0, 0}};
+  s21_decimal etalon = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -94,10 +94,10 @@ START_TEST(s21_test_negate_1) {  // 1 * -1 = -1
 END_TEST
 
 START_TEST(s21_test_negate_2) {  // -1 * -1 = 1
-  s21_decimal a = {1, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {1, 0, 0, 0};
+  s21_decimal a = {{1, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{1, 0, 0, 0}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -111,9 +111,9 @@ START_TEST(s21_test_negate_2) {  // -1 * -1 = 1
 END_TEST
 
 START_TEST(s21_test_negate_3) {  // 100 * -1 = -100
-  s21_decimal a = {100, 0, 0, 0};
-  s21_decimal etalon = {100, 0, 0, ~(INT_MAX)};
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal a = {{100, 0, 0, 0}};
+  s21_decimal etalon = {{100, 0, 0, ~(INT_MAX)}};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -127,10 +127,10 @@ START_TEST(s21_test_negate_3) {  // 100 * -1 = -100
 END_TEST
 
 START_TEST(s21_test_negate_4) {  //
-  s21_decimal a = {100, 0, 0, ~(INT_MAX)};
-  s21_decimal etalon = {100, 0, 0, 0};
+  s21_decimal a = {{100, 0, 0, ~(INT_MAX)}};
+  s21_decimal etalon = {{100, 0, 0, 0}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -144,10 +144,10 @@ START_TEST(s21_test_negate_4) {  //
 END_TEST
 
 START_TEST(s21_test_negate_5) {  //
-  s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
-  s21_decimal etalon = {S21_MAX_UINT, 0, 0, ~(INT_MAX)};
+  s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
+  s21_decimal etalon = {{S21_MAX_UINT, 0, 0, ~(INT_MAX)}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -161,10 +161,10 @@ START_TEST(s21_test_negate_5) {  //
 END_TEST
 
 START_TEST(s21_test_negate_6) {  //
-  s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
-  s21_decimal etalon = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
+  s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
+  s21_decimal etalon = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -178,10 +178,10 @@ START_TEST(s21_test_negate_6) {  //
 END_TEST
 
 START_TEST(s21_test_negate_7) {  //
-  s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
-  s21_decimal etalon = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)};
+  s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
+  s21_decimal etalon = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
@@ -195,10 +195,10 @@ START_TEST(s21_test_negate_7) {  //
 END_TEST
 
 START_TEST(s21_test_negate_8) {  //
-  s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)};
-  s21_decimal etalon = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
+  s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)}};
+  s21_decimal etalon = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
 
-  s21_decimal b = {0, 0, 0, 0};
+  s21_decimal b = {{0, 0, 0, 0}};
   s21_decimal* ptr_b = &b;
 
   int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b

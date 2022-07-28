@@ -85,7 +85,7 @@ END_TEST
 int check, result, code;
 
 START_TEST(s21_test_from_decimal_to_int_0) {
-    s21_decimal a = {100, 0, 0, 0};
+    s21_decimal a = {{100, 0, 0, 0}};
     check = 100;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -94,7 +94,7 @@ START_TEST(s21_test_from_decimal_to_int_0) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_1) {
-    s21_decimal a = {INT_MAX, 0, 0, 0};
+    s21_decimal a = {{INT_MAX, 0, 0, 0}};
     check = INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -103,7 +103,7 @@ START_TEST(s21_test_from_decimal_to_int_1) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_2) {
-    s21_decimal a = {INT_MAX, INT_MAX, 0, 0};
+    s21_decimal a = {{INT_MAX, INT_MAX, 0, 0}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -112,7 +112,7 @@ START_TEST(s21_test_from_decimal_to_int_2) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_3) {
-    s21_decimal a = {INT_MAX, INT_MAX, INT_MAX, 0};
+    s21_decimal a = {{INT_MAX, INT_MAX, INT_MAX, 0}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -121,7 +121,7 @@ START_TEST(s21_test_from_decimal_to_int_3) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_4) {
-    s21_decimal a = {INT_MAX, INT_MAX, INT_MAX, INT_MAX};
+    s21_decimal a = {{INT_MAX, INT_MAX, INT_MAX, INT_MAX}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -130,7 +130,7 @@ START_TEST(s21_test_from_decimal_to_int_4) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_5) {
-    s21_decimal a = {S21_MAX_UINT, 0, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, 0, 0, 0}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -139,7 +139,7 @@ START_TEST(s21_test_from_decimal_to_int_5) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_6) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, 0, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, 0, 0}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -147,7 +147,7 @@ START_TEST(s21_test_from_decimal_to_int_6) {
 }
 END_TEST
 START_TEST(s21_test_from_decimal_to_int_7) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -156,7 +156,7 @@ START_TEST(s21_test_from_decimal_to_int_7) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_8) {
-    s21_decimal a = {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT};
+    s21_decimal a = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT}};
     check = 0;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -165,7 +165,7 @@ START_TEST(s21_test_from_decimal_to_int_8) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_9) {
-    s21_decimal a = {INT_MAX, 0, 0, MINUS};
+    s21_decimal a = {{INT_MAX, 0, 0, MINUS}};
     check = -INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -174,7 +174,7 @@ START_TEST(s21_test_from_decimal_to_int_9) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_10) {
-    s21_decimal a = {INT_MAX, 0, 0, EXPONENT_MINUS_1};
+    s21_decimal a = {{INT_MAX, 0, 0, EXPONENT_MINUS_1}};
     check = -INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -183,7 +183,7 @@ START_TEST(s21_test_from_decimal_to_int_10) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_11) {
-    s21_decimal a = {INT_MAX, 0, 0, EXPONENT_PLUS_1};
+    s21_decimal a = {{INT_MAX, 0, 0, EXPONENT_PLUS_1}};
     check = INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -192,7 +192,7 @@ START_TEST(s21_test_from_decimal_to_int_11) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_12) {
-    s21_decimal a = {INT_MAX, 0, 0, EXPONENT_MINUS_28};
+    s21_decimal a = {{INT_MAX, 0, 0, EXPONENT_MINUS_28}};
     check = -INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);
@@ -201,7 +201,7 @@ START_TEST(s21_test_from_decimal_to_int_12) {
 END_TEST
 
 START_TEST(s21_test_from_decimal_to_int_14) {
-    s21_decimal a = {INT_MAX, 0, 0, EXPONENT_PLUS_28};
+    s21_decimal a = {{INT_MAX, 0, 0, EXPONENT_PLUS_28}};
     check = INT_MAX;
     code = s21_from_decimal_to_int(a, &result);
     ck_assert_int_eq(result, check);

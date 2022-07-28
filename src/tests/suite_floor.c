@@ -274,7 +274,7 @@ END_TEST
 
 START_TEST(s21_floorTest1) {
   // 7130
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 2;
 
   src1.bits[0] = 0b00000000000000000000000000000010;
@@ -295,7 +295,7 @@ END_TEST
 
 START_TEST(s21_floorTest2) {
   // 7151
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 3.5;
 
   src1.bits[0] = 0b00000000000000000000000000100011;
@@ -316,7 +316,7 @@ END_TEST
 
 START_TEST(s21_floorTest3) {
   // 7172
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = -3.5;
 
   src1.bits[0] = 0b00000000000000000000000000100011;
@@ -337,7 +337,7 @@ END_TEST
 
 START_TEST(s21_floorTest4) {
   // 7193
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 0;
 
   src1.bits[0] = 0b00000000000000000000000000000000;
@@ -358,7 +358,7 @@ END_TEST
 
 START_TEST(s21_floorTest5) {
   // 7214
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = -1.2;
 
   src1.bits[0] = 0b00000000000000000000000000001100;
@@ -379,7 +379,7 @@ END_TEST
 
 START_TEST(s21_floorTest6) {
   // 7235
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = -545454512454545.35265454545645;
 
   src1.bits[0] = 0b10000010111000100101101011101101;
@@ -400,7 +400,7 @@ END_TEST
 
 START_TEST(s21_floorTest7) {
   // 7256
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = -5.492654545456454545645464;
 
   src1.bits[0] = 0b00000111100110110001111110011000;
@@ -421,7 +421,7 @@ END_TEST
 
 START_TEST(s21_floorTest8) {
   // 7277
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 7961327845421.879754123131254;
 
   src1.bits[0] = 0b01001110111001000011100101110110;
@@ -442,7 +442,7 @@ END_TEST
 
 START_TEST(s21_floorTest9) {
   // 7298
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = -12345677.187654345678987654346;
 
   src1.bits[0] = 0b01111000100010101111010011001010;
@@ -464,7 +464,7 @@ END_TEST
 
 START_TEST(s21_floorTest10) {
   // 7319
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 2.1986531268974139743;
 
   src1.bits[0] = 0b00010010001110001101100101011111;
@@ -485,7 +485,7 @@ END_TEST
 
 START_TEST(s21_floorTest11) {
   // 7340
-  s21_decimal src1, origin, result = {0, 0, 0, 0};
+  s21_decimal src1, origin, result = {{0, 0, 0, 0}};
   // src1 = 1;
 
   src1.bits[0] = 0b00000000000000000000000000000001;
