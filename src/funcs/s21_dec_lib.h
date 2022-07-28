@@ -12,7 +12,6 @@
 #define BIT 8
 #define SIZE_BITS 4
 #define NUM_255 255
-#define MAX_S21_DECIMAL 7.9228162514264337593543950335e27
 #define TRUE 1
 #define FALSE 0
 
@@ -38,7 +37,6 @@ typedef union {
   float flt;
   unsigned int bits;
 } lens_t;
-
 
 // Временные функции УДАЛИТЬ!!!
 void print_2(s21_decimal *dst);
@@ -90,8 +88,6 @@ void add_div_10(int *result_arr, int *exp_1, int *count_bit);
 int add_less_1010(int *arr_help, int *arr_10);
 int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
              s21_decimal *result);
-
-
 
 // Arithmetic Operators
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);

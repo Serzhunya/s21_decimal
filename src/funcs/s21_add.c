@@ -48,13 +48,13 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
   //если sign_index = 3 или 4 то нужно определить максимальное по модулю из двух
   //чисел. Это необходимо для выставления правильного знака результата
   int greater = -1;
-  // printf("\nsign_index must be 3\nsign_index output: %d\n", sign_index);
+  // printf("\nsign_index output: %d\n", sign_index);
   if (sign_index == 3 || sign_index == 4) {
     //если greater = 1 то value_1 > value_2
     //если greater = 0 то либо они равны либо value_1 < value_2
     greater = s21_is_greater_num(value_1, value_2, greater);
   }
-  // printf("\ngreater number must be 1\ngreater output: %d\n", greater);
+  // printf("\ngreater output: %d\n", greater);
   //массивы с битами
   int value_1_arr[NUM_255];
   int value_2_arr[NUM_255];
@@ -82,6 +82,7 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
   //если error = 123 значит переполнение мантисы и в зависимости от знаков двух
   //чисел возвращаем ошибку 1 или 2
   error = add_mul_1010(value_1_arr, value_2_arr, &exp_1, &exp_2);
+  // printf("add error: %d\n", error);
   if (error == 123 && sign_index == 1) {
     return 1;
   } else if (error == 123 && sign_index == 2) {
@@ -218,14 +219,33 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
   //   printf("%d", result_arr[i]);
   // }
   // printf("\n");
+  //вторая проверка переполняемости decimal. Добавлена для случая когда
+  //складываются 2 больших числа, не близких к максимальному, но дающие
+  //результат, больше максимального
 
   // банковское округление
   //делим результат на 10 пока он не поместиться в децимал
   //занулим индекс начала result_arr (для этого будем использовать старый
-  // index_1)
+  // index_1) index_2 используем для понимания сколько раз нужно поделить на
+  // 1010, чтобы выделить целую часть числа
+  index_2 = exp_1;
   if (count_bit > 96) {
     while (count_bit > 96) {
       index_1 = 0;
+      //если выделили целую часть числа и оно больше 96 бит, значит переполнение
+      if (!index_2) {
+        count_bit = 0;
+        for (int i = 254; i >= 0; i--) {
+          if (result_arr[i] == 1) index_1 = 1;
+          if (index_1) {
+            count_bit++;
+          }
+        }
+        if (count_bit > 96) {
+          error = 123;
+          break;
+        }
+      }
       add_div_10(result_arr, &exp_1, &count_bit);
       //обновление count_bit
       count_bit = 0;
@@ -236,8 +256,16 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
         }
       }
       // printf("\ncount_bit %d\n", count_bit);
+      index_2--;
     }
     // printf("\n");
+  }
+  //еще раз проверяем на переполнение
+  // printf("add error: %d\n", error);
+  if (error == 123 && sign_index == 1) {
+    return 1;
+  } else if (error == 123 && sign_index == 2) {
+    return 2;
   }
   write_float_decimal_exp_more(result_arr, result, index, 2);
   //создаем массив в котором будет двоичная запись count_10
@@ -277,5 +305,3 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
   }
   return 0;
 }
-
-
