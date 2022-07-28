@@ -18,7 +18,7 @@ int s21_round(s21_decimal value, s21_decimal *result) {
     if (last_digit >= 5) {
       s21_decimal one = {{1, 0, 0, 0}};
       s21_add(*res, one, res);
-    }   
+    }
     *result = *res;
     if (sign_op) {
       set_1_bit(&result->bits[3], 31);
