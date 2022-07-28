@@ -301,7 +301,7 @@ START_TEST(add_test_20) {
 }
 END_TEST
 
-START_TEST(s21_add_int_21) {
+START_TEST(add_test_21) {
   s21_decimal dec1, dec2;
   int tmp1 = 100;
   int tmp2 = 99999;
@@ -316,7 +316,7 @@ START_TEST(s21_add_int_21) {
 }
 END_TEST
 
-START_TEST(s21_add_int_22) {
+START_TEST(add_test_22) {
   s21_decimal dec1, dec2;
   int tmp1 = -100;
   int tmp2 = -99999;
@@ -331,7 +331,7 @@ START_TEST(s21_add_int_22) {
 }
 END_TEST
 
-START_TEST(s21_add_int_23) {
+START_TEST(add_test_23) {
   s21_decimal dec1, dec2;
   int tmp1 = 2147483647;
   int tmp2 = -2147483647;
@@ -346,7 +346,7 @@ START_TEST(s21_add_int_23) {
 }
 END_TEST
 
-START_TEST(s21_add_int_24) {
+START_TEST(add_test_24) {
   s21_decimal dec1, dec2;
   dec1.bits[3] = 0x300000;
   dec1.bits[2] = 0;
@@ -370,7 +370,7 @@ START_TEST(s21_add_int_24) {
 }
 END_TEST
 
-START_TEST(s21_add_int_25) {
+START_TEST(add_test_25) {
   s21_decimal dec1, dec2;
   int tmp1 = -2147483647;
   int tmp2 = 2147483647;
@@ -385,7 +385,7 @@ START_TEST(s21_add_int_25) {
 }
 END_TEST
 
-START_TEST(s21_add_inf_26) {
+START_TEST(add_test_26) {
   int tmp1 = 4294967295;
   s21_decimal dec1 = {{tmp1, tmp1, tmp1, 0}};
   s21_decimal dec2 = {{1, 0, 0, 0}};
@@ -395,7 +395,7 @@ START_TEST(s21_add_inf_26) {
 }
 END_TEST
 
-START_TEST(s21_add_neg_inf_27) {
+START_TEST(add_test_27) {
   int tmp1 = 4294967295;
   float tmp2 = pow(2, 31);
   s21_decimal dec1 = {{tmp1, tmp1, tmp1, tmp2}};
@@ -406,7 +406,7 @@ START_TEST(s21_add_neg_inf_27) {
 }
 END_TEST
 
-START_TEST(target_float) {
+START_TEST(add_test_28) {
   float float_a = -10758.218750;
   float float_b = 6268.843750;
 
@@ -430,7 +430,7 @@ START_TEST(target_float) {
   ck_assert_float_eq_tol(got_float, float_res, 1e-06);
 }
 
-START_TEST(add_test_too_big) {
+START_TEST(add_test_29) {
   s21_decimal src1 = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
   s21_decimal src2 = {0};
   float a = 0.01448;
@@ -441,7 +441,7 @@ START_TEST(add_test_too_big) {
 }
 END_TEST
 
-START_TEST(add_test_too_small) {
+START_TEST(add_test_30) {
   s21_decimal src1 = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)}};
   s21_decimal src2 = {0};
   float a = 0.01448;
@@ -452,7 +452,7 @@ START_TEST(add_test_too_small) {
 }
 END_TEST
 
-START_TEST(s21_add_max_1) {
+START_TEST(s21_add_max_31) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -468,7 +468,7 @@ START_TEST(s21_add_max_1) {
 }
 END_TEST
 
-START_TEST(s21_add_max_2) {
+START_TEST(s21_add_max_32) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -479,15 +479,12 @@ START_TEST(s21_add_max_2) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000010000000000000000;
-  // float a = 0.00000000;
-  // s21_from_decimal_to_float(src2, &a);
-  // printf("%.3f", a);
   s21_decimal s21_res = {0};
   ck_assert_int_eq(s21_add(src1, src2, &s21_res), 1);
 }
 END_TEST
 
-START_TEST(s21_add_max_3) {
+START_TEST(s21_add_max_33) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -503,7 +500,7 @@ START_TEST(s21_add_max_3) {
 }
 END_TEST
 
-START_TEST(s21_add_max_4) {
+START_TEST(s21_add_max_34) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -529,7 +526,7 @@ START_TEST(s21_add_max_4) {
 }
 END_TEST
 
-START_TEST(s21_add_max_5) {
+START_TEST(s21_add_max_35) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -555,7 +552,7 @@ START_TEST(s21_add_max_5) {
 }
 END_TEST
 
-START_TEST(s21_add_max_6) {
+START_TEST(s21_add_max_36) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b11111111111111111111111111111111;
   src1.bits[1] = 0b11111111111111111111111111111111;
@@ -581,7 +578,7 @@ START_TEST(s21_add_max_6) {
 }
 END_TEST
 
-START_TEST(s21_add_7) {
+START_TEST(add_test_37) {
   s21_decimal src1 = {0};
   src1.bits[0] = 0b00000000000000000000001111111111;
   src1.bits[1] = 0b00000000000000000000000000000000;
@@ -633,23 +630,23 @@ Suite *suite_add(void) {
   tcase_add_test(tc, add_test_18);
   tcase_add_test(tc, add_test_19);
   tcase_add_test(tc, add_test_20);
-  tcase_add_test(tc, s21_add_int_21);
-  tcase_add_test(tc, s21_add_int_22);
-  tcase_add_test(tc, s21_add_int_23);
-  tcase_add_test(tc, s21_add_int_24);
-  tcase_add_test(tc, s21_add_int_25);
-  tcase_add_test(tc, s21_add_inf_26);
-  tcase_add_test(tc, s21_add_neg_inf_27);
-  tcase_add_test(tc, target_float);
-  tcase_add_test(tc, add_test_too_big);
-  tcase_add_test(tc, add_test_too_small);
-  tcase_add_test(tc, s21_add_max_1);
-  tcase_add_test(tc, s21_add_max_2);
-  tcase_add_test(tc, s21_add_max_3);
-  tcase_add_test(tc, s21_add_max_4);
-  tcase_add_test(tc, s21_add_max_5);
-  tcase_add_test(tc, s21_add_max_6);
-  tcase_add_test(tc, s21_add_7);
+  tcase_add_test(tc, add_test_21);
+  tcase_add_test(tc, add_test_22);
+  tcase_add_test(tc, add_test_23);
+  tcase_add_test(tc, add_test_24);
+  tcase_add_test(tc, add_test_25);
+  tcase_add_test(tc, add_test_26);
+  tcase_add_test(tc, add_test_27);
+  tcase_add_test(tc, add_test_28);
+  tcase_add_test(tc, add_test_29);
+  tcase_add_test(tc, add_test_30);
+  tcase_add_test(tc, s21_add_max_31);
+  tcase_add_test(tc, s21_add_max_32);
+  tcase_add_test(tc, s21_add_max_33);
+  tcase_add_test(tc, s21_add_max_34);
+  tcase_add_test(tc, s21_add_max_35);
+  tcase_add_test(tc, s21_add_max_36);
+  tcase_add_test(tc, add_test_37);
   suite_add_tcase(s, tc);
   return s;
 }
