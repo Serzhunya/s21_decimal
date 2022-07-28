@@ -274,9 +274,9 @@ int test_32_bit(/*uint32_t*/ int value, int BitNumber) {
 void set_1_bit(unsigned int *value, int BitNumber) {
   *value |= (1 << BitNumber);
 }
-void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
-  *value |= (1 << BitNumber);
-}
+// void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
+//   *value |= (1 << BitNumber);
+// }
 
 /*
     function set_0_bit
@@ -285,9 +285,9 @@ void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
 void set_0_bit(unsigned int *value, int BitNumber) {
   *value &= ~(1 << BitNumber);
 }
-void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
-  *value &= ~(1 << BitNumber);
-}
+// void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
+//   *value &= ~(1 << BitNumber);
+// }
 
 /*
     function invert_bit
@@ -338,36 +338,36 @@ int first_bit_not_zero_int(s21_decimal src) {
     function print_2
     Печать всех битов структуры
 */
-void print_2(s21_decimal *dst) {
-  for (int i = 0; i < 4; i++) {
-    printf("bits[%d]\n", i);
-    for (int j = 1; j <= 32; j++) {
-      if (test_bit(dst->bits[i], (j - 1))) {
-        printf("1");
-      } else {
-        printf("0");
-      }
-      if ((j % 4) == 0) printf(" ");
-    }
-    printf("\n");
-  }
-}
+// void print_2(s21_decimal *dst) {
+//   for (int i = 0; i < 4; i++) {
+//     printf("bits[%d]\n", i);
+//     for (int j = 1; j <= 32; j++) {
+//       if (test_bit(dst->bits[i], (j - 1))) {
+//         printf("1");
+//       } else {
+//         printf("0");
+//       }
+//       if ((j % 4) == 0) printf(" ");
+//     }
+//     printf("\n");
+//   }
+// }
 
 /*
     function print_2_32
     Печать всех битов большой структуры
 */
-void print_2_32_int(/*uint32_t*/ int *bit) {
-  for (int j = 1; j <= 32; j++) {
-    if (test_32_bit(*bit, (j - 1))) {
-      printf("1");
-    } else {
-      printf("0");
-    }
-    if ((j % 4) == 0) printf(" ");
-  }
-  printf("\n");
-}
+// void print_2_32_int(/*uint32_t*/ int *bit) {
+//   for (int j = 1; j <= 32; j++) {
+//     if (test_32_bit(*bit, (j - 1))) {
+//       printf("1");
+//     } else {
+//       printf("0");
+//     }
+//     if ((j % 4) == 0) printf(" ");
+//   }
+//   printf("\n");
+// }
 
 //===============================================
 
@@ -375,9 +375,9 @@ void print_2_32_int(/*uint32_t*/ int *bit) {
     function int_have_opposite_signs
     Если у переменных разные знаки, то вернется TRUE
 */
-int int_have_opposite_signs(int valueA, int valueB) {
-  return ((valueA ^ valueB) < 0);
-}
+// int int_have_opposite_signs(int valueA, int valueB) {
+//   return ((valueA ^ valueB) < 0);
+// }
 
 /*
     function exp_decimal_bin2dec
@@ -744,7 +744,6 @@ void exp_less_23(int *all_bits_float, int *count_10, int integer_bits,
   }
 }
 
-
 /*
     function exp_more_23
     Запись float в decimal если нет дробных битов и exp >= 23
@@ -975,7 +974,6 @@ int float2decimal_main(int float_bits, int exp, s21_decimal *dst) {
   return error_exp_more_23;
 }
 
-
 // float get_random_float(float min, float max) {
 //   assert(max > min);
 //   float random = ((float)rand()) / (float)RAND_MAX;
@@ -994,7 +992,6 @@ int s21_zero(s21_decimal value) {
   }
   return error;
 }
-
 
 /*
     function add_less_1010
@@ -1337,4 +1334,3 @@ int add_mul_1010(int *value_1_arr, int *value_2_arr, int *exp_1, int *exp_2) {
   }
   return error;
 }
-
