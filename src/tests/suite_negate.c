@@ -61,19 +61,12 @@ START_TEST(s21_negate_5) {
 END_TEST
 
 START_TEST(s21_test_negate_0) {  // 0 * -1 = 0
-  s21_decimal a = {{0, 0, 0, 0}};
-  s21_decimal etalon = {{0, 0, 0, 0}};
-
   s21_decimal b = {{0, 0, 0, 0}};
-  s21_decimal* ptr_b = &b;
-
-  int add = s21_negate(a, ptr_b);  // a записываем в b по указателю ptr_b
-  ck_assert_int_eq(add,
-                   0);  // выходное значение int s21_negate - 0 TRUE и 1 FALSE
-
+  s21_decimal etalon = {{0, 0, 0, ~(INT_MAX)}};
   // s21_is_equal Возвращаемое значение: 0 - FALSE 1 - TRUE
-  int equal = s21_is_equal(b, etalon);
-  ck_assert_int_eq(equal, 1);
+  // int equal = s21_is_equal(b, etalon);
+  int negate = s21_negate(b, &etalon);
+  ck_assert_int_eq(negate, 0);
 }
 END_TEST
 
