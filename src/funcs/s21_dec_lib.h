@@ -36,8 +36,9 @@ typedef struct {                 // bits[0] младшие 32 бита
 */
 typedef union {
   float flt;
-  int bits;
+  unsigned int bits;
 } lens_t;
+
 
 // Временные функции УДАЛИТЬ!!!
 void print_2(s21_decimal *dst);
@@ -64,8 +65,8 @@ void write_float_decimal_exp_more(int *result, s21_decimal *dst, int index,
                                   int bit);
 void exp_less_23(int *all_bits_float, int *count_10, int integer_bits,
                  int fractional_bits, s21_decimal *dst, int index_less_0);
-void exp_more_23(int *all_bits_float, int exp, s21_decimal *dst);
-void float2decimal_main(/*uint32_t*/ int float_bits, int exp, s21_decimal *dst);
+int exp_more_23(int *all_bits_float, int exp, s21_decimal *dst);
+int float2decimal_main(int float_bits, int exp, s21_decimal *dst);
 int s21_is_less_num(s21_decimal num1, s21_decimal num2, int result);
 int s21_is_greater_num(s21_decimal num1, s21_decimal num2, int result);
 void s21_unshift(s21_decimal *number);
@@ -87,6 +88,11 @@ int return_last_digit_and_truncate_buf_by_it(s21_decimal *buf);
 int add_mul_1010(int *value_1_arr, int *value_2_arr, int *exp_1, int *exp_2);
 void add_div_10(int *result_arr, int *exp_1, int *count_bit);
 int add_less_1010(int *arr_help, int *arr_10);
+int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
+             s21_decimal *result);
+
+
+
 // Arithmetic Operators
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
