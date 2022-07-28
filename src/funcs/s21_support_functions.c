@@ -983,3 +983,347 @@ int s21_zero(s21_decimal value) {
   }
   return error;
 }
+
+
+/*
+    function add_less_1010
+    Функция сравнивает вспомогательный массив arr_help с 1010. Если меньше, то
+    возвращает 1. Если больше либо равно, то возвращает 0
+*/
+int add_less_1010(int *arr_help, int *arr_10) {
+  //если число >= 1010 то вернется 0
+  int answer = 0;
+  for (int i = 0; i < 5; i++) {
+    if (arr_help[i] != arr_10[i]) {
+      if (arr_help[i] == 1) {
+        // arr_help больше или равно 1010
+        answer = 0;
+        break;
+      } else {
+        // arr_help меньше 1010
+        answer = 1;
+        break;
+      }
+    }
+  }
+  return answer;
+}
+
+/*
+    function add_div_10
+    Производит деление result_arr типа decimal на 10
+    Необходимо для функции сложения при банковском округлении
+*/
+void add_div_10(int *result_arr, int *exp_1, int *count_bit) {
+  //массив result_arr_copy где будем содержать результат деления на 10
+  int result_arr_copy[NUM_255];
+  for (int i = 0; i < NUM_255; i++) {
+    result_arr_copy[i] = 2;
+  }
+  //массив в котором будет содержаться промежуточное число и из которого будем
+  //вычитать 1010 + инициализация
+  int arr_10[5] = {0, 1, 0, 1, 0};
+  int arr_help[5];
+  int arr_help_copy[5];
+  for (int i = 0; i < 5; i++) {
+    arr_help[i] = 0;
+    arr_help_copy[i] = 0;
+  }
+  //индекс начала result_arr (первый элемент)
+  int index = *count_bit - 1;
+  //индекс для записи результата деления в массив result_arr_copy
+  int index_result = 0;
+  //индекс первого деления нужен для сдвига и записи 0 в result_arr_copy
+  int start = 1;
+  //заполняем arr_help первыми 4 цифрами result_arr индексами с 1 по 4 то есть
+  // arr_help 01010
+  // printf("\nfirst arr_help\n");
+  for (int i = 1; i < 5; i++) {
+    arr_help[i] = result_arr[index];
+    index--;
+    // printf("%d", arr_help[i]);
+  }
+  // printf("\n");
+  //цикл деления на 1010
+  while (index >= 0) {
+    // arr_help необходимо сравнить с 1010. Если число меньше, то должны
+    // добавить еще один элемент из result_arr в arr_help
+    while (add_less_1010(arr_help, arr_10) && index >= 0) {
+      //делаем сдвиг arr_help влево на 1 бит + в последний эелемент ставим еще
+      //одно число из result_arr
+      for (int i = 0; i < 4; i++) {
+        arr_help[i] = arr_help[i + 1];
+      }
+      arr_help[4] = result_arr[index];
+      index--;
+      //пишем 0 в result_arr_copy если добавили разряд, а число все еще меньше
+      // 1010. Здесь же учитываем индекс первого деления
+      if (!start && add_less_1010(arr_help, arr_10)) {
+        result_arr_copy[index_result] = 0;
+        index_result++;
+      }
+    }
+    //обнуление индекса первого деления
+    start = 0;
+    //если индекс ушел в отрицательное значение в прошлом цикле то завершаем,
+    //поскольку дальше идет деление с остатком
+    if (index < 0 && add_less_1010(arr_help, arr_10)) break;
+    //процесс вычитания 1010 из arr_help
+    //запись в arr_help_copy полученного результата
+    for (int i = 4; i >= 0; i--) {
+      if (arr_help[i] == 0 && arr_10[i] == 0) {
+        arr_help_copy[i] = 0;
+      } else if (arr_help[i] == 1 && arr_10[i] == 0) {
+        arr_help_copy[i] = 1;
+      } else if (arr_help[i] == 0 && arr_10[i] == 1) {
+        //цикл для реализации ситуации когда (10000 - 1010) и 1 нужно брать не
+        //из соседнего разряда
+        for (int j = i - 1; j >= 0; j--) {
+          if (arr_help[j] == 0) {
+            arr_help[j] = 1;
+          } else if (arr_help[j] == 1) {
+            arr_help[j] = 0;
+            break;
+          }
+        }
+        arr_help_copy[i] = 1;
+      } else if (arr_help[i] == 1 && arr_10[i] == 1) {
+        arr_help_copy[i] = 0;
+      }
+    }
+    //когда вычитание произошло, то нужно дописать в result_arr_copy 1
+    result_arr_copy[index_result] = 1;
+    index_result++;
+    //обновление arr_help
+    for (int i = 0; i < 5; i++) {
+      arr_help[i] = arr_help_copy[i];
+    }
+  }
+  //запись результата деления из result_arr_copy в result_arr
+  //поиск конца результата в result_arr_copy
+  for (int i = 254; i >= 0; i--) {
+    if (result_arr_copy[i] != 2) {
+      index = i;
+      break;
+    }
+  }
+  //используем start как индекс для записи result_arr
+  start = 0;
+  //запись из result_arr_copy в result_arr
+  // printf("\nindex %d\n", index);
+  // printf("\nresult_arr_copy all\n");
+  // for (int i = 0; i < NUM_255; i++) {
+  //   printf("%d", result_arr_copy[i]);
+  // }
+  //инициализация (по сути обнуление) result_arr чтобы вписать туда новое число
+  for (int i = 0; i < NUM_255; i++) {
+    result_arr[i] = 2;
+  }
+  while (index >= 0) {
+    result_arr[start] = result_arr_copy[index];
+    index--;
+    start++;
+  }
+  // printf("\nresult_arr all\n");
+  // for (int i = 0; i < NUM_255; i++) {
+  //   printf("%d", result_arr[i]);
+  // }
+  //уменьшение экспоненты после деления на 1010
+  *exp_1 = *exp_1 - 1;
+}
+
+/*
+    function add_mul_1010
+    Производит умножение value_1_arr или value_2_arr типа decimal на 10, пока их
+    экспоненты не будут равны Необходима для функции сложения (чтобы складывать
+    равные разряды)
+*/
+int add_mul_1010(int *value_1_arr, int *value_2_arr, int *exp_1, int *exp_2) {
+  //флаг ошибки для переполнения
+  int error = 0;
+  //индекс для цикла умножения и массив где будет храниться промежуточный
+  //результат
+  int result[NUM_255];
+  int index = 0;
+  int j = 2;
+  int memory = 0;
+  //нужен чтобы понимать какая экспонента меньше чтобы в конце цикла увеличивать
+  //ее значение
+  int flag = 0;
+  //определяем разность показателей степеней и создаем копию массива, который
+  //имеет малую экспоненту. Далее этот массив и будем умножать на 10 пока
+  //экспоненты не станут равными
+  int exp_delta = abs(*exp_1 - *exp_2);
+  int value_min_exp[NUM_255];
+  if (*exp_1 < *exp_2) {
+    for (int i = 0; i < NUM_255; i++) {
+      value_min_exp[i] = value_1_arr[i];
+    }
+    flag = 1;
+  } else {
+    for (int i = 0; i < NUM_255; i++) {
+      value_min_exp[i] = value_2_arr[i];
+    }
+    flag = 2;
+  }
+  //умножаем на 10 (1010 в двоичной) пока дельта не станет = 0
+  while (exp_delta) {
+    //инициализация каждый цикл
+    index = 0;
+    j = 2;
+    for (int i = 0; i < NUM_255; i++) {
+      result[i] = 2;
+    }
+    //счет количества занятых битов для понимания "а можно ли вообще наше число
+    //умножать на 10? А вдруг оно уже занимает 96 бита и после умножения не
+    //поместится в decimal"
+    int count_bit = 0;
+    int count_1_bits = 0;
+    for (int i = 254; i >= 0; i--) {
+      if (value_min_exp[i] == 1) {
+        index = 1;
+        count_1_bits++;
+      }
+      if (index) count_bit++;
+    }
+    // printf("count_bit %d\n", count_bit);
+    //вернули индекс в прежнее значение
+    index = 0;
+    //если единичных битов 96 или больше то умножать дальше -> будет
+    //переполнение ставим error 123 (спец ошибка показывающая максимальное
+    //заполнение decimal). Умножаем дальше, потому что может быть ситуация когда
+    // MAX_DECIMAL - 0.07 и технически нужно записать в результат MAX_DECIMAL
+    //То есть эта ошибка сигнализирует о том, что у нас возможно произошло
+    //переполнение, но так ли это, решается в основной функции, учитывая знаки
+    //слагаемых
+    if (count_1_bits >= 96) {
+      error = 123;
+    }
+    // printf("\nbefore value_min_exp\n");
+    // for (int i = 105; i >= 0; i--) {
+    //   printf("%d", value_min_exp[i]);
+    // }
+    // printf("\n");
+    // if (count_bit > 96) {
+
+    //   // if (flag == 1) error = 1;
+    //   // if (flag == 2) error = 2;
+    //   // break;
+    // }
+
+    //нахождение
+    // for (int k = 0; k < NUM_255; k++) {
+    //   if (value_min_exp[k] == 2) {
+    //     index = k - 1;
+    //     break;
+    //   }
+    // }
+    // printf("\nindex bits_copy:%d\n", index);
+
+    //последний элемент всегда 0 при умножении на 10, а следующие два элемента
+    //всегда копии
+    result[index] = 0;
+    index++;
+    result[index] = value_min_exp[index - 1];
+    index++;
+    result[index] = value_min_exp[index - 1];
+    index++;
+    //цикл сложения
+    while (value_min_exp[j] != 2) {
+      if (value_min_exp[j] == 1 && value_min_exp[j - 2] == 1) {
+        //нет в памяти доп разряда
+        if (memory == 0) {
+          result[index] = 0;
+          memory = 1;
+        } else {
+          result[index] = 1;
+        }
+      } else if ((value_min_exp[j] == 0 && value_min_exp[j - 2] == 1) ||
+                 (value_min_exp[j] == 1 && value_min_exp[j - 2] == 0)) {
+        //нет в памяти доп разряда
+        if (memory == 0) {
+          result[index] = 1;
+        } else {
+          result[index] = 0;
+        }
+      } else if (value_min_exp[j] == 0 && value_min_exp[j - 2] == 0) {
+        //нет в памяти доп разряда
+        if (memory == 0) {
+          result[index] = 0;
+        } else {
+          result[index] = 1;
+          memory = 0;
+        }
+      }
+      index++;
+      j++;
+    }
+    //сложение первых двух разрядов
+    for (int k = 0; k <= 1; k++, j++, index++) {
+      if (value_min_exp[j - 2] == 1 && memory == 1) {
+        result[index] = 0;
+      } else if ((value_min_exp[j - 2] == 0 && memory == 1) ||
+                 (value_min_exp[j - 2] == 1 && memory == 0)) {
+        result[index] = 1;
+        memory = 0;
+      } else if (value_min_exp[j - 2] == 0 && memory == 0) {
+        result[index] = 0;
+      }
+    }
+    if (memory == 1) {
+      result[index] = 1;
+      memory = 0;
+    }
+    //поиск начала числа в result
+    // for (int k = 0; k < NUM_255; k++) {
+    //   if (result[k] == 2) {
+    //     index = k - 1;
+    //     break;
+    //   }
+    // }
+    //запись в правильном порядке в новый массив
+    //обновляем value_min_exp
+    // printf("\niteration f_b: %d bits_copy:\n", fractional_bits);
+    for (int k = 0; k < NUM_255; k++) {
+      value_min_exp[k] = result[k];
+      // printf("%d", bits_copy[k]);
+      // if (255 - ind_help == fractional_bits) {
+      //   printf(".");
+      // }
+    }
+    // for (int k = 0, control_index = 0; k < integer_bits; k++) {
+    //   // flag = 1 значит нашли ненулевое начало
+    //   if (bits_copy[k] != 0) flag = 1;
+    //   if (flag) control_index++;
+    //   //перехват переполнения который либо уже есть сейчас либо произойдет на
+    //   //следующем шаге итерации
+    //   if (control_index == 95 || control_index + 3 > 95) {
+    //     flag = 2;
+    //     break;
+    //   }
+    // }
+    // printf("\nafter value_min_exp\n");
+    // for (int i = 105; i >= 0; i--) {
+    //   printf("%d", value_min_exp[i]);
+    // }
+    // printf("\n");
+    //уменьшаем дельту и увеличиваем показатель экспоненты
+    exp_delta--;
+    if (flag == 1) {
+      *exp_1 = *exp_1 + 1;
+    } else if (flag == 2) {
+      *exp_2 = *exp_2 + 1;
+    }
+  }
+  if (flag == 1) {
+    for (int k = 0; k < NUM_255; k++) {
+      value_1_arr[k] = value_min_exp[k];
+    }
+  } else if (flag == 2) {
+    for (int k = 0; k < NUM_255; k++) {
+      value_2_arr[k] = value_min_exp[k];
+    }
+  }
+  return error;
+}
+

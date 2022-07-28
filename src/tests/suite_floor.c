@@ -257,7 +257,7 @@ START_TEST(s21_floor_02) {
     dec1.bits[3] = 0b00000000000000010000000000000000;
     float num = 0.0;
     s21_from_decimal_to_float(dec1, &num);
-    printf("%f", num);
+    // printf("%f", num);
     s21_decimal result;
     result.bits[0] = 0b00000000000000000000000000010000;
     result.bits[1] = 0b00000000000000000000000000000000;

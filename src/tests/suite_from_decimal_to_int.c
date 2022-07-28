@@ -248,21 +248,6 @@ START_TEST(s21_test_from_decimal_to_int_17) {
 }
 END_TEST
 
-START_TEST(s21_test_from_decimal_to_int_18) {
-    s21_decimal a;
-    a.bits[0] = 10;
-    a.bits[1] = 0b00000000000000000000000000000000;
-    a.bits[2] = 0b00000000000000000000000000000000;
-    a.bits[3] = 0b00000000000000000000000000000000;
-    s21_decimal *p_a = &a;
-    set_minus(p_a);
-    set_scale(p_a, 2);
-    check = 0;
-    code = s21_from_decimal_to_int(a, &result);
-    ck_assert_int_eq(result, check);
-    ck_assert_int_eq(code, 1);
-}
-END_TEST
 
 START_TEST(s21_from_decimal_to_intTest1) {
     // 6556
@@ -533,7 +518,6 @@ Suite *suite_from_decimal_to_int(void) {
   tcase_add_test(tc, s21_test_from_decimal_to_int_15);
   tcase_add_test(tc, s21_test_from_decimal_to_int_16);
   tcase_add_test(tc, s21_test_from_decimal_to_int_17);
-  tcase_add_test(tc, s21_test_from_decimal_to_int_18);
   tcase_add_test(tc, s21_from_decimal_to_intTest1);
   tcase_add_test(tc, s21_from_decimal_to_intTest2);
   tcase_add_test(tc, s21_from_decimal_to_intTest3);

@@ -82,7 +82,9 @@ int check_scale_greater(s21_decimal num1, s21_decimal num2, int result);
 int s21_zero(s21_decimal value);
 void s21_truncate_buf(s21_decimal *buf, int exp);
 int return_last_digit_and_truncate_buf_by_it(s21_decimal *buf);
-
+int add_mul_1010(int *value_1_arr, int *value_2_arr, int *exp_1, int *exp_2);
+void add_div_10(int *result_arr, int *exp_1, int *count_bit);
+int add_less_1010(int *arr_help, int *arr_10);
 // Arithmetic Operators
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);

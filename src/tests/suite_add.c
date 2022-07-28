@@ -593,27 +593,6 @@ START_TEST(add_16) {
 }
 END_TEST
 
-START_TEST(add_17) {
-    s21_decimal val1 = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
-    s21_decimal val2 = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, 0}};
-    set_scale(&val1, 5);
-    set_scale(&val2, 3);
-    s21_decimal res = {{0}};
-    ck_assert_int_eq(0, s21_add(val1, val2, &res));
-}
-END_TEST
-
-START_TEST(add_18) {
-    s21_decimal val1 = {
-        {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
-    s21_decimal val2 = {
-        {S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(S21_MAX_UINT / 2)}};
-    set_scale(&val1, 5);
-    set_scale(&val2, 3);
-    s21_decimal res = {{0}};
-    ck_assert_int_eq(0, s21_add(val1, val2, &res));
-}
-END_TEST
 
 START_TEST(s21_test_decimal_add_0) {
     s21_decimal c = {5, 0, 0, 0};
@@ -1349,7 +1328,7 @@ START_TEST(s21_test_decimal_add_simple_0) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1366,7 +1345,7 @@ START_TEST(s21_test_decimal_add_simple_1) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1383,7 +1362,7 @@ START_TEST(s21_test_decimal_add_simple_2) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1400,7 +1379,7 @@ START_TEST(s21_test_decimal_add_simple_3) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1417,7 +1396,7 @@ START_TEST(s21_test_decimal_add_simple_4) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1434,7 +1413,7 @@ START_TEST(s21_test_decimal_add_simple_5) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
@@ -1456,7 +1435,7 @@ START_TEST(s21_test_decimal_add_simple_6) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1473,7 +1452,7 @@ START_TEST(s21_test_decimal_add_simple_7) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1490,7 +1469,7 @@ START_TEST(s21_test_decimal_add_simple_8) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1507,7 +1486,7 @@ START_TEST(s21_test_decimal_add_simple_9) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     ck_assert_int_eq(res.bits[0], etalon.bits[0]);
@@ -1534,7 +1513,7 @@ START_TEST(s21_test_decimal_add_simple_10) {  // -1 + (-1) = -2
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1551,7 +1530,7 @@ START_TEST(s21_test_decimal_add_simple_11) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1568,7 +1547,7 @@ START_TEST(s21_test_decimal_add_simple_12) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1585,7 +1564,7 @@ START_TEST(s21_test_decimal_add_simple_13) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     ck_assert_int_eq(res.bits[0], etalon.bits[0]);
@@ -1612,7 +1591,7 @@ START_TEST(s21_test_decimal_add_simple_14) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1634,7 +1613,7 @@ START_TEST(s21_test_decimal_add_simple_15) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1656,7 +1635,7 @@ START_TEST(s21_test_decimal_add_simple_16) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1678,7 +1657,7 @@ START_TEST(s21_test_decimal_add_simple_17) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1700,7 +1679,7 @@ START_TEST(s21_test_decimal_add_simple_18) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1717,7 +1696,7 @@ START_TEST(s21_test_decimal_add_simple_19) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     ck_assert_int_eq(res.bits[0], etalon.bits[0]);
@@ -1739,7 +1718,7 @@ START_TEST(s21_test_decimal_add_simple_20) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1756,7 +1735,7 @@ START_TEST(s21_test_decimal_add_simple_21) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1773,7 +1752,7 @@ START_TEST(s21_test_decimal_add_simple_22) {
     s21_decimal* p_res = &res;
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -1801,7 +1780,7 @@ START_TEST(s21_test_decimal_add_simple_23) {
     ck_assert_int_eq(res.bits[3], etalon.bits[3]);
 
     // 0 - OK 1 - число слишком велико или равно бесконечности 2 - число слишком мало или равно отрицательной бесконечности 3 - деление на 0
-    int add = s21_decimal_add_simple(c, d, p_res);
+    int add = s21_add(c, d, p_res);
     ck_assert_int_eq(add, 0);
 
     int equal = s21_is_equal(res, etalon);  // Возвращаемое значение: 0 - FALSE 1 - TRUE
@@ -2051,9 +2030,6 @@ Suite *suite_add(void) {
   tcase_add_test(tc, add_14);
   tcase_add_test(tc, add_15);
   tcase_add_test(tc, add_16);  //-
-  tcase_add_test(tc, add_17);
-  tcase_add_test(tc, add_18);
-
 
   tcase_add_test(tc, s21_test_decimal_add_simple_0);
   tcase_add_test(tc, s21_test_decimal_add_simple_1);
