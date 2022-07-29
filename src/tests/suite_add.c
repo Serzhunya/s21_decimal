@@ -444,7 +444,7 @@ END_TEST
 START_TEST(add_test_30) {
   s21_decimal src1 = {{S21_MAX_UINT, S21_MAX_UINT, S21_MAX_UINT, ~(INT_MAX)}};
   s21_decimal src2 = {0};
-  float a = 0.01448;
+  float a = -0.01448;
   s21_from_float_to_decimal(a, &src2);
   s21_decimal res_dec = {0};
   s21_add(src1, src2, &res_dec);

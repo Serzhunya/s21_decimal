@@ -13,7 +13,7 @@ START_TEST(s21_from_int_to_decimal_1) {
   ck_assert_int_eq(val.bits[0], 128);
   ck_assert_int_eq(val.bits[1], 0);
   ck_assert_int_eq(val.bits[2], 0);
-  ck_assert_int_eq(val.bits[3], -2147483648);
+  ck_assert_int_eq(val.bits[3], 2147483648);
 
   s21_from_int_to_decimal(127, &val);
   ck_assert_int_eq(val.bits[0], 127);
@@ -22,10 +22,10 @@ START_TEST(s21_from_int_to_decimal_1) {
   ck_assert_int_eq(val.bits[3], 0);
 
   s21_from_int_to_decimal(-2147483648, &val);
-  ck_assert_int_eq(val.bits[0], -2147483648);
+  ck_assert_int_eq(val.bits[0], 2147483648);
   ck_assert_int_eq(val.bits[1], 0);
   ck_assert_int_eq(val.bits[2], 0);
-  ck_assert_int_eq(val.bits[3], -2147483648);
+  ck_assert_int_eq(val.bits[3], 2147483648);
 
   s21_from_int_to_decimal(2147483647, &val);
   ck_assert_int_eq(val.bits[0], 2147483647);

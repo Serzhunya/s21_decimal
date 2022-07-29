@@ -351,6 +351,27 @@ void print_2(s21_decimal *dst) {
     }
     printf("\n");
   }
+  printf("bin number:\n");
+  for (int i = 2; i >= 0; i--) {
+    for (int j = 31; j >= 0; j--) {
+      if (test_bit(dst->bits[i], j)) {
+        printf("1");
+      } else {
+        printf("0");
+      }
+    }
+  }
+  printf("\n");
+  printf("exp number:\n");
+  for (int i = 23; i >= 16; i--) {
+    if (test_bit(dst->bits[3], i)) {
+      printf("1");
+    } else {
+      printf("0");
+    }
+  }
+  printf("\n");
+  printf("\n");
 }
 
 /*
@@ -744,7 +765,6 @@ void exp_less_23(int *all_bits_float, int *count_10, int integer_bits,
   }
 }
 
-
 /*
     function exp_more_23
     Запись float в decimal если нет дробных битов и exp >= 23
@@ -975,7 +995,6 @@ int float2decimal_main(int float_bits, int exp, s21_decimal *dst) {
   return error_exp_more_23;
 }
 
-
 // float get_random_float(float min, float max) {
 //   assert(max > min);
 //   float random = ((float)rand()) / (float)RAND_MAX;
@@ -994,7 +1013,6 @@ int s21_zero(s21_decimal value) {
   }
   return error;
 }
-
 
 /*
     function add_less_1010
@@ -1337,4 +1355,3 @@ int add_mul_1010(int *value_1_arr, int *value_2_arr, int *exp_1, int *exp_2) {
   }
   return error;
 }
-

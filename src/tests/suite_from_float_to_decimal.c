@@ -55,11 +55,12 @@ START_TEST(s21_from_float_to_decimal_2) {
 END_TEST
 START_TEST(s21_from_float_to_decimal_3) {
   s21_decimal val;
-  s21_from_float_to_decimal(-2.1474836E+09, &val);
-  ck_assert_int_eq(val.bits[0], -2147483648);
+  float num = -2.1474836E+09;
+  s21_from_float_to_decimal(num, &val);
+  ck_assert_int_eq(val.bits[0], 2147483648);
   ck_assert_int_eq(val.bits[1], 0);
   ck_assert_int_eq(val.bits[2], 0);
-  ck_assert_int_eq(val.bits[3], -2147483648);
+  ck_assert_int_eq(val.bits[3], 2147483648);
 }
 END_TEST
 
