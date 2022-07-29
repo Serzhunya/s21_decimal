@@ -19,11 +19,11 @@ int s21_round(s21_decimal value, s21_decimal *result) {
       s21_decimal one = {{1, 0, 0, 0}};
       if (last_digit == 5) {
         // добавить банковское округление
-        if(test_bit(res->bits[0], 0)){
+        if (test_bit((res->bits[0]), 0)) {
           s21_add(*res, one, res);
         }
-      }
-      s21_add(*res, one, res);
+      } else if (last_digit > 5)
+        s21_add(*res, one, res);
     }
     *result = *res;
     if (sign_op) {

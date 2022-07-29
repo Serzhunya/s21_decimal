@@ -356,12 +356,12 @@ int first_bit_not_zero_int(s21_decimal src) {
     function print_2
     Печать всех битов структуры
 */
+
 void print_2(s21_decimal *dst) {
   for (int i = 0; i < 4; i++) {
     printf("bits[%d]\n", i);
     for (int j = 1; j <= 32; j++) {
       if (test_bit(dst->bits[i], (j - 1))) {
-        printf("1");
       } else {
         printf("0");
       }
@@ -392,21 +392,21 @@ void print_2(s21_decimal *dst) {
   printf("\n");
 }
 
-/*
-    function print_2_32
-    Печать всех битов большой структуры
-*/
-void print_2_32_int(/*uint32_t*/ int *bit) {
-  for (int j = 1; j <= 32; j++) {
-    if (test_32_bit(*bit, (j - 1))) {
-      printf("1");
-    } else {
-      printf("0");
-    }
-    if ((j % 4) == 0) printf(" ");
-  }
-  printf("\n");
-}
+// void print_2(s21_decimal *dst) {
+//   for (int i = 0; i < 4; i++) {
+//     printf("bits[%d]\n", i);
+//     for (int j = 1; j <= 32; j++) {
+//       if (test_bit(dst->bits[i], (j - 1))) {
+//   for (int j = 1; j <= 32; j++) {
+//     if (test_32_bit(*bit, (j - 1))) {
+//       printf("1");
+//     } else {
+//       printf("0");
+//     }
+//     if ((j % 4) == 0) printf(" ");
+//   }
+//   printf("\n");
+// }
 
 //===============================================
 
@@ -414,9 +414,9 @@ void print_2_32_int(/*uint32_t*/ int *bit) {
     function int_have_opposite_signs
     Если у переменных разные знаки, то вернется TRUE
 */
-int int_have_opposite_signs(int valueA, int valueB) {
-  return ((valueA ^ valueB) < 0);
-}
+// int int_have_opposite_signs(int valueA, int valueB) {
+//   return ((valueA ^ valueB) < 0);
+// }
 
 /*
     function exp_decimal_bin2dec

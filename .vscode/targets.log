@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Thu Jul 28 16:02:42 2022
+# Make data base, printed on Thu Jul 28 19:12:17 2022
 
 # Variables
 
@@ -157,7 +154,7 @@ VSCODE_PID = 64278
 
 # Directories
 
-# . (device 16777230, inode 1534535): 15 files, no impossibilities.
+# . (device 16777230, inode 1545387): 15 files, no impossibilities.
 
 # 15 files, no impossibilities in 1 directories.
 
@@ -231,6 +228,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu Jul 28 16:02:42 2022
+# Finished Make data base on Thu Jul 28 19:12:17 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
