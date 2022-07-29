@@ -104,14 +104,20 @@ int add_main(s21_decimal value_1, int exp_1, s21_decimal value_2, int exp_2,
       count_bit_1++;
       // printf("%d", value_1_arr[i]);
     }
-    if (index_2) count_bit_2++;
-  }
-
-  for (int i = 0; i < NUM_255; i++) {
-    if (value_2_arr[i] == 2) value_2_arr[i] = 0;
+    if (index_2) {
+      count_bit_2++;
+    }
   }
   // printf("\nvalue_2_arr\n");
-  // for (int i = 103; i >= 0; i--) {
+  // for (int i = 120; i >= 0; i--) {
+  //   printf("%d", value_2_arr[i]);
+  // }
+  for (int i = 0; i < NUM_255; i++) {
+    if (value_2_arr[i] == 2) value_2_arr[i] = 0;
+    if (value_1_arr[i] == 2) value_1_arr[i] = 0;
+  }
+  // printf("\nvalue_2_arr\n");
+  // for (int i = 120; i >= 0; i--) {
   //   printf("%d", value_2_arr[i]);
   // }
 

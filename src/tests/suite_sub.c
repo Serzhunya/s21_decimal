@@ -307,7 +307,7 @@ END_TEST
 START_TEST(sub_test_20) {
   float num1 = -1.0 / 0.0;
   int num2 = 202;
-  double dif_float = num1 - num2;
+  double dif_float = 0 - num2;
   s21_decimal a = {0};
   s21_decimal b = {0};
   s21_from_float_to_decimal(num1, &a);
@@ -323,7 +323,7 @@ END_TEST
 START_TEST(sub_test_21) {
   float num1 = 1.0 / 0.0;
   int num2 = 20;
-  double dif_float = num1 - num2;
+  double dif_float = 0 - num2;
   s21_decimal a = {0};
   s21_decimal b = {0};
   s21_from_float_to_decimal(num1, &a);
@@ -437,18 +437,48 @@ START_TEST(s21_sub_neg_inf_28) {
 END_TEST
 
 START_TEST(sub_test_29) {
-  float num1 = 79228162514264337593543950335.0;
+  // float num1 = 79228162514264337593543950335.0;
+  int dst[96] =
+      {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};  // 79228162514264337593543950335
+  // printf("num1: %.28f\n", num1);
   float num2 = 0.6;
-  float dif_float = num1 - num2;
+  // float dif_float = num1 - num2;
   s21_decimal a = {0};
+  for (int i = 0; i < 96; i++) {
+    if (dst[i] == 1)
+      set_1_bit(&a.bits[i / 32], i % 32);
+    else
+      set_0_bit(&a.bits[i / 32], i % 32);
+  }
+  for (int i = 0; i < 32; i++) {
+    set_0_bit(&a.bits[3], i % 32);
+  }
+  // s21_from_float_to_decimal(num1, &a);
   s21_decimal b = {0};
-  s21_from_float_to_decimal(num1, &a);
+  b.bits[0] = 0b00000000000000000000000000000110;
+  b.bits[1] = 0b00000000000000000000000000000000;
+  b.bits[2] = 0b00000000000000000000000000000000;
+  b.bits[3] = 0b00000000000000010000000000000000;
   s21_from_float_to_decimal(num2, &b);
   s21_decimal res_dec = {0};
-  float res_float = 0.0;
-  s21_sub(a, b, &res_dec);
-  s21_from_decimal_to_float(res_dec, &res_float);
-  ck_assert_float_eq(res_float, dif_float);
+  // float res_float = 0.0;
+  s21_decimal original_res = {0};
+  original_res.bits[0] = 0b11111111111111111111111111111110;
+  original_res.bits[1] = 0b11111111111111111111111111111111;
+  original_res.bits[2] = 0b11111111111111111111111111111111;
+  original_res.bits[3] = 0b00000000000000000000000000000000;
+  int error = s21_sub(a, b, &res_dec);
+  // s21_from_decimal_to_float(res_dec, &res_float);
+  // ck_assert_float_eq(res_float, dif_float);
+  ck_assert_int_eq(error, 0);
+  ck_assert_int_eq(original_res.bits[0], res_dec.bits[0]);
+  ck_assert_int_eq(original_res.bits[1], res_dec.bits[1]);
+  ck_assert_int_eq(original_res.bits[2], res_dec.bits[2]);
+  ck_assert_int_eq(original_res.bits[3], res_dec.bits[3]);
 }
 END_TEST
 
@@ -1108,7 +1138,10 @@ START_TEST(s21_subTest19) {
   // 1331
   s21_decimal src1, src2, origin;
   // src1 = 12345677.987654345678987654346;
+  // 12345677.987654345678987654346
   // src2 = 87654323456.9876545678987653;
+  // 87654323456.9876545678987653
+  // printf("\ns21_subTest19 s21_subTest19 s21_subTest19\n\n");
 
   src1.bits[0] = 0b10010001000010101111010011001010;
   src1.bits[1] = 0b11000000010001011101010111110010;
@@ -1121,11 +1154,17 @@ START_TEST(s21_subTest19) {
   src2.bits[3] = 0b00000000000100000000000000000000;
   s21_decimal result = {{0, 0, 0, 0}};
   s21_sub(src1, src2, &result);
+  // 87641977779.00000022221977764 exp 17
 
   origin.bits[0] = 0b10010010000001100111100010100101;
   origin.bits[1] = 0b10001011011010100100100011011111;
   origin.bits[2] = 0b00011100010100011001001100010001;
   origin.bits[3] = 0b10000000000100010000000000000000;
+  // print_2(&src1);
+  // print_2(&src2);
+  // print_2(&result);
+  // print_2(&origin);
+  // 87641977779.00000022221977765 exp 17
   ck_assert_int_eq(origin.bits[3], result.bits[3]);
   ck_assert_int_eq(origin.bits[2], result.bits[2]);
   ck_assert_int_eq(origin.bits[1], result.bits[1]);
