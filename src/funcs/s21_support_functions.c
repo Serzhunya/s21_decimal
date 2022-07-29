@@ -18,6 +18,21 @@ void s21_unshift(s21_decimal *number) {
   }
 }
 
+/* Данная функция проверяет 32 бита интового числа на совпадение с decimal
+Если биты не одинаковы, то функция возвращает ошибку. Нужна для тестирования
+проекта функции decimal_to_int */
+int check_bits_decimal_int(s21_decimal *src, int num) {
+  int error = 0;
+  for (int i = 0; i < 32; i++) {
+    if ((test_bit(src->bits[0], i) && !test_bit_int(num, i)) ||
+        (!test_bit(src->bits[0], i) && test_bit_int(num, i))) {
+      error = 1;
+      break;
+    }
+  }
+  return error;
+}
+
 /* Данная функция делает смещение числа типа decimal
 вперёд на один символ. Нужна при выполнении операции умножения */
 int s21_shift(s21_decimal *number) {
@@ -263,6 +278,7 @@ void s21_rev_10_conv(s21_decimal *value, int result) {
 int test_bit(unsigned int value, int BitNumber) {
   return value & (1 << BitNumber);
 }
+int test_bit_int(int value, int BitNumber) { return value & (1 << BitNumber); }
 int test_32_bit(/*uint32_t*/ int value, int BitNumber) {
   return value & (1 << BitNumber);
 }
@@ -274,6 +290,7 @@ int test_32_bit(/*uint32_t*/ int value, int BitNumber) {
 void set_1_bit(unsigned int *value, int BitNumber) {
   *value |= (1 << BitNumber);
 }
+void set_1_bit_int(int *value, int BitNumber) { *value |= (1 << BitNumber); }
 void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
   *value |= (1 << BitNumber);
 }
@@ -285,6 +302,7 @@ void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber) {
 void set_0_bit(unsigned int *value, int BitNumber) {
   *value &= ~(1 << BitNumber);
 }
+void set_0_bit_int(int *value, int BitNumber) { *value &= ~(1 << BitNumber); }
 void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber) {
   *value &= ~(1 << BitNumber);
 }

@@ -44,11 +44,15 @@ void print_2_32(/*uint32_t*/ int *bit);
 
 // Вспомогательные функции по работе с битами
 int test_bit(unsigned int value, int BitNumber);
+int test_bit_int(int value, int BitNumber);
 int test_32_bit(/*uint32_t*/ int value, int BitNumber);
 void set_1_bit(unsigned int *value, int BitNumber);
+void set_1_bit_int(int *value, int BitNumber);
 void set_1_32_bit(/*uint32_t*/ int *value, int BitNumber);
 void set_0_bit(unsigned int *value, int BitNumber);
+void set_0_bit_int(int *value, int BitNumber);
 void set_0_32_bit(/*uint32_t*/ int *value, int BitNumber);
+int check_bits_decimal_int(s21_decimal *src, int num);
 void invert_bit(unsigned int *value, int BitNumber);
 int is_int_negative(int value);
 int int_have_opposite_signs(int valueA, int valueB);
